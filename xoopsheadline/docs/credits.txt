@@ -1,0 +1,5 @@
+Credits
+===============
+Original developed by Kazumi Ono (Onokazu)
+
+Updated to Blue Move and XOOPS 2.5.0 GUI by Jim Garrett (ZySpec)
