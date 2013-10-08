@@ -1,0 +1,24 @@
+v1.10 [2012/12/22] (ZySpec)
+=================================
++ minor CSS changes
++ changed main language file variable names to Xoops Module Standards naming nomenclature
++ changed $HTTP_GET_VARS to $_GET for PHP 5
++ changed XoopsheadlineRenderer->updateCache() to try cURL if fopen fails
++ changed xoopsheadlineHeadlineHandler to use XoopsPersistableObjectHandler
++ changed headlinerender->renderfeed() to scale image if it's large than
++ changed defines to include _HEADLINES_ image limit so that it scales proportionally
++ added module configuration option to sort feed display
++ added feed edit icon for admin in front side (./index.php)
++ added ability to flush headline feed cache in admin
++ added XoopsheadlineUtility class
++ added ./language/english/changelog.txt file
++ updated module logo (badge) to Blue Move blue from 'orange'
++ fixed various 'return by reference' PHP Notices
++ deprecated ./include/functions.php file
++ added "Actions" headline title (mamba)
++ added /docs folder and moved changelog there
++ added Tutorial (http://goo.gl/1Uiqj) (mamba)
+
+v1.00
+=================================
++ initial release
