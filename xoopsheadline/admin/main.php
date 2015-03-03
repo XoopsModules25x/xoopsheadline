@@ -493,4 +493,3 @@ switch ($op) {
         redirect_header('main.php', 2, _AM_HEADLINES_CACHEUPD);
         break;
 }
-?>

@@ -23,4 +23,3 @@ define('_MD_HEADLINES_TOTALDISPLAYED',"%s Displayed Headlines");
 define('_MD_HEADLINES_TOTALHIDDEN',"%s Hidden Headlines");
 define('_MD_HEADLINES_TOTALHLS',"%s Total Headlines");
 define('_MD_HEADLINES_TOTALASBLOCK',"%s Headlines displayed in block(s)");
-?>

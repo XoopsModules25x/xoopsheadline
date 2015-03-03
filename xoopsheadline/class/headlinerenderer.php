@@ -54,7 +54,6 @@ class XoopsHeadlineRenderer
   // RSS2 SAX parser
   protected $parser;
 
-
   public function __construct(&$headline)
   {
     $this->hl =& $headline;
@@ -100,6 +99,7 @@ class XoopsHeadlineRenderer
         $headline_handler =& xoops_getmodulehandler('headline', 'xoopsheadline');
         $retval = $headline_handler->insert($this->hl);
     }
+
     return $retval;
   }
 
@@ -155,6 +155,7 @@ class XoopsHeadlineRenderer
         $this->feed =& $this->tpl->fetch('db:xoopsheadline_feed.html');
         $retval = true;
     }
+
     return $retval;
   }
 
@@ -188,10 +189,9 @@ class XoopsHeadlineRenderer
         $this->block =& $this->tpl->fetch('file:' . XOOPS_ROOT_PATH . '/modules/xoopsheadline/blocks/headline_block.html');
         $retval = true;
     }
+
     return $retval;
   }
-
-
 
   protected function &_parse()
   {
@@ -217,6 +217,7 @@ class XoopsHeadlineRenderer
             $retval = false;
         }
     }
+
     return $retval;
   }
 
@@ -247,6 +248,7 @@ class XoopsHeadlineRenderer
           }
         }
     }
+
     return $retval;
   }
 
@@ -266,7 +268,7 @@ class XoopsHeadlineRenderer
     if (strtolower($this->hl->getVar('headline_encoding')) == 'iso-8859-1') {
         $xmlfile = utf8_encode($xmlfile);
     }
+
     return $xmlfile;
   }
 }
-?>

@@ -43,4 +43,3 @@ define("_MI_HEADLINES_SORT1","Site Name DESC");
 define("_MI_HEADLINES_SORT2","Site Name ASC");
 define("_MI_HEADLINES_SORT3","Weight DESC");
 define("_MI_HEADLINES_SORT4","Weight ASC");
-?>

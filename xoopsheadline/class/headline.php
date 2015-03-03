@@ -66,6 +66,7 @@ class XoopsheadlineHeadline extends XoopsObject
     if (time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
       return true;
     }
+
     return false;
   }
 }
@@ -82,4 +83,3 @@ class xoopsheadlineHeadlineHandler extends XoopsPersistableObjectHandler
         parent::__construct($db, 'xoopsheadline', 'xoopsheadline' . 'Headline', 'headline_id');
     }
 }
-?>

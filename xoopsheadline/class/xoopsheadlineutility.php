@@ -38,11 +38,12 @@ class XoopsheadlineUtility
         include_once XOOPS_ROOT_PATH.'/modules/xoopsheadline/language/'.$GLOBALS['xoopsConfig']['language'].'/headlinerenderer.php';
         if (class_exists('XoopsHeadlineRendererLocal')) {
             $myhl = new XoopsHeadlineRendererLocal($headline);
+
             return $myhl;
         }
       }
       $myhl = new XoopsHeadlineRenderer($headline);
+
       return $myhl;
     }
 }
-?>
