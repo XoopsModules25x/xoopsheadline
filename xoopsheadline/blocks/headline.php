@@ -73,6 +73,6 @@ function b_xoopsheadline_show($options)
         }
         $block['feeds'][] = $renderer->getBlock();
     }
+
     return $block;
 }
-?>

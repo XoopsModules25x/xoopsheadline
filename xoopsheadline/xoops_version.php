@@ -99,4 +99,3 @@ $modversion['templates'][1]['file'] = 'xoopsheadline_index.html';
 $modversion['templates'][1]['description'] = '';
 $modversion['templates'][2]['file'] = 'xoopsheadline_feed.html';
 $modversion['templates'][2]['description'] = '';
-?>
