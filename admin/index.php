@@ -10,12 +10,11 @@
  */
 
 /**
- * @copyright    The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright    XOOPS Project (http://xoops.org)
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
- * @author     XOOPS Development Team
- * @version    $Id $
+ * @author       XOOPS Development Team
  */
 
 require 'admin_header.php';
@@ -24,11 +23,11 @@ xoops_cp_header();
 $indexAdmin = new ModuleAdmin();
 
 //-----------------------
-$xhl_handler =& xoops_getmodulehandler('headline', $xoopsModule->getVar('dirname', 'n'));
+$xhl_handler = xoops_getModuleHandler('headline', $xoopsModule->getVar('dirname', 'n'));
 
-$totalHls = $xhl_handler->getCount();
+$totalHls          = $xhl_handler->getCount();
 $totalDisplayedHls = $xhl_handler->getCount(new Criteria('headline_display', 1, '='));
-$totalHiddenHls = $totalHls - $totalDisplayedHls;
+$totalHiddenHls    = $totalHls - $totalDisplayedHls;
 
 $displayedAsBlock = $xhl_handler->getCount(new Criteria('headline_asblock ', 1, '='));
 
@@ -40,7 +39,7 @@ $indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTAL
 
 //----------------------------
 
-echo $indexAdmin->addNavigation('index.php');
+echo $indexAdmin->addNavigation(basename(__FILE__));
 echo $indexAdmin->renderIndex();
 
 include 'admin_footer.php';

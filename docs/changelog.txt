@@ -1,4 +1,15 @@
-v1.10 [2012/12/22] (ZySpec)
+1.11 Beta 1 [2016-05-22]
+=================================
++ code cosmetics (mamba)
+- removed @version (mamba)
++ changed dirname(__FILE__) to __DIR__ (mamba)
++ changed addNavigation('XXX.php') to generic: addNavigation(basename(__FILE__)) (mamba)
++ changed to single quotation marks (mamba)
++ moved images to /assets (mamba)
++ changed headline_slogo.png to logo_module.png (mamba)
+
+
+1.10 Final [2012/12/22] (ZySpec)
 =================================
 + minor CSS changes
 + changed main language file variable names to Xoops Module Standards naming nomenclature
@@ -19,6 +30,6 @@ v1.10 [2012/12/22] (ZySpec)
 + added /docs folder and moved changelog there
 + added Tutorial (http://goo.gl/1Uiqj) (mamba)
 
-v1.00
+1.00
 =================================
 + initial release

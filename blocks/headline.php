@@ -1,9 +1,9 @@
 <?php
-// $Id: headline.php 10523 2012-12-23 12:48:50Z beckmi $
+// 
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                         <http://xoops.org/>                               //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -27,22 +27,25 @@
 
 xoops_load('XoopsheadlineUtility', 'xoopsheadline');
 
+/**
+ * @param $options
+ * @return array
+ */
 function b_xoopsheadline_show($options)
 {
     global $xoopsConfig;
-    $hlDir = basename( dirname( dirname( __FILE__ ) ) );
+    $hlDir = basename(dirname(__DIR__));
 
-  $module_handler =& xoops_gethandler('module');
-  $module =& $module_handler->getByDirname($hlDir);
-  $config_handler =& xoops_gethandler('config');
-    $moduleConfig =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+    $module_handler = xoops_getHandler('module');
+    $module         = $module_handler->getByDirname($hlDir);
+    $config_handler = xoops_getHandler('config');
+    $moduleConfig   = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
-    $block = array();
-    $hlman =& xoops_getmodulehandler('headline', 'xoopsheadline');
+    $block    = array();
+    $hlman    = xoops_getModuleHandler('headline', 'xoopsheadline');
     $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('headline_asblock',1, '='));
-    switch ($moduleConfig['sortby'])
-    {
+    $criteria->add(new Criteria('headline_asblock', 1, '='));
+    switch ($moduleConfig['sortby']) {
         case 1:
             $criteria->setSort('headline_name');
             $criteria->setOrder('DESC');
@@ -62,12 +65,12 @@ function b_xoopsheadline_show($options)
             break;
     }
     $headlines =& $hlman->getObjects($criteria);
-    $count = count($headlines);
+    $count     = count($headlines);
     for ($i = 0; $i < $count; $i++) {
         $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headlines[$i]);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $headlines[$i]->getVar('headline_name')).'<br />'.$renderer->getErrors();
+                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $headlines[$i]->getVar('headline_name')) . '<br>' . $renderer->getErrors();
             }
             continue;
         }

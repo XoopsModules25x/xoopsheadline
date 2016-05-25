@@ -1,9 +1,9 @@
 <?php
-// $Id: headline.php 10523 2012-12-23 12:48:50Z beckmi $
+// 
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                         <http://xoops.org/>                               //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -28,57 +28,67 @@
 // URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
-if (!defined('XOOPS_ROOT_PATH')) {
-  die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
+/**
+ * Class XoopsheadlineHeadline
+ */
 class XoopsheadlineHeadline extends XoopsObject
 {
 
-    function __construct()
+    /**
+     * XoopsheadlineHeadline constructor.
+     */
+    public function __construct()
     {
-    parent::__construct();
-    $this->initVar('headline_id', XOBJ_DTYPE_INT, null, false);
-    $this->initVar('headline_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
-    $this->initVar('headline_url', XOBJ_DTYPE_TXTBOX, null, true, 255);
-    $this->initVar('headline_rssurl', XOBJ_DTYPE_TXTBOX, null, true, 255);
-    $this->initVar('headline_cachetime', XOBJ_DTYPE_INT, 600, false);
-    $this->initVar('headline_asblock', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_display', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_encoding', XOBJ_DTYPE_OTHER, null, false);
-    $this->initVar('headline_weight', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_mainimg', XOBJ_DTYPE_INT, 1, false);
-    $this->initVar('headline_mainfull', XOBJ_DTYPE_INT, 1, false);
-    $this->initVar('headline_mainmax', XOBJ_DTYPE_INT, 10, false);
-    $this->initVar('headline_blockimg', XOBJ_DTYPE_INT, 0, false);
-    $this->initVar('headline_blockmax', XOBJ_DTYPE_INT, 10, false);
-    $this->initVar('headline_xml', XOBJ_DTYPE_SOURCE, null, false);
-    $this->initVar('headline_updated', XOBJ_DTYPE_INT, 0, false);
+        parent::__construct();
+        $this->initVar('headline_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('headline_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('headline_url', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('headline_rssurl', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('headline_cachetime', XOBJ_DTYPE_INT, 600, false);
+        $this->initVar('headline_asblock', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_display', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_encoding', XOBJ_DTYPE_OTHER, null, false);
+        $this->initVar('headline_weight', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_mainimg', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('headline_mainfull', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('headline_mainmax', XOBJ_DTYPE_INT, 10, false);
+        $this->initVar('headline_blockimg', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('headline_blockmax', XOBJ_DTYPE_INT, 10, false);
+        $this->initVar('headline_xml', XOBJ_DTYPE_SOURCE, null, false);
+        $this->initVar('headline_updated', XOBJ_DTYPE_INT, 0, false);
     }
 
-  function XoopsheadlineHeadline()
-  {
-      $this->__construct();
-  }
-
-  function cacheExpired()
-  {
-    if (time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
-      return true;
+    public function XoopsheadlineHeadline()
+    {
+        $this->__construct();
     }
 
-    return false;
-  }
+    /**
+     * @return bool
+     */
+    public function cacheExpired()
+    {
+        if (time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
+/**
+ * Class xoopsheadlineHeadlineHandler
+ */
 class xoopsheadlineHeadlineHandler extends XoopsPersistableObjectHandler
 {
-    function xoopsheadlineHeadlineHandler(&$db)
-    {
-        $this->__construct($db);
-    }
 
-    function __construct(&$db)
+    /**
+     * xoopsheadlineHeadlineHandler constructor.
+     * @param XoopsDatabase $db
+     */
+    public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'xoopsheadline', 'xoopsheadline' . 'Headline', 'headline_id');
     }

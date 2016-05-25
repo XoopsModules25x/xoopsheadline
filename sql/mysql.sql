@@ -13,7 +13,7 @@ CREATE TABLE xoopsheadline (
   headline_mainmax tinyint(2) unsigned NOT NULL default '10',
   headline_blockimg tinyint(1) unsigned NOT NULL default '0',
   headline_blockmax tinyint(2) unsigned NOT NULL default '10',
-  headline_xml text NOT NULL default '',
+  headline_xml text NOT NULL,
   headline_updated int(10) NOT NULL default'0',
   PRIMARY KEY  (headline_id)
 ) ENGINE=MyISAM;
