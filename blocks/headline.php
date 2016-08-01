@@ -1,5 +1,5 @@
 <?php
-// 
+//
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                  Copyright (c) 2000-2016 XOOPS.org                        //
@@ -31,13 +31,12 @@ xoops_load('XoopsheadlineUtility', 'xoopsheadline');
  * @param $options
  * @return array
  */
-function b_xoopsheadline_show($options)
-{
+function b_xoopsheadline_show($options) {
     global $xoopsConfig;
     $hlDir = basename(dirname(__DIR__));
 
-    $module_handler = xoops_getHandler('module');
-    $module         = $module_handler->getByDirname($hlDir);
+    $moduleHandler  = xoops_getHandler('module');
+    $module         = $moduleHandler->getByDirname($hlDir);
     $config_handler = xoops_getHandler('config');
     $moduleConfig   = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
@@ -70,11 +69,12 @@ function b_xoopsheadline_show($options)
         $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headlines[$i]);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $headlines[$i]->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $headlines[$i]->getVar('headline_name')) . '<br>'
+                                    . $renderer->getErrors();
             }
             continue;
         }
-        $block['feeds'][] = $renderer->getBlock();
+        $block['feeds'][] =& $renderer->getBlock();
     }
 
     return $block;

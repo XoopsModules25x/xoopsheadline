@@ -17,7 +17,7 @@
  * @author       XOOPS Development Team
  */
 
-require 'admin_header.php';
+require __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 $indexAdmin = new ModuleAdmin();
@@ -42,4 +42,4 @@ $indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTAL
 echo $indexAdmin->addNavigation(basename(__FILE__));
 echo $indexAdmin->renderIndex();
 
-include 'admin_footer.php';
+include __DIR__ . '/admin_footer.php';

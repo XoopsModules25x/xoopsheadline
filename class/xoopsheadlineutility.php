@@ -10,7 +10,7 @@
  * @since     ::     File available since release 1.10
  */
 
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * XoopsheadlineUtility
@@ -20,7 +20,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  * @copyright:: Copyright (c) 2010 ZySpec Incorporated, Herve Thouzard
  * @access::    public
  */
-class xoopsheadlineutility
+class XoopsheadlineUtility
 {
     /**
      * XoopsheadlineUtility
@@ -30,11 +30,12 @@ class xoopsheadlineutility
      * @param $headline
      * @return XoopsHeadlineRenderer|XoopsHeadlineRendererLocal
      */
-    public static function &xoopsheadline_getrenderer(&$headline)
-    {
+    public static function xoopsheadline_getrenderer(&$headline) {
         include_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/class/headlinerenderer.php';
-        if (file_exists(XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/headlinerenderer.php')) {
-            include_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/headlinerenderer.php';
+        if (file_exists(XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language']
+                        . '/headlinerenderer.php')) {
+            include_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language']
+                         . '/headlinerenderer.php';
             if (class_exists('XoopsHeadlineRendererLocal')) {
                 $myhl = new XoopsHeadlineRendererLocal($headline);
 

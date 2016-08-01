@@ -1,15 +1,20 @@
-1.11 Beta 1 [2016-05-22]
+1.11 Final        2016-08-01
 =================================
-+ code cosmetics (mamba)
+- code cosmetics (mamba)
 - removed @version (mamba)
-+ changed dirname(__FILE__) to __DIR__ (mamba)
-+ changed addNavigation('XXX.php') to generic: addNavigation(basename(__FILE__)) (mamba)
-+ changed to single quotation marks (mamba)
-+ moved images to /assets (mamba)
-+ changed headline_slogo.png to logo_module.png (mamba)
+- addNavigation(basename(__FILE__))  (mamba)
+- dirname(__FILE__) to __DIR__ (mamba)
+- XOOPS 2.5.8, PHP 7 (mamba)
+- replaced < b /> with < b > (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- update Help (mamba)
+- changed headline_slogo.png to logo_module.png (mamba)
++ changed .html to .tpl (mamba)
 
 
-1.10 Final [2012/12/22] (ZySpec)
+1.10 [2012/12/22] (ZySpec)
 =================================
 + minor CSS changes
 + changed main language file variable names to Xoops Module Standards naming nomenclature

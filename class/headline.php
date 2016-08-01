@@ -1,5 +1,5 @@
 <?php
-// 
+//
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                  Copyright (c) 2000-2016 XOOPS.org                        //
@@ -39,8 +39,7 @@ class XoopsheadlineHeadline extends XoopsObject
     /**
      * XoopsheadlineHeadline constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->initVar('headline_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('headline_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
@@ -60,16 +59,10 @@ class XoopsheadlineHeadline extends XoopsObject
         $this->initVar('headline_updated', XOBJ_DTYPE_INT, 0, false);
     }
 
-    public function XoopsheadlineHeadline()
-    {
-        $this->__construct();
-    }
-
     /**
      * @return bool
      */
-    public function cacheExpired()
-    {
+    public function cacheExpired() {
         if (time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
             return true;
         }
@@ -88,8 +81,7 @@ class xoopsheadlineHeadlineHandler extends XoopsPersistableObjectHandler
      * xoopsheadlineHeadlineHandler constructor.
      * @param XoopsDatabase $db
      */
-    public function __construct(XoopsDatabase $db)
-    {
+    public function __construct(XoopsDatabase $db) {
         parent::__construct($db, 'xoopsheadline', 'xoopsheadline' . 'Headline', 'headline_id');
     }
 }
