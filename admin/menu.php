@@ -1,9 +1,9 @@
 <?php
-// $Id: menu.php 10640 2013-01-03 02:50:36Z beckmi $
+//
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                         <http://xoops.org/>                               //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,14 +25,14 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-defined("XOOPS_ROOT_PATH") or die("XOOPS root path not defined");
+defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
-$path = dirname(dirname(dirname(dirname(__FILE__))));
+$path = dirname(dirname(dirname(__DIR__)));
 include_once $path . '/mainfile.php';
 
-$dirname         = basename(dirname(dirname(__FILE__)));
-$module_handler  = xoops_gethandler('module');
-$module          = $module_handler->getByDirname($dirname);
+$dirname         = basename(dirname(__DIR__));
+$moduleHandler   = xoops_getHandler('module');
+$module          = $moduleHandler->getByDirname($dirname);
 $pathIcon32      = $module->getInfo('icons32');
 $pathModuleAdmin = $module->getInfo('dirmoduleadmin');
 $pathLanguage    = $path . $pathModuleAdmin;
@@ -43,19 +43,19 @@ if (!file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig
 
 include_once $fileinc;
 
-$adminmenu = array();
-$i=0;
-$adminmenu[$i]["title"] = _MI_HEADLINES_MENU_ADMININDEX;
-$adminmenu[$i]["link"]  = "admin/index.php";
-$adminmenu[$i]["desc"] = _MI_HEADLINES_MENU_ADMININDEX_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/home.png';
+$adminmenu              = array();
+$i                      = 0;
+$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMININDEX;
+$adminmenu[$i]['link']  = 'admin/index.php';
+$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMININDEX_DESC;
+$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
 $i++;
-$adminmenu[$i]["title"] = _MI_HEADLINES_MENU_ADMINHL;
-$adminmenu[$i]["link"]  = "admin/main.php";
-$adminmenu[$i]["desc"] = _MI_HEADLINES_MENU_ADMINHL_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/content.png';
+$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMINHL;
+$adminmenu[$i]['link']  = 'admin/main.php';
+$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMINHL_DESC;
+$adminmenu[$i]['icon']  = $pathIcon32 . '/content.png';
 $i++;
-$adminmenu[$i]["title"] = _MI_HEADLINES_MENU_ADMINABOUT;
-$adminmenu[$i]["link"]  = "admin/about.php";
-$adminmenu[$i]["desc"] = _MI_HEADLINES_MENU_ADMINABOUT_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/about.png';
+$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMINABOUT;
+$adminmenu[$i]['link']  = 'admin/about.php';
+$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMINABOUT_DESC;
+$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
