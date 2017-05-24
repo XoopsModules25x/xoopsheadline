@@ -63,7 +63,7 @@ function b_xoopsheadline_show($options) {
             $criteria->setOrder('ASC');
             break;
     }
-    $headlines =& $hlman->getObjects($criteria);
+    $headlines = $hlman->getObjects($criteria);
     $count     = count($headlines);
     for ($i = 0; $i < $count; $i++) {
         $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headlines[$i]);
