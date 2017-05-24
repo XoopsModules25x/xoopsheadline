@@ -56,7 +56,7 @@ switch ((int)$xoopsModuleConfig['sortby']) {
         $criteria->setOrder('ASC');
         break;
 }
-$headlines =& $hlman->getObjects($criteria);
+$headlines = $hlman->getObjects($criteria);
 
 global $xoopsModule;
 $pathIcon16    = $xoopsModule->getInfo('icons16');

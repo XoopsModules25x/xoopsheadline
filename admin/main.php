@@ -72,7 +72,7 @@ switch ($op) {
         $criteria = new CriteriaCompo();
         $criteria->setSort('headline_weight');
         $criteria->setOrder('ASC');
-        $headlines =& $hlman->getObjects($criteria);
+        $headlines = $hlman->getObjects($criteria);
         $count     = count($headlines);
 
         global $thisModDir;
