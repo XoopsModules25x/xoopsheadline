@@ -39,4 +39,4 @@ define('_AM_HEADLINES_ACTIONS', 'Actions');
 
 // Text for Admin footer
 define('_AM_HEADLINES_ADMIN_FOOTER',
-       "<div class='center smallsmall italic pad5'><strong>{$admin_mydirname}</strong> is maintained by the <a class='tooltip' rel='external' href='http://xoops.org/' title='Visit XOOPS Community'>XOOPS Community</a></div>");
+       "<div class='center smallsmall italic pad5'><strong>{$admin_mydirname}</strong> is maintained by the <a class='tooltip' rel='external' href='https://xoops.org/' title='Visit XOOPS Community'>XOOPS Community</a></div>");

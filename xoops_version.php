@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                  Copyright (c) 2000-2016 XOOPS.org                        //
-//                         <http://xoops.org/>                               //
+//                         <https://xoops.org/>                               //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -43,9 +43,9 @@ $modversion = array(
     'dirname'             => $xhlDirName,
 
     //about
-    'author_website_url'  => 'http://xoops.org',
+    'author_website_url'  => 'https://xoops.org',
     'author_website_name' => 'XOOPS',
-    'module_website_url'  => 'http://xoops.org',
+    'module_website_url'  => 'https://xoops.org',
     'module_website_name' => 'XOOPS',
     'release_date'        => '2016/082/01',
     'min_php'             => '5.5',
