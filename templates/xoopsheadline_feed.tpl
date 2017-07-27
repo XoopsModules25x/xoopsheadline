@@ -6,7 +6,7 @@
         <td style="width: 25%;" rowspan="6">
             <{if $image.url != ""}>
                 <img src="<{$image.url}>" width="<{$image.width|default:88}>" height="<{$image.height|default:31}>"
-                     alt="<{$image.title}>"/>
+                     alt="<{$image.title}>">
             <{else}>
                 &nbsp;
             <{/if}>

@@ -17,29 +17,29 @@
  * @author       XOOPS Development Team
  */
 
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-$indexAdmin = new ModuleAdmin();
+$adminObject = \Xmf\Module\Admin::getInstance();
 
 //-----------------------
-$xhl_handler = xoops_getModuleHandler('headline', $xoopsModule->getVar('dirname', 'n'));
+$xhlHandler = xoops_getModuleHandler('headline', $xoopsModule->getVar('dirname', 'n'));
 
-$totalHls          = $xhl_handler->getCount();
-$totalDisplayedHls = $xhl_handler->getCount(new Criteria('headline_display', 1, '='));
+$totalHls          = $xhlHandler->getCount();
+$totalDisplayedHls = $xhlHandler->getCount(new Criteria('headline_display', 1, '='));
 $totalHiddenHls    = $totalHls - $totalDisplayedHls;
 
-$displayedAsBlock = $xhl_handler->getCount(new Criteria('headline_asblock ', 1, '='));
+$displayedAsBlock = $xhlHandler->getCount(new Criteria('headline_asblock ', 1, '='));
 
-$indexAdmin->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls, 'Green');
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHIDDEN, $totalHiddenHls, 'Red');
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHLS, $totalHls);
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALASBLOCK, $displayedAsBlock, 'Green');
+$adminObject->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
+$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls, 'Green');
+$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHIDDEN, $totalHiddenHls, 'Red');
+$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHLS, $totalHls);
+$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALASBLOCK, $displayedAsBlock, 'Green');
 
 //----------------------------
 
-echo $indexAdmin->addNavigation(basename(__FILE__));
-echo $indexAdmin->renderIndex();
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject->displayIndex();
 
 include __DIR__ . '/admin_footer.php';

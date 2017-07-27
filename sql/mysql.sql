@@ -21,5 +21,5 @@ CREATE TABLE xoopsheadline (
 
 
 INSERT INTO xoopsheadline VALUES
-  (1, 'XOOPS Official Website', 'http://www.xoops.org/', 'http://www.xoops.org/backend.php', 'UTF-8', 86400, 0, 1, 0, 1,
+  (1, 'XOOPS Official Website', 'https://xoops.org/', 'https://xoops.org/backend.php', 'UTF-8', 86400, 0, 1, 0, 1,
       1, 10, 0, 10, '', 0);

@@ -1,43 +1,29 @@
 <?php
-//
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                  Copyright (c) 2000-2016 XOOPS.org                        //
-//                         <https://xoops.org/>                               //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    XOOPS Project https://xoops.org/
+ * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @package
+ * @since
+ * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
+ */
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-include_once XOOPS_ROOT_PATH . '/class/template.php';
-if (file_exists(XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language']
-                . '/main.php')) {
-    include_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language']
-                 . '/main.php';
+require_once XOOPS_ROOT_PATH . '/class/template.php';
+if (file_exists(XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/main.php')) {
+    require_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/main.php';
 } else {
-    include_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/english/main.php';
+    require_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/english/main.php';
 }
 
 /**
@@ -63,7 +49,8 @@ class XoopsHeadlineRenderer
      * XoopsHeadlineRenderer constructor.
      * @param $headline
      */
-    public function __construct(&$headline) {
+    public function __construct(&$headline)
+    {
         $this->hl  =& $headline;
         $this->tpl = new XoopsTpl();
     }
@@ -71,7 +58,8 @@ class XoopsHeadlineRenderer
     /**
      * @return bool
      */
-    public function updateCache() {
+    public function updateCache()
+    {
         /**
          * Update cache - first try using fopen and then cURL
          */
@@ -88,8 +76,8 @@ class XoopsHeadlineRenderer
                     curl_close($ch);
                     $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
                     $this->hl->setVar('headline_updated', time());
-                    $headline_handler = xoops_getModuleHandler('headline', 'xoopsheadline');
-                    $retval           = $headline_handler->insert($this->hl);
+                    $headlineHandler = xoops_getModuleHandler('headline', 'xoopsheadline');
+                    $retval          = $headlineHandler->insert($this->hl);
                 }
             } else {
                 $this->_setErrors(_MD_HEADLINES_BADOPT);
@@ -102,8 +90,8 @@ class XoopsHeadlineRenderer
             fclose($fp);
             $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
             $this->hl->setVar('headline_updated', time());
-            $headline_handler = xoops_getModuleHandler('headline', 'xoopsheadline');
-            $retval           = $headline_handler->insert($this->hl);
+            $headlineHandler = xoops_getModuleHandler('headline', 'xoopsheadline');
+            $retval          = $headlineHandler->insert($this->hl);
         }
 
         return $retval;
@@ -113,7 +101,8 @@ class XoopsHeadlineRenderer
      * @param  bool $force_update
      * @return bool
      */
-    public function renderFeed($force_update = false) {
+    public function renderFeed($force_update = false)
+    {
         $retval = false;
         if ($force_update || $this->hl->cacheExpired()) {
             if (!$this->updateCache()) {
@@ -138,8 +127,7 @@ class XoopsHeadlineRenderer
                     }
                 }
                 if (array_key_exists('height', $image_data) && array_key_exists('width', $image_data)
-                    && ($image_data['width'] > 0)
-                ) {
+                    && ($image_data['width'] > 0)) {
                     $width_ratio  = $image_data['width'] / $max_width;
                     $height_ratio = $image_data['height'] / $max_height;
                     $scale        = max($width_ratio, $height_ratio);
@@ -185,7 +173,8 @@ class XoopsHeadlineRenderer
      * @param  bool $force_update
      * @return bool
      */
-    public function renderBlock($force_update = false) {
+    public function renderBlock($force_update = false)
+    {
         $retval = false;
         if ($force_update || $this->hl->cacheExpired()) {
             if (!$this->updateCache()) {
@@ -205,8 +194,7 @@ class XoopsHeadlineRenderer
             }
             $items = $this->parser->getItems();
             $count = count($items);
-            $max   = ($count
-                      > $this->hl->getVar('headline_blockmax')) ? $this->hl->getVar('headline_blockmax') : $count;
+            $max   = ($count > $this->hl->getVar('headline_blockmax')) ? $this->hl->getVar('headline_blockmax') : $count;
             for ($i = 0; $i < $max; $i++) {
                 array_walk($items[$i], array($this, 'convertFromUtf8'));
                 $this->tpl->append_by_ref('items', $items[$i]);
@@ -216,8 +204,7 @@ class XoopsHeadlineRenderer
                                    'site_url'  => $this->hl->getVar('headline_url'),
                                    'site_id'   => $this->hl->getVar('headline_id')
                                ));
-            $this->block = $this->tpl->fetch('file:' . XOOPS_ROOT_PATH
-                                             . '/modules/xoopsheadline/templates/blocks/headline_block.tpl');
+            $this->block = $this->tpl->fetch('file:' . XOOPS_ROOT_PATH . '/modules/xoopsheadline/templates/blocks/headline_block.tpl');
             $retval      = true;
         }
 
@@ -227,10 +214,11 @@ class XoopsHeadlineRenderer
     /**
      * @return bool
      */
-    protected function &_parse() {
+    protected function &_parse()
+    {
         $retval = true;
         if (!isset($this->parser)) {
-            include_once XOOPS_ROOT_PATH . '/class/xml/rss/xmlrss2parser.php';
+            require_once XOOPS_ROOT_PATH . '/class/xml/rss/xmlrss2parser.php';
             $temp         = $this->hl->getVar('headline_xml');
             $this->parser = new XoopsXmlRss2Parser($temp);
             switch ($this->hl->getVar('headline_encoding')) {
@@ -255,18 +243,21 @@ class XoopsHeadlineRenderer
         return $retval;
     }
 
-    public function &getFeed() {
+    public function &getFeed()
+    {
         return $this->feed;
     }
 
-    public function &getBlock() {
+    public function &getBlock()
+    {
         return $this->block;
     }
 
     /**
      * @param $err
      */
-    protected function _setErrors($err) {
+    protected function _setErrors($err)
+    {
         $this->errors[] = $err;
     }
 
@@ -274,7 +265,8 @@ class XoopsHeadlineRenderer
      * @param  bool $ashtml
      * @return array|string
      */
-    public function &getErrors($ashtml = true) {
+    public function &getErrors($ashtml = true)
+    {
         if (!$ashtml) {
             $retval = $this->errors;
         } else {
@@ -297,7 +289,8 @@ class XoopsHeadlineRenderer
      * @param $value
      * @param $key
      */
-    public function convertFromUtf8(&$value, $key) {
+    public function convertFromUtf8(&$value, $key)
+    {
     }
 
     // abstract
@@ -307,7 +300,8 @@ class XoopsHeadlineRenderer
      * @param $xmlfile
      * @return string
      */
-    public function &convertToUtf8(&$xmlfile) {
+    public function &convertToUtf8(&$xmlfile)
+    {
         if (strtolower($this->hl->getVar('headline_encoding')) === 'iso-8859-1') {
             $xmlfile = utf8_encode($xmlfile);
         }
