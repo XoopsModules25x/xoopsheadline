@@ -1,6 +1,6 @@
 <?php
 /**
- *  
+ *
  */
 
 define('_MD_HEADLINES_LASTBUILD', 'Updated');
