@@ -42,3 +42,17 @@ define('_MI_HEADLINES_SORT1', 'Site Name DESC');
 define('_MI_HEADLINES_SORT2', 'Site Name ASC');
 define('_MI_HEADLINES_SORT3', 'Weight DESC');
 define('_MI_HEADLINES_SORT4', 'Weight ASC');
+
+//1.12
+//Help
+define('_MI_HEADLINES_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_HEADLINES_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_HEADLINES_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_HEADLINES_OVERVIEW', 'Overview');
+
+//define('_MI_HEADLINES_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_HEADLINES_DISCLAIMER', 'Disclaimer');
+define('_MI_HEADLINES_LICENSE', 'License');
+define('_MI_HEADLINES_SUPPORT', 'Support');
