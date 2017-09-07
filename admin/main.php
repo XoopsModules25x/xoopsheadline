@@ -84,15 +84,15 @@ switch ($op) {
              . "</th>\n"
              . "      <th>&nbsp;</th>\n"
              . "    </tr></thead>\n";
-        $cachetime = array(
+        $cachetime = [
             '3600'    => sprintf(_HOUR, 1),
             '18000'   => sprintf(_HOURS, 5),
             '86400'   => sprintf(_DAY, 1),
             '259200'  => sprintf(_DAYS, 3),
             '604800'  => sprintf(_WEEK, 1),
             '2592000' => sprintf(_MONTH, 1)
-        );
-        $encodings = array('utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII');
+        ];
+        $encodings = ['utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII'];
         $tdclass   = 'odd';
         echo '    <tbody>';
         for ($i = 0; $i < $count; $i++) {
@@ -181,14 +181,14 @@ switch ($op) {
         $form->addElement($enc_sel);
 
         $cache_sel = new XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', 86400);
-        $cache_sel->addOptionArray(array(
+        $cache_sel->addOptionArray([
                                        '3600'    => _HOUR,
                                        '18000'   => sprintf(_HOURS, 5),
                                        '86400'   => _DAY,
                                        '259200'  => sprintf(_DAYS, 3),
                                        '604800'  => _WEEK,
                                        '2592000' => _MONTH
-                                   ));
+                                   ]);
         $form->addElement($cache_sel);
 
         $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_MAINSETT . '</span>', 'center');
@@ -197,7 +197,7 @@ switch ($op) {
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', 0, _YES, _NO));
 
         $mmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', 10);
-        $mmax_sel->addOptionArray(array(
+        $mmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
                                       '10' => 10,
@@ -205,7 +205,7 @@ switch ($op) {
                                       '20' => 20,
                                       '25' => 25,
                                       '30' => 30
-                                  ));
+                                  ]);
         $form->addElement($mmax_sel);
 
         $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
@@ -213,7 +213,7 @@ switch ($op) {
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', 0, _YES, _NO));
 
         $bmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', 5);
-        $bmax_sel->addOptionArray(array(
+        $bmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
                                       '10' => 10,
@@ -221,7 +221,7 @@ switch ($op) {
                                       '20' => 20,
                                       '25' => 25,
                                       '30' => 30
-                                  ));
+                                  ]);
         $form->addElement($bmax_sel);
 
         $form->insertBreak();
@@ -341,18 +341,18 @@ switch ($op) {
         $form->addElement(new XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, $hl->getVar('headline_weight')));
 
         $enc_sel = new XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', $hl->getVar('headline_encoding'));
-        $enc_sel->addOptionArray(array('utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII'));
+        $enc_sel->addOptionArray(['utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII']);
         $form->addElement($enc_sel);
 
         $cache_sel = new XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', $hl->getVar('headline_cachetime'));
-        $cache_sel->addOptionArray(array(
+        $cache_sel->addOptionArray([
                                        '3600'    => _HOUR,
                                        '18000'   => sprintf(_HOURS, 5),
                                        '86400'   => _DAY,
                                        '259200'  => sprintf(_DAYS, 3),
                                        '604800'  => _WEEK,
                                        '2592000' => _MONTH
-                                   ));
+                                   ]);
         $form->addElement($cache_sel);
 
         $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_MAINSETT . '</span>', 'center');
@@ -361,7 +361,7 @@ switch ($op) {
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', $hl->getVar('headline_mainfull'), _YES, _NO));
 
         $mmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', $hl->getVar('headline_mainmax'));
-        $mmax_sel->addOptionArray(array(
+        $mmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
                                       '10' => 10,
@@ -369,7 +369,7 @@ switch ($op) {
                                       '20' => 20,
                                       '25' => 25,
                                       '30' => 30
-                                  ));
+                                  ]);
         $form->addElement($mmax_sel);
 
         $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
@@ -378,7 +378,7 @@ switch ($op) {
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', $hl->getVar('headline_blockimg'), _YES, _NO));
 
         $bmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', $hl->getVar('headline_blockmax'));
-        $bmax_sel->addOptionArray(array(
+        $bmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
                                       '10' => 10,
@@ -386,7 +386,7 @@ switch ($op) {
                                       '20' => 20,
                                       '25' => 25,
                                       '30' => 30
-                                  ));
+                                  ]);
         $form->addElement($bmax_sel);
 
         $form->insertBreak();
@@ -478,7 +478,7 @@ switch ($op) {
         $name = $hl->getVar('headline_name');
         echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
         //        echo '<a href="main.php">'. _AM_HEADLINES_HLMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'.$name.'<br><br>';
-        xoops_confirm(array('op' => 'deletego', 'headline_id' => $hl->getVar('headline_id')), 'main.php', sprintf(_AM_HEADLINES_WANTDEL, $name));
+        xoops_confirm(['op' => 'deletego', 'headline_id' => $hl->getVar('headline_id')], 'main.php', sprintf(_AM_HEADLINES_WANTDEL, $name));
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'deletego':
@@ -532,7 +532,7 @@ switch ($op) {
         $adminObject->displayNavigation(basename(__FILE__));
         $name = $hl->getVar('headline_name');
         echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-        xoops_confirm(array('op' => 'flushgo', 'headline_id' => $hl->getVar('headline_id')), 'main.php', sprintf(_AM_HEADLINES_WANTFLUSH, $name));
+        xoops_confirm(['op' => 'flushgo', 'headline_id' => $hl->getVar('headline_id')], 'main.php', sprintf(_AM_HEADLINES_WANTFLUSH, $name));
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'flushgo':

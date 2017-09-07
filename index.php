@@ -59,7 +59,7 @@ $count       = count($headlines);
 for ($i = 0; $i < $count; $i++) {
     $thisId  = $headlines[$i]->getVar('headline_id');
     $editUrl = $userIsAdmin ? "&nbsp;<a href='" . XOOPS_URL . "/modules/{$moduleDirName}/admin/main.php?op=edit&amp;headline_id={$thisId}'><img src='" . $pathIcon16 . "/edit.png' alt='" . _EDIT . "' title='" . _EDIT . "'></a>" : '';
-    $xoopsTpl->append('feed_sites', array('id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl));
+    $xoopsTpl->append('feed_sites', ['id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl]);
 }
 $xoopsTpl->assign('lang_headlines', _MD_HEADLINES_HEADLINES);
 if (0 == $hlid) {

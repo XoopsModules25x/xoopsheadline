@@ -34,7 +34,7 @@ function b_xoopsheadline_show($options)
     $configHandler = xoops_getHandler('config');
     $moduleConfig  = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
 
-    $block    = array();
+    $block    = [];
     $hlman    = xoops_getModuleHandler('headline', 'xoopsheadline');
     $criteria = new CriteriaCompo();
     $criteria->add(new Criteria('headline_asblock', 1, '='));

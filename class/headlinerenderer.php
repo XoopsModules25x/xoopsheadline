@@ -40,7 +40,7 @@ class XoopsHeadlineRenderer
 
     protected $block;
 
-    protected $errors = array();
+    protected $errors = [];
 
     // RSS2 SAX parser
     protected $parser;
@@ -113,11 +113,11 @@ class XoopsHeadlineRenderer
             $this->tpl->clear_all_assign();
             $this->tpl->assign('xoops_url', XOOPS_URL);
             $channel_data = $this->parser->getChannelData();
-            array_walk($channel_data, array($this, 'convertFromUtf8'));
+            array_walk($channel_data, [$this, 'convertFromUtf8']);
             $this->tpl->assign_by_ref('channel', $channel_data);
             if (1 == $this->hl->getVar('headline_mainimg')) {
                 $image_data = $this->parser->getImageData();
-                array_walk($image_data, array($this, 'convertFromUtf8'));
+                array_walk($image_data, [$this, 'convertFromUtf8']);
                 $max_width  = 256;
                 $max_height = 92;
                 if (!isset($image_data['height']) || !isset($image_data['width'])) {
@@ -147,10 +147,10 @@ class XoopsHeadlineRenderer
             $count = count($items);
             $max   = ($count > $this->hl->getVar('headline_mainmax')) ? $this->hl->getVar('headline_mainmax') : $count;
             for ($i = 0; $i < $max; $i++) {
-                array_walk($items[$i], array($this, 'convertFromUtf8'));
+                array_walk($items[$i], [$this, 'convertFromUtf8']);
                 $this->tpl->append_by_ref('items', $items[$i]);
             }
-            $this->tpl->assign(array(
+            $this->tpl->assign([
                                    'lang_lastbuild'   => _MD_HEADLINES_LASTBUILD,
                                    'lang_language'    => _MD_HEADLINES_LANGUAGE,
                                    'lang_description' => _MD_HEADLINES_DESCRIPTION,
@@ -161,7 +161,7 @@ class XoopsHeadlineRenderer
                                    'lang_pubdate'     => _MD_HEADLINES_PUBDATE,
                                    //                                   'lang_description2' => _MD_HEADLINES_DESCRIPTION2,
                                    'lang_more'        => _MORE
-                               ));
+                               ]);
             $this->feed = $this->tpl->fetch('db:xoopsheadline_feed.tpl');
             $retval     = true;
         }
@@ -185,25 +185,25 @@ class XoopsHeadlineRenderer
             $this->tpl->clear_all_assign();
             $this->tpl->assign('xoops_url', XOOPS_URL);
             $channel_data = $this->parser->getChannelData();
-            array_walk($channel_data, array($this, 'convertFromUtf8'));
+            array_walk($channel_data, [$this, 'convertFromUtf8']);
             $this->tpl->assign_by_ref('channel', $channel_data);
             if ($this->hl->getVar('headline_blockimg') == 1) {
                 $image_data = $this->parser->getImageData();
-                array_walk($image_data, array($this, 'convertFromUtf8'));
+                array_walk($image_data, [$this, 'convertFromUtf8']);
                 $this->tpl->assign_by_ref('image', $image_data);
             }
             $items = $this->parser->getItems();
             $count = count($items);
             $max   = ($count > $this->hl->getVar('headline_blockmax')) ? $this->hl->getVar('headline_blockmax') : $count;
             for ($i = 0; $i < $max; $i++) {
-                array_walk($items[$i], array($this, 'convertFromUtf8'));
+                array_walk($items[$i], [$this, 'convertFromUtf8']);
                 $this->tpl->append_by_ref('items', $items[$i]);
             }
-            $this->tpl->assign(array(
+            $this->tpl->assign([
                                    'site_name' => $this->hl->getVar('headline_name'),
                                    'site_url'  => $this->hl->getVar('headline_url'),
                                    'site_id'   => $this->hl->getVar('headline_id')
-                               ));
+                               ]);
             $this->block = $this->tpl->fetch('file:' . XOOPS_ROOT_PATH . '/modules/xoopsheadline/templates/blocks/headline_block.tpl');
             $retval      = true;
         }
