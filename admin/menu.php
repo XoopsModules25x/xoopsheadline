@@ -36,19 +36,23 @@ $pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
 xoops_loadLanguage('modinfo', $moduleDirName);
 
-$adminmenu            = [];
-$i                      = 0;
-$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMININDEX;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMININDEX_DESC;
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMINHL;
-$adminmenu[$i]['link']  = 'admin/main.php';
-$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMINHL_DESC;
-$adminmenu[$i]['icon']  = $pathIcon32 . '/content.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMINABOUT;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMINABOUT_DESC;
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
+$adminmenu[] = [
+    'title' => _MI_HEADLINES_MENU_ADMININDEX,
+    'link'  => 'admin/index.php',
+    'desc'  => _MI_HEADLINES_MENU_ADMININDEX_DESC,
+    'icon'  => $pathIcon32 . '/home.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_HEADLINES_MENU_ADMINHL,
+    'link'  => 'admin/main.php',
+    'desc'  => _MI_HEADLINES_MENU_ADMINHL_DESC,
+    'icon'  => $pathIcon32 . '/content.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_HEADLINES_MENU_ADMINABOUT,
+    'link'  => 'admin/about.php',
+    'desc'  => _MI_HEADLINES_MENU_ADMINABOUT_DESC,
+    'icon'  => $pathIcon32 . '/about.png',
+];
