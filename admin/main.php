@@ -23,7 +23,7 @@ xoops_cp_header();
 xoops_load('XoopsheadlineUtility', $xoopsModule->getVar('dirname'));
 $op = 'list';
 
-if (isset($_GET['op']) && ($_GET['op'] === 'delete' || $_GET['op'] === 'edit' || $_GET['op'] === 'flush')) {
+if (isset($_GET['op']) && ('delete' === $_GET['op'] || 'edit' === $_GET['op'] || 'flush' === $_GET['op'])) {
     $op          = $_GET['op'];
     $headline_id = (int)$_GET['headline_id'];
 }
@@ -254,7 +254,7 @@ switch ($op) {
             if (!$hlman->insert($hl)) {
                 $msg .= '<br>' . sprintf(_AM_HEADLINES_FAILUPDATE, $hl->getVar('headline_name'));
             } else {
-                if ($hl->getVar('headline_xml') === '') {
+                if ('' === $hl->getVar('headline_xml')) {
                     $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($hl);
                     if (!$renderer->updateCache()) {
                         xoops_error($hl->getErrors(true));
@@ -264,7 +264,7 @@ switch ($op) {
             }
             $i++;
         }
-        if ($msg != '') {
+        if ('' != $msg) {
             xoops_cp_header();
             echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
             xoops_error($msg);
@@ -302,7 +302,7 @@ switch ($op) {
                 require_once __DIR__ . '/admin_footer.php';
                 exit();
             } else {
-                if ($hl->getVar('headline_xml') == '') {
+                if ('' == $hl->getVar('headline_xml')) {
                     $hlObj    = $hlman->get($hlIdx);
                     $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($hlObj);
                     if (!$renderer->updateCache()) {
@@ -444,7 +444,7 @@ switch ($op) {
             require_once __DIR__ . '/admin_footer.php';
             exit();
         } else {
-            if ($hl->getVar('headline_xml') == '') {
+            if ('' == $hl->getVar('headline_xml')) {
                 $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($hl);
                 if (!$renderer->updateCache()) {
                     xoops_error($hl->getErrors(true));

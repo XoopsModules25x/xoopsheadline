@@ -187,7 +187,7 @@ class XoopsHeadlineRenderer
             $channel_data = $this->parser->getChannelData();
             array_walk($channel_data, [$this, 'convertFromUtf8']);
             $this->tpl->assign_by_ref('channel', $channel_data);
-            if ($this->hl->getVar('headline_blockimg') == 1) {
+            if (1 == $this->hl->getVar('headline_blockimg')) {
                 $image_data = $this->parser->getImageData();
                 array_walk($image_data, [$this, 'convertFromUtf8']);
                 $this->tpl->assign_by_ref('image', $image_data);
@@ -302,7 +302,7 @@ class XoopsHeadlineRenderer
      */
     public function &convertToUtf8(&$xmlfile)
     {
-        if (strtolower($this->hl->getVar('headline_encoding')) === 'iso-8859-1') {
+        if ('iso-8859-1' === strtolower($this->hl->getVar('headline_encoding'))) {
             $xmlfile = utf8_encode($xmlfile);
         }
 
