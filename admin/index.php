@@ -32,10 +32,10 @@ $totalHiddenHls    = $totalHls - $totalDisplayedHls;
 $displayedAsBlock = $xhlHandler->getCount(new Criteria('headline_asblock ', 1, '='));
 
 $adminObject->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
-$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls, 'Green');
-$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHIDDEN, $totalHiddenHls, 'Red');
-$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHLS, $totalHls);
-$adminObject->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALASBLOCK, $displayedAsBlock, 'Green');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls), '', 'Green');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALHIDDEN, $totalHiddenHls), '', 'Red');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALHLS, $totalHls), '');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALASBLOCK, $displayedAsBlock), '', 'Green');
 
 //----------------------------
 

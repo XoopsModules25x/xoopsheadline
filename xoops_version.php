@@ -18,6 +18,9 @@
  */
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
+
+require_once __DIR__ . '/preloads/autoloader.php';
+
 $xhlDirName = basename(__DIR__);
 
 $modversion = [

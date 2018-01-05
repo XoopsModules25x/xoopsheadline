@@ -1,4 +1,4 @@
-<h5>1.12 Beta 1  [NOT RELEASED]</h5>
+<h5>1.12 Beta 1  [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.0
 <hr>
 
 1.11 Final        2016-08-01

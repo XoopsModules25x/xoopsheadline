@@ -110,16 +110,16 @@ switch ($op) {
                  //               . "      <td class='{$tdclass}' style='vertical-align: middle; padding-left: 1em;'>" . $headlines[$i]->getVar('headline_name') . "</td>\n"
                  . "      <td class='center {$tdclass}' style='vertical-align: middle;'><select name=\"headline_cachetime[]\">";
             foreach ($cachetime as $value => $name) {
-                $sel = ($value == $headlines[$i]->getVar('headline_cachetime')) ? " selected=\"selected\"" : '';
+                $sel = ($value == $headlines[$i]->getVar('headline_cachetime')) ? ' selected="selected"' : '';
                 echo "<option value=\"{$value}\"{$sel}>{$name}</option>";
             }
             echo "</select></td>\n" . "      <td class='center {$tdclass}' style='vertical-align: middle;'><select name=\"headline_encoding[]\">";
             foreach ($encodings as $value => $name) {
-                $sel = ($value == $headlines[$i]->getVar('headline_encoding')) ? " selected = \"selected\"" : '';
+                $sel = ($value == $headlines[$i]->getVar('headline_encoding')) ? ' selected = "selected"' : '';
                 echo "<option value=\"{$value}\"{$sel}>{$name}</option>";
             }
-            $chkd = (1 == $headlines[$i]->getVar('headline_display')) ? " checked=\"checked\"" : '';
-            $chkb = (1 == $headlines[$i]->getVar('headline_asblock')) ? " checked=\"checked\"" : '';
+            $chkd = (1 == $headlines[$i]->getVar('headline_display')) ? ' checked="checked"' : '';
+            $chkb = (1 == $headlines[$i]->getVar('headline_asblock')) ? ' checked="checked"' : '';
             echo "</select></td>\n"
                  . "      <td class='center {$tdclass}' style='vertical-align: middle;'><input type=\"checkbox\" value=\"1\" name=\"headline_display["
                  . $headlines[$i]->getVar('headline_id')
@@ -191,7 +191,7 @@ switch ($op) {
                                    ]);
         $form->addElement($cache_sel);
 
-        $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_MAINSETT . '</span>', 'center');
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_MAINSETT . '</span>', 'center');
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', 1, _YES, _NO));
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', 0, _YES, _NO));
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', 0, _YES, _NO));
@@ -208,7 +208,7 @@ switch ($op) {
                                   ]);
         $form->addElement($mmax_sel);
 
-        $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', 1, _YES, _NO));
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', 0, _YES, _NO));
 
@@ -355,7 +355,7 @@ switch ($op) {
                                    ]);
         $form->addElement($cache_sel);
 
-        $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_MAINSETT . '</span>', 'center');
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_MAINSETT . '</span>', 'center');
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', $hl->getVar('headline_display'), _YES, _NO));
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', $hl->getVar('headline_mainimg'), _YES, _NO));
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', $hl->getVar('headline_mainfull'), _YES, _NO));
@@ -372,7 +372,7 @@ switch ($op) {
                                   ]);
         $form->addElement($mmax_sel);
 
-        $form->insertBreak("<span style=\"font-weight: bold; line-height: 3em;\">" . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
         $form->insertBreak(_AM_HEADLINES_BLOCKSETT);
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', $hl->getVar('headline_asblock'), _YES, _NO));
         $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', $hl->getVar('headline_blockimg'), _YES, _NO));
@@ -400,7 +400,7 @@ switch ($op) {
         exit();
         break;
     case 'editgo':
-        $headline_id = (int)$headline_id;
+        $headline_id = $headline_id;
         if ($headline_id <= 0) {
             $adminObject = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -482,7 +482,7 @@ switch ($op) {
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'deletego':
-        $headline_id = (int)$headline_id;
+        $headline_id = $headline_id;
         if ($headline_id <= 0) {
             $adminObject = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
