@@ -52,7 +52,7 @@ class XoopsHeadlineRenderer
     public function __construct(&$headline)
     {
         $this->hl  =& $headline;
-        $this->tpl = new XoopsTpl();
+        $this->tpl = new \XoopsTpl();
     }
 
     /**
@@ -220,7 +220,7 @@ class XoopsHeadlineRenderer
         if (!isset($this->parser)) {
             require_once XOOPS_ROOT_PATH . '/class/xml/rss/xmlrss2parser.php';
             $temp         = $this->hl->getVar('headline_xml');
-            $this->parser = new XoopsXmlRss2Parser($temp);
+            $this->parser = new \XoopsXmlRss2Parser($temp);
             switch ($this->hl->getVar('headline_encoding')) {
                 case 'utf-8':
                     $this->parser->useUtfEncoding();

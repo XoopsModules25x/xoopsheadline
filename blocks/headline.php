@@ -36,8 +36,8 @@ function b_xoopsheadline_show($options)
 
     $block    = [];
     $hlman    = xoops_getModuleHandler('headline', 'xoopsheadline');
-    $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('headline_asblock', 1, '='));
+    $criteria = new \CriteriaCompo();
+    $criteria->add(new \Criteria('headline_asblock', 1, '='));
     switch ($moduleConfig['sortby']) {
         case 1:
             $criteria->setSort('headline_name');

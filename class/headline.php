@@ -17,7 +17,7 @@
  * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class XoopsheadlineHeadline
@@ -72,7 +72,7 @@ class xoopsheadlineHeadlineHandler extends XoopsPersistableObjectHandler
      * xoopsheadlineHeadlineHandler constructor.
      * @param XoopsDatabase $db
      */
-    public function __construct(XoopsDatabase $db)
+    public function __construct(\XoopsDatabase $db)
     {
         parent::__construct($db, 'xoopsheadline', 'xoopsheadline' . 'Headline', 'headline_id');
     }

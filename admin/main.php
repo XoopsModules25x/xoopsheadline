@@ -43,7 +43,7 @@ switch ($op) {
     case 'list':
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         $hlman    = xoops_getModuleHandler('headline');
-        $criteria = new CriteriaCompo();
+        $criteria = new \CriteriaCompo();
         $criteria->setSort('headline_weight');
         $criteria->setOrder('ASC');
         $headlines = $hlman->getObjects($criteria);
@@ -170,17 +170,17 @@ switch ($op) {
              . "<h4 style='padding-left: 1em;'>"
              . _AM_HEADLINES_ADDHEADL
              . "</h4>\n";
-        $form = new XoopsThemeForm(_AM_HEADLINES_ADDHEADL, 'xoopsheadline_form_new', 'main.php', 'post', true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_SITENAME, 'headline_name', 50, 255), true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_URL, 'headline_url', 50, 255, 'http://'), true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_URLEDFXML, 'headline_rssurl', 50, 255, 'http://'), true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, 0));
+        $form = new \XoopsThemeForm(_AM_HEADLINES_ADDHEADL, 'xoopsheadline_form_new', 'main.php', 'post', true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_SITENAME, 'headline_name', 50, 255), true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URL, 'headline_url', 50, 255, 'http://'), true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URLEDFXML, 'headline_rssurl', 50, 255, 'http://'), true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, 0));
 
-        $enc_sel = new XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', 'utf-8');
+        $enc_sel = new \XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', 'utf-8');
         $enc_sel->addOptionArray($encodings);
         $form->addElement($enc_sel);
 
-        $cache_sel = new XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', 86400);
+        $cache_sel = new \XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', 86400);
         $cache_sel->addOptionArray([
                                        '3600'    => _HOUR,
                                        '18000'   => sprintf(_HOURS, 5),
@@ -192,11 +192,11 @@ switch ($op) {
         $form->addElement($cache_sel);
 
         $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_MAINSETT . '</span>', 'center');
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', 1, _YES, _NO));
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', 0, _YES, _NO));
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', 0, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', 1, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', 0, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', 0, _YES, _NO));
 
-        $mmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', 10);
+        $mmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', 10);
         $mmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
@@ -209,10 +209,10 @@ switch ($op) {
         $form->addElement($mmax_sel);
 
         $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', 1, _YES, _NO));
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', 0, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', 1, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', 0, _YES, _NO));
 
-        $bmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', 5);
+        $bmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', 5);
         $bmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
@@ -225,8 +225,8 @@ switch ($op) {
         $form->addElement($bmax_sel);
 
         $form->insertBreak();
-        $form->addElement(new XoopsFormHidden('op', 'addgo'));
-        $form->addElement(new XoopsFormButtonTray('headline_submit', _SUBMIT));
+        $form->addElement(new \XoopsFormHidden('op', 'addgo'));
+        $form->addElement(new \XoopsFormButtonTray('headline_submit', _SUBMIT));
         $form->display();
         echo "</div>\n";
         require_once __DIR__ . '/admin_footer.php';
@@ -334,17 +334,17 @@ switch ($op) {
             exit();
         }
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form = new XoopsThemeForm(_AM_HEADLINES_EDITHEADL, 'xoopsheadline_form', 'main.php', 'post', true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_SITENAME, 'headline_name', 100, 255, $hl->getVar('headline_name')), true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_URL, 'headline_url', 100, 255, $hl->getVar('headline_url')), true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_URLEDFXML, 'headline_rssurl', 100, 255, $hl->getVar('headline_rssurl')), true);
-        $form->addElement(new XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, $hl->getVar('headline_weight')));
+        $form = new \XoopsThemeForm(_AM_HEADLINES_EDITHEADL, 'xoopsheadline_form', 'main.php', 'post', true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_SITENAME, 'headline_name', 100, 255, $hl->getVar('headline_name')), true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URL, 'headline_url', 100, 255, $hl->getVar('headline_url')), true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URLEDFXML, 'headline_rssurl', 100, 255, $hl->getVar('headline_rssurl')), true);
+        $form->addElement(new \XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, $hl->getVar('headline_weight')));
 
-        $enc_sel = new XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', $hl->getVar('headline_encoding'));
+        $enc_sel = new \XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', $hl->getVar('headline_encoding'));
         $enc_sel->addOptionArray(['utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII']);
         $form->addElement($enc_sel);
 
-        $cache_sel = new XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', $hl->getVar('headline_cachetime'));
+        $cache_sel = new \XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', $hl->getVar('headline_cachetime'));
         $cache_sel->addOptionArray([
                                        '3600'    => _HOUR,
                                        '18000'   => sprintf(_HOURS, 5),
@@ -356,11 +356,11 @@ switch ($op) {
         $form->addElement($cache_sel);
 
         $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_MAINSETT . '</span>', 'center');
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', $hl->getVar('headline_display'), _YES, _NO));
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', $hl->getVar('headline_mainimg'), _YES, _NO));
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', $hl->getVar('headline_mainfull'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', $hl->getVar('headline_display'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', $hl->getVar('headline_mainimg'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', $hl->getVar('headline_mainfull'), _YES, _NO));
 
-        $mmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', $hl->getVar('headline_mainmax'));
+        $mmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', $hl->getVar('headline_mainmax'));
         $mmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
@@ -374,10 +374,10 @@ switch ($op) {
 
         $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
         $form->insertBreak(_AM_HEADLINES_BLOCKSETT);
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', $hl->getVar('headline_asblock'), _YES, _NO));
-        $form->addElement(new XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', $hl->getVar('headline_blockimg'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', $hl->getVar('headline_asblock'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', $hl->getVar('headline_blockimg'), _YES, _NO));
 
-        $bmax_sel = new XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', $hl->getVar('headline_blockmax'));
+        $bmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', $hl->getVar('headline_blockmax'));
         $bmax_sel->addOptionArray([
                                       '1'  => 1,
                                       '5'  => 5,
@@ -390,9 +390,9 @@ switch ($op) {
         $form->addElement($bmax_sel);
 
         $form->insertBreak();
-        $form->addElement(new XoopsFormHidden('headline_id', $hl->getVar('headline_id')));
-        $form->addElement(new XoopsFormHidden('op', 'editgo'));
-        $form->addElement(new XoopsFormButtonTray('headline_submit', _SUBMIT));
+        $form->addElement(new \XoopsFormHidden('headline_id', $hl->getVar('headline_id')));
+        $form->addElement(new \XoopsFormHidden('op', 'editgo'));
+        $form->addElement(new \XoopsFormButtonTray('headline_submit', _SUBMIT));
         echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4><br>';
         //echo '<a href="main.php">'. _AM_HEADLINES_HLMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'.$hl->getVar('headline_name').'<br><br>';
         $form->display();

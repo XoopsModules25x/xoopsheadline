@@ -28,7 +28,7 @@ class XoopsheadlineUtility
      * Function to create appropriate Renderer
      * (based on locale)
      * @param $headline
-     * @return XoopsHeadlineRenderer|XoopsHeadlineRendererLocal
+     * @return XoopsHeadlineRenderer|\XoopsHeadlineRendererLocal
      */
     public static function xoopsheadline_getrenderer(&$headline)
     {
@@ -36,12 +36,12 @@ class XoopsheadlineUtility
         if (file_exists(XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/headlinerenderer.php')) {
             require_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/headlinerenderer.php';
             if (class_exists('XoopsHeadlineRendererLocal')) {
-                $myhl = new XoopsHeadlineRendererLocal($headline);
+                $myhl = new \XoopsHeadlineRendererLocal($headline);
 
                 return $myhl;
             }
         }
-        $myhl = new XoopsHeadlineRenderer($headline);
+        $myhl = new \XoopsHeadlineRenderer($headline);
 
         return $myhl;
     }

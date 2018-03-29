@@ -17,6 +17,10 @@
  * @author       XOOPS Development Team
  */
 
+use XoopsModules\Xoopsheadline;
+/** @var Xoopsheadline\Helper $helper */
+$helper = Xoopsheadline\Helper::getInstance();
+
 include __DIR__ . '/../../mainfile.php';
 xoops_load('XoopsheadlineUtility', $xoopsModule->getVar('dirname'));
 
@@ -26,10 +30,10 @@ $hlid  = (!empty($_GET['id']) && ((int)$_GET['id'] > 0)) ? (int)$_GET['id'] : 0;
 $GLOBALS['xoopsOption']['template_main'] = 'xoopsheadline_index.tpl';
 include XOOPS_ROOT_PATH . '/header.php';
 
-$criteria = new CriteriaCompo();
-$criteria->add(new Criteria('headline_display', 1, '='));
-$criteria->add(new Criteria('headline_xml', '', '!='));
-switch ((int)$xoopsModuleConfig['sortby']) {
+$criteria = new \CriteriaCompo();
+$criteria->add(new \Criteria('headline_display', 1, '='));
+$criteria->add(new \Criteria('headline_xml', '', '!='));
+switch ((int)$helper->getConfig('sortby')) {
     case 1:
         $criteria->setSort('headline_name');
         $criteria->setOrder('DESC');

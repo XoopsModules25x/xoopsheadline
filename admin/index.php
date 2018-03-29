@@ -26,10 +26,10 @@ $adminObject = \Xmf\Module\Admin::getInstance();
 $xhlHandler = xoops_getModuleHandler('headline', $xoopsModule->getVar('dirname', 'n'));
 
 $totalHls          = $xhlHandler->getCount();
-$totalDisplayedHls = $xhlHandler->getCount(new Criteria('headline_display', 1, '='));
+$totalDisplayedHls = $xhlHandler->getCount(new \Criteria('headline_display', 1, '='));
 $totalHiddenHls    = $totalHls - $totalDisplayedHls;
 
-$displayedAsBlock = $xhlHandler->getCount(new Criteria('headline_asblock ', 1, '='));
+$displayedAsBlock = $xhlHandler->getCount(new \Criteria('headline_asblock ', 1, '='));
 
 $adminObject->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
 $adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls), '', 'Green');
