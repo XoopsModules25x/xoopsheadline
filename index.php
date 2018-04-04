@@ -18,11 +18,11 @@
  */
 
 use XoopsModules\Xoopsheadline;
-/** @var Xoopsheadline\Helper $helper */
-$helper = Xoopsheadline\Helper::getInstance();
 
 include __DIR__ . '/../../mainfile.php';
-xoops_load('XoopsheadlineUtility', $xoopsModule->getVar('dirname'));
+
+/** @var Xoopsheadline\Helper $helper */
+$helper = Xoopsheadline\Helper::getInstance();
 
 $hlman = xoops_getModuleHandler('headline');
 $hlid  = (!empty($_GET['id']) && ((int)$_GET['id'] > 0)) ? (int)$_GET['id'] : 0;
