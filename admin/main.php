@@ -25,7 +25,7 @@ $op = 'list';
 
 if (isset($_GET['op']) && ('delete' === $_GET['op'] || 'edit' === $_GET['op'] || 'flush' === $_GET['op'])) {
     $op          = $_GET['op'];
-    $headline_id = (int)$_GET['headline_id'];
+    $headline_id = \Xmf\Request::getInt('headline_id', 0, 'GET');
 }
 
 /* headline_id - an array of integers

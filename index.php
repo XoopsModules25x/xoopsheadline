@@ -25,7 +25,7 @@ include __DIR__ . '/../../mainfile.php';
 $helper = Xoopsheadline\Helper::getInstance();
 
 $hlman = xoops_getModuleHandler('headline');
-$hlid  = (!empty($_GET['id']) && ((int)$_GET['id'] > 0)) ? (int)$_GET['id'] : 0;
+$hlid  = (!empty($_GET['id']) && (\Xmf\Request::getInt('id', 0, 'GET') > 0)) ? \Xmf\Request::getInt('id', 0, 'GET') : 0;
 
 $GLOBALS['xoopsOption']['template_main'] = 'xoopsheadline_index.tpl';
 include XOOPS_ROOT_PATH . '/header.php';
