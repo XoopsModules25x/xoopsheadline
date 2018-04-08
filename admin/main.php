@@ -118,8 +118,8 @@ switch ($op) {
                 $sel = ($value == $headlines[$i]->getVar('headline_encoding')) ? ' selected = "selected"' : '';
                 echo "<option value=\"{$value}\"{$sel}>{$name}</option>";
             }
-            $chkd = (1 == $headlines[$i]->getVar('headline_display')) ? ' checked="checked"' : '';
-            $chkb = (1 == $headlines[$i]->getVar('headline_asblock')) ? ' checked="checked"' : '';
+            $chkd = (1 == $headlines[$i]->getVar('headline_display')) ? ' checked' : '';
+            $chkb = (1 == $headlines[$i]->getVar('headline_asblock')) ? ' checked' : '';
             echo "</select></td>\n"
                  . "      <td class='center {$tdclass}' style='vertical-align: middle;'><input type=\"checkbox\" value=\"1\" name=\"headline_display["
                  . $headlines[$i]->getVar('headline_id')
