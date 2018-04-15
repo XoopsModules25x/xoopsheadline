@@ -22,7 +22,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 /**
  * Class XoopsheadlineHeadline
  */
-class XoopsheadlineHeadline extends XoopsObject
+class XoopsheadlineHeadline extends \XoopsObject
 {
 
     /**
@@ -65,7 +65,7 @@ class XoopsheadlineHeadline extends XoopsObject
 /**
  * Class xoopsheadlineHeadlineHandler
  */
-class xoopsheadlineHeadlineHandler extends XoopsPersistableObjectHandler
+class xoopsheadlineHeadlineHandler extends \XoopsPersistableObjectHandler
 {
 
     /**

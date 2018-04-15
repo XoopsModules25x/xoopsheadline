@@ -19,7 +19,7 @@
 
 use XoopsModules\Xoopsheadline;
 
-include __DIR__ . '/../../mainfile.php';
+include  dirname(dirname(__DIR__)) . '/mainfile.php';
 
 /** @var Xoopsheadline\Helper $helper */
 $helper = Xoopsheadline\Helper::getInstance();
