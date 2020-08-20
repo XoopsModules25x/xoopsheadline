@@ -105,3 +105,5 @@ $modversion['templates'][1]['file']        = 'xoopsheadline_index.tpl';
 $modversion['templates'][1]['description'] = '';
 $modversion['templates'][2]['file']        = 'xoopsheadline_feed.tpl';
 $modversion['templates'][2]['description'] = '';
+$modversion['templates'][3]['file']        = 'blocks/headline_block.tpl';
+$modversion['templates'][3]['description'] = '';
