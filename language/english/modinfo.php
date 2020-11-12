@@ -45,7 +45,7 @@ define('_MI_HEADLINES_SORT4', 'Weight ASC');
 
 //1.12
 //Help
-define('_MI_HEADLINES_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_HEADLINES_DIRNAME', basename(dirname(__DIR__, 2)));
 define('_MI_HEADLINES_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_HEADLINES_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_HEADLINES_OVERVIEW', 'Overview');
