@@ -38,7 +38,6 @@ function xoops_module_uninstall_xoopsheadline(\XoopsModule $module)
     /** @var \Xoopsheadline\Helper $helper */
     $helper = Xoopsheadline\Helper::getInstance();
 
-    /** @var \XoopsModules\Xoopsheadline\Utility $utility */
     $utility = new Utility();
 
     $success = true;

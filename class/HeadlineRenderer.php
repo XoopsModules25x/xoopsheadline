@@ -24,7 +24,6 @@ use XoopsModules\Xoopsheadline;
 
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 
-/** @var \XoopsModules\Xoopsheadline\Helper $helper */
 $helper = \XoopsModules\Xoopsheadline\Helper::getInstance();
 $helper->loadLanguage('main');
 
