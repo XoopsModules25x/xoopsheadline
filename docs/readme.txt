@@ -7,14 +7,14 @@ The XoopsHeadlines module is used to display RSS feeds on your website. It is ty
 
  Requirements
  ------------------
- 
+
 - PHP version >= 5.2.0
-- ModuleClasses in /Frameworks (included in XOOPS 2.5.4+ or download it from here: http://goo.gl/Bmknt)  
+- ModuleClasses in /Frameworks (included in XOOPS 2.5.4+ or download it from here: http://goo.gl/Bmknt)
 
 
 Install/uninstall
 ------------------
-No special measures necessary, follow the standard installation process – extract the module folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. 
+No special measures necessary, follow the standard installation process â€“ extract the module folder into the ../modules directory. Install the module through Admin -> System Module -> Modules.
 
 Detailed instructions on installing modules are available in the XOOPS Operations Manual (http://goo.gl/adT2i)
 

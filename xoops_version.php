@@ -1,61 +1,58 @@
 <?php
-//
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                  Copyright (c) 2000-2016 XOOPS.org                        //
-//                         <http://xoops.org/>                               //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
-$xhlDirName = basename(__DIR__);
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package
+ * @since
+ * @author       XOOPS Development Team
+ */
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-$modversion = array(
+require_once __DIR__ . '/preloads/autoloader.php';
+
+$moduleDirName      = basename(__DIR__);
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
+$modversion = [
+    'version'             => 1.12,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2017/07/20',
     'name'                => _MI_HEADLINES_NAME,
     'description'         => _MI_HEADLINES_DESC,
-    'version'             => 1.11,
-    'module_status'       => 'Final',
     'official'            => 1,    // maintained by XOOPS Module Development Team
-    'author'              => 'Kazumi Ono ( http://www.xoops.org/ http://www.myweb.ne.jp/ )',
+    'author'              => 'Kazumi Ono ( https://xoops.org/ http://www.myweb.ne.jp/ )',
     'credits'             => 'The Xoops Module Development Team',
     'license'             => 'GNU GPL 2.0',
     'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
     'help'                => 'page=help',
     'image'               => 'assets/images/logoModule.png',
-    'dirname'             => $xhlDirName,
-
+    'dirname'             => $moduleDirName,
     //about
-    'author_website_url'  => 'http://xoops.org',
+    'author_website_url'  => 'https://xoops.org',
     'author_website_name' => 'XOOPS',
-    'module_website_url'  => 'http://xoops.org',
+    'module_website_url'  => 'https://xoops.org',
     'module_website_name' => 'XOOPS',
-    'release_date'        => '2016/082/01',
-    'min_php'             => '5.5',
-    'min_xoops'           => '2.5.8',
-    'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
-    'min_admin'           => '1.1',
-    'dirmoduleadmin'      => '/Frameworks/moduleclasses/moduleadmin',
-    'icons16'             => '../../Frameworks/moduleclasses/icons/16',
-    'icons32'             => '../../Frameworks/moduleclasses/icons/32'
-);
+    'min_php'             => '7.2',
+    'min_xoops'           => '2.5.10',
+    'min_db'              => ['mysql' => '5.5'],
+    'min_admin'           => '1.2',
+    //    'dirmoduleadmin'      => '/Frameworks/moduleclasses/moduleadmin',
+    //    'icons16'             => '../../Frameworks/moduleclasses/icons/16',
+    //    'icons32'             => '../../Frameworks/moduleclasses/icons/32'
+    // Local path icons
+    'modicons16'          => 'assets/images/icons/16',
+    'modicons32'          => 'assets/images/icons/32',
+];
 
 // Sql file (must contain sql generated by phpMyAdmin or phpPgAdmin)
 // All tables should not have any prefix!
@@ -67,20 +64,32 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'][0] = 'xoopsheadline';
 
 // Config Options
-$modversion['config'][1] = array(
+$modversion['config'][] = [
     'name'        => 'sortby',
     'title'       => '_MI_HEADLINES_SORTORDER',
     'description' => '_MI_HEADLINES_SORTORDERDSC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 4,
-    'options'     => array(
+    'options'     => [
         '_MI_HEADLINES_SORT1' => 1,
         '_MI_HEADLINES_SORT2' => 2,
         '_MI_HEADLINES_SORT3' => 3,
-        '_MI_HEADLINES_SORT4' => 4
-    )
-);
+        '_MI_HEADLINES_SORT4' => 4,
+    ],
+];
+
+/**
+ * Show Developer Tools?
+ */
+$modversion['config'][] = [
+    'name'        => 'displayDeveloperTools',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
 
 // Admin
 $modversion['hasAdmin']   = 1;
@@ -89,6 +98,14 @@ $modversion['adminmenu']  = 'admin/menu.php';
 
 // Set to 1 if you want to display menu generated by system module
 $modversion['system_menu'] = 1;
+
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = [
+    ['name' => _MI_HEADLINES_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_HEADLINES_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_HEADLINES_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_HEADLINES_SUPPORT, 'link' => 'page=support'],
+];
 
 // Blocks
 $modversion['blocks'][1]['file']        = 'headline.php';

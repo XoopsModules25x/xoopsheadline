@@ -1,49 +1,55 @@
 <?php
-//
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                  Copyright (c) 2000-2016 XOOPS.org                        //
-//                         <http://xoops.org/>                               //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-xoops_load('XoopsheadlineUtility', 'xoopsheadline');
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package
+ * @since
+ * @author       XOOPS Development Team
+ */
+
+use XoopsModules\Xoopsheadline\{
+    Helper,
+    XoopsheadlineUtility
+};
 
 /**
  * @param $options
  * @return array
  */
-function b_xoopsheadline_show($options) {
+function b_xoopsheadline_show($options)
+{
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+
+    $helper = Helper::getInstance();
+
+    $block = [];
+
     global $xoopsConfig;
     $hlDir = basename(dirname(__DIR__));
 
-    $moduleHandler  = xoops_getHandler('module');
-    $module         = $moduleHandler->getByDirname($hlDir);
-    $config_handler = xoops_getHandler('config');
-    $moduleConfig   = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+    /** @var \XoopsModuleHandler $moduleHandler */
+    $moduleHandler = xoops_getHandler('module');
+    $module        = $moduleHandler->getByDirname($hlDir);
+    /** @var \XoopsConfigHandler $configHandler */
+    $configHandler = xoops_getHandler('config');
+    $moduleConfig  = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
 
-    $block    = array();
-    $hlman    = xoops_getModuleHandler('headline', 'xoopsheadline');
-    $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('headline_asblock', 1, '='));
+    $block    = [];
+    $hlman    = $helper->getHandler('Headline');
+    $criteria = new \CriteriaCompo();
+    $criteria->add(new \Criteria('headline_asblock', 1, '='));
     switch ($moduleConfig['sortby']) {
         case 1:
             $criteria->setSort('headline_name');
@@ -64,17 +70,15 @@ function b_xoopsheadline_show($options) {
             break;
     }
     $headlines = $hlman->getObjects($criteria);
-    $count     = count($headlines);
-    for ($i = 0; $i < $count; $i++) {
-        $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headlines[$i]);
+    foreach ($headlines as $i => $iValue) {
+        $renderer = XoopsheadlineUtility::getRenderer($headlines[$i]);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $headlines[$i]->getVar('headline_name')) . '<br>'
-                                    . $renderer->getErrors();
+                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
             }
             continue;
         }
-        $block['feeds'][] =& $renderer->getBlock();
+        $block['feeds'][] = &$renderer->getBlock();
     }
 
     return $block;

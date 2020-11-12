@@ -1,61 +1,73 @@
 <?php
-//
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                  Copyright (c) 2000-2016 XOOPS.org                        //
-//                         <http://xoops.org/>                               //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package
+ * @since
+ * @author       XOOPS Development Team
+ */
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-$path = dirname(dirname(dirname(__DIR__)));
-include_once $path . '/mainfile.php';
+use Xmf\Module\Admin;
+use XoopsModules\Xoopsheadline\Helper;
+/** @var Helper $helper */
 
-$dirname         = basename(dirname(__DIR__));
-$moduleHandler   = xoops_getHandler('module');
-$module          = $moduleHandler->getByDirname($dirname);
-$pathIcon32      = $module->getInfo('icons32');
-$pathModuleAdmin = $module->getInfo('dirmoduleadmin');
-$pathLanguage    = $path . $pathModuleAdmin;
+include dirname(__DIR__) . '/preloads/autoloader.php';
 
-if (!file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
-    $fileinc = $pathLanguage . '/language/english/main.php';
+$moduleDirName = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
+$helper = Helper::getInstance();
+$helper->loadLanguage('common');
+$helper->loadLanguage('feedback');
+
+$pathIcon32 = Admin::menuIconPath('');
+if (is_object($helper->getModule())) {
+    $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 }
 
-include_once $fileinc;
+$adminmenu[] = [
+    'title' => _MI_HEADLINES_MENU_ADMININDEX,
+    'link'  => 'admin/index.php',
+    'desc'  => _MI_HEADLINES_MENU_ADMININDEX_DESC,
+    'icon'  => $pathIcon32 . '/home.png',
+];
 
-$adminmenu              = array();
-$i                      = 0;
-$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMININDEX;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMININDEX_DESC;
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMINHL;
-$adminmenu[$i]['link']  = 'admin/main.php';
-$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMINHL_DESC;
-$adminmenu[$i]['icon']  = $pathIcon32 . '/content.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_HEADLINES_MENU_ADMINABOUT;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['desc']  = _MI_HEADLINES_MENU_ADMINABOUT_DESC;
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
+$adminmenu[] = [
+    'title' => _MI_HEADLINES_MENU_ADMINHL,
+    'link'  => 'admin/main.php',
+    'desc'  => _MI_HEADLINES_MENU_ADMINHL_DESC,
+    'icon'  => $pathIcon32 . '/content.png',
+];
+
+// Blocks Admin
+$adminmenu[] = [
+    'title' => constant('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS'),
+    'link' => 'admin/blocksadmin.php',
+    'icon' => $pathIcon32 . '/block.png',
+];
+
+if (is_object($helper->getModule()) && $helper->getConfig('displayDeveloperTools')) {
+    $adminmenu[] = [
+        'title' => constant('CO_' . $moduleDirNameUpper . '_' . 'ADMENU_MIGRATE'),
+        'link' => 'admin/migrate.php',
+        'icon' => $pathIcon32 . '/database_go.png',
+    ];
+}
+
+$adminmenu[] = [
+    'title' => _MI_HEADLINES_MENU_ADMINABOUT,
+    'link'  => 'admin/about.php',
+    'desc'  => _MI_HEADLINES_MENU_ADMINABOUT_DESC,
+    'icon'  => $pathIcon32 . '/about.png',
+];

@@ -1,43 +1,42 @@
 <?php
-//
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                  Copyright (c) 2000-2016 XOOPS.org                        //
-//                         <http://xoops.org/>                               //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-include dirname(dirname(__DIR__)) . '/mainfile.php';
-xoops_load('XoopsheadlineUtility', $xoopsModule->getVar('dirname'));
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package
+ * @since
+ * @author       XOOPS Development Team
+ */
 
-$hlman = xoops_getModuleHandler('headline');
-$hlid  = (!empty($_GET['id']) && ((int)$_GET['id'] > 0)) ? (int)$_GET['id'] : 0;
+use Xmf\Module\Admin;
+use Xmf\Request;
+use XoopsModules\Xoopsheadline\Helper;
+use XoopsModules\Xoopsheadline\XoopsheadlineUtility;
+/** @var Helper $helper */
 
-$xoopsOption['template_main'] = 'xoopsheadline_index.tpl';
-include XOOPS_ROOT_PATH . '/header.php';
+require_once dirname(__DIR__, 2) . '/mainfile.php';
 
-$criteria = new CriteriaCompo();
-$criteria->add(new Criteria('headline_display', 1, '='));
-$criteria->add(new Criteria('headline_xml', '', '!='));
-switch ((int)$xoopsModuleConfig['sortby']) {
+$helper = Helper::getInstance();
+
+$hlman = $helper->getHandler('Headline');
+$hlid  = (!empty($_GET['id']) && (Request::getInt('id', 0, 'GET') > 0)) ? Request::getInt('id', 0, 'GET') : 0;
+
+$GLOBALS['xoopsOption']['template_main'] = 'xoopsheadline_index.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
+
+$criteria = new \CriteriaCompo();
+$criteria->add(new \Criteria('headline_display', 1, '='));
+$criteria->add(new \Criteria('headline_xml', '', '!='));
+switch ((int)$helper->getConfig('sortby')) {
     case 1:
         $criteria->setSort('headline_name');
         $criteria->setOrder('DESC');
@@ -59,18 +58,15 @@ switch ((int)$xoopsModuleConfig['sortby']) {
 $headlines = $hlman->getObjects($criteria);
 
 global $xoopsModule;
-$pathIcon16    = $xoopsModule->getInfo('icons16');
+$pathIcon16    = Admin::iconUrl('', 16);
 $moduleDirName = $xoopsModule->getVar('dirname');
 
 $userIsAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) ? true : false;
 $count       = count($headlines);
-for ($i = 0; $i < $count; $i++) {
+for ($i = 0; $i < $count; ++$i) {
     $thisId  = $headlines[$i]->getVar('headline_id');
-    $editUrl = $userIsAdmin ? "&nbsp;<a href='" . XOOPS_URL
-                              . "/modules/{$moduleDirName}/admin/main.php?op=edit&amp;headline_id={$thisId}'><img src='"
-                              . $pathIcon16 . "/edit.png' alt='" . _EDIT . "' title='" . _EDIT . "'></a>" : '';
-    $xoopsTpl->append('feed_sites',
-                      array('id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl));
+    $editUrl = $userIsAdmin ? "&nbsp;<a href='" . XOOPS_URL . "/modules/{$moduleDirName}/admin/main.php?op=edit&amp;headline_id={$thisId}'><img src='" . $pathIcon16 . "/edit.png' alt='" . _EDIT . "' title='" . _EDIT . "'></a>" : '';
+    $xoopsTpl->append('feed_sites', ['id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl]);
 }
 $xoopsTpl->assign('lang_headlines', _MD_HEADLINES_HEADLINES);
 if (0 == $hlid) {
@@ -79,16 +75,14 @@ if (0 == $hlid) {
 if ($hlid > 0) {
     $headline = $hlman->get($hlid);
     if (is_object($headline)) {
-        $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headline);
+        $renderer = XoopsheadlineUtility::getRenderer($headline);
         if (!$renderer->renderFeed()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $xoopsTpl->assign('headline',
-                                  '<p>' . sprintf(_MD_HEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>'
-                                  . $renderer->getErrors() . '</p>');
+                $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_HEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
             }
         } else {
             $xoopsTpl->assign('headline', $renderer->getFeed());
         }
     }
 }
-include XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

@@ -10,36 +10,52 @@
  */
 
 /**
- * @copyright    XOOPS Project (http://xoops.org)
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @copyright    XOOPS Project (https://xoops.org)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
  * @author       XOOPS Development Team
  */
 
-require __DIR__ . '/admin_header.php';
+use Xmf\Module\Admin;
+use Xmf\Request;
+use Xmf\Yaml;
+use XoopsModules\Xoopsheadline\{
+    Common,
+    Forms,
+    Helper,
+    Utility
+};
+
+/** @var Admin $adminObject */
+/** @var Helper $helper */
+/** @var Utility $utility */
+
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-$indexAdmin = new ModuleAdmin();
+$adminObject = Admin::getInstance();
 
 //-----------------------
-$xhl_handler = xoops_getModuleHandler('headline', $xoopsModule->getVar('dirname', 'n'));
 
-$totalHls          = $xhl_handler->getCount();
-$totalDisplayedHls = $xhl_handler->getCount(new Criteria('headline_display', 1, '='));
+$helper = Helper::getInstance();
+$headlineHandler = $helper->getHandler('Headline');
+
+$totalHls          = $headlineHandler->getCount();
+$totalDisplayedHls = $headlineHandler->getCount(new \Criteria('headline_display', 1, '='));
 $totalHiddenHls    = $totalHls - $totalDisplayedHls;
 
-$displayedAsBlock = $xhl_handler->getCount(new Criteria('headline_asblock ', 1, '='));
+$displayedAsBlock = $headlineHandler->getCount(new \Criteria('headline_asblock ', 1, '='));
 
-$indexAdmin->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls, 'Green');
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHIDDEN, $totalHiddenHls, 'Red');
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALHLS, $totalHls);
-$indexAdmin->addInfoBoxLine(_MD_HEADLINES_XOOPSHEADLINECONF, _MD_HEADLINES_TOTALASBLOCK, $displayedAsBlock, 'Green');
+$adminObject->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls), '', 'Green');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALHIDDEN, $totalHiddenHls), '', 'Red');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALHLS, $totalHls), '');
+$adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALASBLOCK, $displayedAsBlock), '', 'Green');
 
 //----------------------------
 
-echo $indexAdmin->addNavigation(basename(__FILE__));
-echo $indexAdmin->renderIndex();
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject->displayIndex();
 
-include __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';
