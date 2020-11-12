@@ -57,12 +57,11 @@ function b_xoopsheadline_show($options)
             break;
     }
     $headlines = $hlman->getObjects($criteria);
-    $count     = count($headlines);
-    for ($i = 0; $i < $count; ++$i) {
+    foreach ($headlines as $i => $iValue) {
         $renderer = XoopsheadlineUtility::getRenderer($headlines[$i]);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $headlines[$i]->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
             }
             continue;
         }
