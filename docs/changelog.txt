@@ -7,6 +7,8 @@
 - Yoda & Cosmetics (mamba)
 - PHP7, PHP8 adjustments (mamba)
 - blocksadmin (mamba)
+- changed XOOPS sample from /news to /publisher (mamba)
+- Fix unsing headline_block.tpl from a theme (walkero-gr)
 
 1.11 Final        2016-08-01
 =================================

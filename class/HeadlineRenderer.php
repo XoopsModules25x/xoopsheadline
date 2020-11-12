@@ -207,7 +207,8 @@ class HeadlineRenderer
                     'site_id'   => $this->hl->getVar('headline_id'),
                 ]
             );
-            $this->block = $this->tpl->fetch('file:' . XOOPS_ROOT_PATH . '/modules/xoopsheadline/templates/blocks/headline_block.tpl');
+
+            $this->block = $this->tpl->fetch('db:blocks/headline_block.tpl');
             $retval      = true;
         }
 
