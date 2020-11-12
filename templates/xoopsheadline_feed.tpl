@@ -42,7 +42,7 @@
                 <{/if}>
             </td>
         </tr>
-        <{if $show_full == true}>
+        <{if $show_full === true}>
             <{if $items[i].category != ""}>
                 <tr>
                     <td class="even" style="vertical-align: top;"><{$lang_category}></td>

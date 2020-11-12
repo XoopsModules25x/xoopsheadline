@@ -11,19 +11,18 @@
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
  * @author       XOOPS Development Team
  */
-
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 $adminObject = \Xmf\Module\Admin::getInstance();
 
 //-----------------------
-$xhlHandler = xoops_getModuleHandler('headline', $xoopsModule->getVar('dirname', 'n'));
+$xhlHandler = $helper->getHandler('Headline');
 
 $totalHls          = $xhlHandler->getCount();
 $totalDisplayedHls = $xhlHandler->getCount(new \Criteria('headline_display', 1, '='));
@@ -42,4 +41,4 @@ $adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALASBLOCK, $displayedAsBlo
 $adminObject->displayNavigation(basename(__FILE__));
 $adminObject->displayIndex();
 
-include __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

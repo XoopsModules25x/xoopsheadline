@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 
 // Blocks
 define('_MB_HEADLINES_DISPLAYF', 'Display site logo');

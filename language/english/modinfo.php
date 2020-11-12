@@ -11,7 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright ::  The XOOPS Project (https://xoops.org)
- * @license   ::    GNU GPL (http://www.gnu.org/licenses/gpl-2.0.html/)
+ * @license   ::    GNU GPL (https://www.gnu.org/licenses/gpl-2.0.html/)
  * @package   ::    xoopsheadline
  * @subpackage:: admin
  * @since     ::      1.10
@@ -46,7 +46,7 @@ define('_MI_HEADLINES_SORT4', 'Weight ASC');
 //1.12
 //Help
 define('_MI_HEADLINES_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_HEADLINES_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_HEADLINES_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_HEADLINES_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_HEADLINES_OVERVIEW', 'Overview');
 

@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 
 define('_MD_HEADLINES_LASTBUILD', 'Updated');
 define('_MD_HEADLINES_LANGUAGE', 'Language');

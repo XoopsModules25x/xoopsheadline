@@ -11,7 +11,7 @@
 
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
  * @package
  * @since
  * @author       XOOPS Development Team
@@ -19,16 +19,16 @@
 
 use XoopsModules\Xoopsheadline;
 
-include  dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once dirname(dirname(__DIR__)) . '/mainfile.php';
 
-/** @var Xoopsheadline\Helper $helper */
+/** @var \Xoopsheadline\Helper $helper */
 $helper = Xoopsheadline\Helper::getInstance();
 
-$hlman = xoops_getModuleHandler('headline');
+$hlman = $helper->getHandler('Headline');
 $hlid  = (!empty($_GET['id']) && (\Xmf\Request::getInt('id', 0, 'GET') > 0)) ? \Xmf\Request::getInt('id', 0, 'GET') : 0;
 
 $GLOBALS['xoopsOption']['template_main'] = 'xoopsheadline_index.tpl';
-include XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 $criteria = new \CriteriaCompo();
 $criteria->add(new \Criteria('headline_display', 1, '='));
@@ -55,12 +55,12 @@ switch ((int)$helper->getConfig('sortby')) {
 $headlines = $hlman->getObjects($criteria);
 
 global $xoopsModule;
-$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);;
+$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
 $moduleDirName = $xoopsModule->getVar('dirname');
 
 $userIsAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) ? true : false;
 $count       = count($headlines);
-for ($i = 0; $i < $count; $i++) {
+for ($i = 0; $i < $count; ++$i) {
     $thisId  = $headlines[$i]->getVar('headline_id');
     $editUrl = $userIsAdmin ? "&nbsp;<a href='" . XOOPS_URL . "/modules/{$moduleDirName}/admin/main.php?op=edit&amp;headline_id={$thisId}'><img src='" . $pathIcon16 . "/edit.png' alt='" . _EDIT . "' title='" . _EDIT . "'></a>" : '';
     $xoopsTpl->append('feed_sites', ['id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl]);
@@ -72,7 +72,7 @@ if (0 == $hlid) {
 if ($hlid > 0) {
     $headline = $hlman->get($hlid);
     if (is_object($headline)) {
-        $renderer = XoopsheadlineUtility::xoopsheadline_getrenderer($headline);
+        $renderer = XoopsheadlineUtility::getRenderer($headline);
         if (!$renderer->renderFeed()) {
             if (2 == $xoopsConfig['debug_mode']) {
                 $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_HEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
@@ -82,4 +82,4 @@ if ($hlid > 0) {
         }
     }
 }
-include XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

@@ -1,7 +1,5 @@
 <?php
-/**
- *
- */
+
 $admin_mydirname = basename(dirname(dirname(__DIR__)));
 
 // Admin Module Name  Headlines

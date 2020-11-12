@@ -11,13 +11,12 @@
 
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
  * @package
  * @since
  * @author       XOOPS Development Team
  */
-
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 require_once __DIR__ . '/preloads/autoloader.php';
 
@@ -42,10 +41,10 @@ $modversion = [
     'author_website_name' => 'XOOPS',
     'module_website_url'  => 'https://xoops.org',
     'module_website_name' => 'XOOPS',
-    'min_php'             => '5.5',
-    'min_xoops'           => '2.5.9',
+    'min_php'             => '7.2',
+    'min_xoops'           => '2.5.10',
     'min_db'              => ['mysql' => '5.5'],
-    'min_admin'           => '1.1',
+    'min_admin'           => '1.2',
     //    'dirmoduleadmin'      => '/Frameworks/moduleclasses/moduleadmin',
     //    'icons16'             => '../../Frameworks/moduleclasses/icons/16',
     //    'icons32'             => '../../Frameworks/moduleclasses/icons/32'
@@ -75,8 +74,8 @@ $modversion['config'][1] = [
         '_MI_HEADLINES_SORT1' => 1,
         '_MI_HEADLINES_SORT2' => 2,
         '_MI_HEADLINES_SORT3' => 3,
-        '_MI_HEADLINES_SORT4' => 4
-    ]
+        '_MI_HEADLINES_SORT4' => 4,
+    ],
 ];
 
 // Admin
