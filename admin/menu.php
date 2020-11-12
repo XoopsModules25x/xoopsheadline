@@ -18,6 +18,7 @@
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
+use Xmf\Module\Admin;
 use XoopsModules\Xoopsheadline;
 
 // require_once  dirname(__DIR__) . '/class/Helper.php';
@@ -27,7 +28,7 @@ $helper = Xoopsheadline\Helper::getInstance();
 $helper->loadLanguage('common');
 $helper->loadLanguage('feedback');
 
-$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+$pathIcon32 = Admin::menuIconPath('');
 if (is_object($helper->getModule())) {
     $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 }

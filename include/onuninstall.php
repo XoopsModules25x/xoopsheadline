@@ -9,6 +9,7 @@
  */
 
 use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\Utility;
 
 /**
  * Prepares system prior to attempting to uninstall module
@@ -38,7 +39,7 @@ function xoops_module_uninstall_xoopsheadline(\XoopsModule $module)
     $helper = Xoopsheadline\Helper::getInstance();
 
     /** @var \XoopsModules\Xoopsheadline\Utility $utility */
-    $utility = new \XoopsModules\Xoopsheadline\Utility();
+    $utility = new Utility();
 
     $success = true;
     $helper->loadLanguage('admin');

@@ -21,6 +21,8 @@ use Xmf\Module\Admin;
 use XoopsModules\Xoopsheadline\{
     Helper
 };
+use Xmf\Request;
+
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 
@@ -29,9 +31,9 @@ xoops_cp_header();
 
 $op = 'list';
 
-if (\Xmf\Request::hasVar('op', 'GET') && ('delete' === $_GET['op'] || 'edit' === $_GET['op'] || 'flush' === $_GET['op'])) {
+if (Request::hasVar('op', 'GET') && ('delete' === $_GET['op'] || 'edit' === $_GET['op'] || 'flush' === $_GET['op'])) {
     $op          = $_GET['op'];
-    $headline_id = \Xmf\Request::getInt('headline_id', 0, 'GET');
+    $headline_id = Request::getInt('headline_id', 0, 'GET');
 }
 
 /* headline_id - an array of integers

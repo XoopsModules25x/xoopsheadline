@@ -17,6 +17,7 @@
  * @author       XOOPS Development Team
  */
 
+use Xmf\Database\Tables;
 use XoopsModules\Xoopsheadline;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
@@ -76,7 +77,7 @@ function xoops_module_update_xoopsheadline(\XoopsModule $module, $previousVersio
 
     if ($previousVersion < 240) {
         //rename column EXAMPLE
-        $tables     = new \Xmf\Database\Tables();
+        $tables     = new Tables();
         $table      = 'xoopsheadlinex_categories';
         $column     = 'ordre';
         $newName    = 'order';

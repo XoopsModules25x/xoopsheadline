@@ -18,6 +18,7 @@
  */
 
 use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\Utility;
 
 //require_once __DIR__ . '/setup.php';
 
@@ -31,7 +32,7 @@ function xoops_module_pre_install_xoopsheadline(\XoopsModule $module)
 {
     require_once dirname(__DIR__) . '/preloads/autoloader.php';
     /** @var \Utility $utility */
-    $utility      = new \XoopsModules\Xoopsheadline\Utility();
+    $utility      = new Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
 
@@ -59,7 +60,7 @@ function xoops_module_install_xoopsheadline(\XoopsModule $module)
     /** @var \Xoopsheadline\Helper $helper */
     $helper = Xoopsheadline\Helper::getInstance();
     /** @var \Xoopsheadline\Utility $utility */
-    $utility = new Xoopsheadline\Utility();
+    $utility = new Utility();
     /** @var \Xoopsheadline\Common\Configurator $configurator */
     $configurator = new Xoopsheadline\Common\Configurator();
     // Load language files

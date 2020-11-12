@@ -17,6 +17,8 @@
  * @author       XOOPS Development Team
  */
 
+use Xmf\Module\Admin;
+use Xmf\Request;
 use XoopsModules\Xoopsheadline;
 
 require_once dirname(dirname(__DIR__)) . '/mainfile.php';
@@ -25,7 +27,7 @@ require_once dirname(dirname(__DIR__)) . '/mainfile.php';
 $helper = Xoopsheadline\Helper::getInstance();
 
 $hlman = $helper->getHandler('Headline');
-$hlid  = (!empty($_GET['id']) && (\Xmf\Request::getInt('id', 0, 'GET') > 0)) ? \Xmf\Request::getInt('id', 0, 'GET') : 0;
+$hlid  = (!empty($_GET['id']) && (Request::getInt('id', 0, 'GET') > 0)) ? Request::getInt('id', 0, 'GET') : 0;
 
 $GLOBALS['xoopsOption']['template_main'] = 'xoopsheadline_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
@@ -55,7 +57,7 @@ switch ((int)$helper->getConfig('sortby')) {
 $headlines = $hlman->getObjects($criteria);
 
 global $xoopsModule;
-$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon16    = Admin::iconUrl('', 16);
 $moduleDirName = $xoopsModule->getVar('dirname');
 
 $userIsAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) ? true : false;
