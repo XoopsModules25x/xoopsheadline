@@ -4,7 +4,7 @@ namespace XoopsModules\Xoopsheadline;
 
 use XoopsModules\Xoopsheadline;
 use XoopsModules\Xoopsheadline\Common;
-use XoopsModules\Xoopsheadline\Constants;
+//use XoopsModules\Xoopsheadline\Constants;
 
 /**
  * Class Utility

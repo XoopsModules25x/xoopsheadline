@@ -19,12 +19,15 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 use Xmf\Module\Admin;
-use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\Helper;
+/** @var Helper $helper */
 
-// require_once  dirname(__DIR__) . '/class/Helper.php';
-//require_once  dirname(__DIR__) . '/include/common.php';
-/** @var \Xoopsheadline\Helper $helper */
-$helper = Xoopsheadline\Helper::getInstance();
+include dirname(__DIR__) . '/preloads/autoloader.php';
+
+$moduleDirName = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
+$helper = Helper::getInstance();
 $helper->loadLanguage('common');
 $helper->loadLanguage('feedback');
 
@@ -46,6 +49,21 @@ $adminmenu[] = [
     'desc'  => _MI_HEADLINES_MENU_ADMINHL_DESC,
     'icon'  => $pathIcon32 . '/content.png',
 ];
+
+// Blocks Admin
+$adminmenu[] = [
+    'title' => constant('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS'),
+    'link' => 'admin/blocksadmin.php',
+    'icon' => $pathIcon32 . '/block.png',
+];
+
+if (is_object($helper->getModule()) && $helper->getConfig('displayDeveloperTools')) {
+    $adminmenu[] = [
+        'title' => constant('CO_' . $moduleDirNameUpper . '_' . 'ADMENU_MIGRATE'),
+        'link' => 'admin/migrate.php',
+        'icon' => $pathIcon32 . '/database_go.png',
+    ];
+}
 
 $adminmenu[] = [
     'title' => _MI_HEADLINES_MENU_ADMINABOUT,

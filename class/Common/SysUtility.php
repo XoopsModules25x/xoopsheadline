@@ -26,7 +26,7 @@ namespace XoopsModules\Xoopsheadline\Common;
 use MyTextSanitizer;
 use XoopsFormDhtmlTextArea;
 use XoopsFormTextArea;
-use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\Helper;
 
 /**
  * Class SysUtility

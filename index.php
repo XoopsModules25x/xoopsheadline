@@ -19,12 +19,13 @@
 
 use Xmf\Module\Admin;
 use Xmf\Request;
-use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\Helper;
+use XoopsModules\Xoopsheadline\XoopsheadlineUtility;
+/** @var Helper $helper */
 
 require_once dirname(__DIR__, 2) . '/mainfile.php';
 
-/** @var \Xoopsheadline\Helper $helper */
-$helper = Xoopsheadline\Helper::getInstance();
+$helper = Helper::getInstance();
 
 $hlman = $helper->getHandler('Headline');
 $hlid  = (!empty($_GET['id']) && (Request::getInt('id', 0, 'GET') > 0)) ? Request::getInt('id', 0, 'GET') : 0;

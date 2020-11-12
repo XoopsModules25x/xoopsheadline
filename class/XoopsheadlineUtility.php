@@ -36,7 +36,7 @@ class XoopsheadlineUtility
         if (is_file(XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/headlinerenderer.php')) {
             require_once XOOPS_ROOT_PATH . '/modules/xoopsheadline/language/' . $GLOBALS['xoopsConfig']['language'] . '/headlinerenderer.php';
             if (class_exists('HeadlineRendererLocal')) {
-                $myhl = new \HeadlineRendererLocal($headline);
+                $myhl = new HeadlineRendererLocal($headline);
 
                 return $myhl;
             }

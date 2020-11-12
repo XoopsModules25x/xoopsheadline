@@ -18,7 +18,14 @@
  */
 
 use Xmf\Module\Admin;
-use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\{
+    Helper,
+    Utility
+};
+/** @var \XoopsDatabase $db */
+/** @var Helper $helper */
+/** @var Utility $utility */
+
 
 require_once dirname(__DIR__) . '/preloads/autoloader.php';
 
@@ -26,12 +33,9 @@ $moduleDirName      = basename(dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName); //$capsDirName
 
 /** @var \XoopsDatabase $db */
-/** @var \Xoopsheadline\Helper $helper */
-/** @var \Xoopsheadline\Utility $utility */
 $db = \XoopsDatabaseFactory::getDatabaseConnection();
-/** @var \Xoopsheadline\Helper $helper */
-$helper  = Xoopsheadline\Helper::getInstance();
-$utility = new Xoopsheadline\Utility();
+$helper  = Helper::getInstance();
+$utility = new Utility();
 //$configurator = new Xoopsheadline\Common\Configurator();
 
 $helper->loadLanguage('common');

@@ -1,5 +1,5 @@
 <a href="<{$site_url}>" target="_blank"><{$site_name}></a><br>
-<{if $image.url != ""}>
+<{if $image.url|default:false != ""}>
     <img src="<{$image.url}>" style="width: <{$image.width|default:88}>; height: <{$image.height|default:31}>;"
          alt="<{$image.title}> /">
     <br>

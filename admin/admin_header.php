@@ -41,4 +41,5 @@ $adminObject = Admin::getInstance();
 $helper->loadLanguage('admin');
 $helper->loadLanguage('modinfo');
 $helper->loadLanguage('common');
+$helper->loadLanguage('main');
 

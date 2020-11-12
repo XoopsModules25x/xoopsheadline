@@ -17,12 +17,25 @@
  * @author       XOOPS Development Team
  */
 
+use XoopsModules\Xoopsheadline\{
+    Helper,
+    XoopsheadlineUtility
+};
+
 /**
  * @param $options
  * @return array
  */
 function b_xoopsheadline_show($options)
 {
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+
+    $helper = Helper::getInstance();
+
+    $block = [];
+
     global $xoopsConfig;
     $hlDir = basename(dirname(__DIR__));
 

@@ -18,6 +18,18 @@
  */
 
 use Xmf\Module\Admin;
+use Xmf\Request;
+use Xmf\Yaml;
+use XoopsModules\Xoopsheadline\{
+    Common,
+    Forms,
+    Helper,
+    Utility
+};
+
+/** @var Admin $adminObject */
+/** @var Helper $helper */
+/** @var Utility $utility */
 
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
@@ -25,13 +37,15 @@ xoops_cp_header();
 $adminObject = Admin::getInstance();
 
 //-----------------------
-$xhlHandler = $helper->getHandler('Headline');
 
-$totalHls          = $xhlHandler->getCount();
-$totalDisplayedHls = $xhlHandler->getCount(new \Criteria('headline_display', 1, '='));
+$helper = Helper::getInstance();
+$headlineHandler = $helper->getHandler('Headline');
+
+$totalHls          = $headlineHandler->getCount();
+$totalDisplayedHls = $headlineHandler->getCount(new \Criteria('headline_display', 1, '='));
 $totalHiddenHls    = $totalHls - $totalDisplayedHls;
 
-$displayedAsBlock = $xhlHandler->getCount(new \Criteria('headline_asblock ', 1, '='));
+$displayedAsBlock = $headlineHandler->getCount(new \Criteria('headline_asblock ', 1, '='));
 
 $adminObject->addInfoBox(_MD_HEADLINES_XOOPSHEADLINECONF);
 $adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALDISPLAYED, $totalDisplayedHls), '', 'Green');

@@ -17,8 +17,14 @@
  * @author       XOOPS Development Team
  */
 
-use XoopsModules\Xoopsheadline;
-use XoopsModules\Xoopsheadline\Utility;
+use XoopsModules\Xoopsheadline\{
+    Common\Configurator,
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var Configurator $configurator */
 
 //require_once __DIR__ . '/setup.php';
 
@@ -31,7 +37,7 @@ use XoopsModules\Xoopsheadline\Utility;
 function xoops_module_pre_install_xoopsheadline(\XoopsModule $module)
 {
     require_once dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var \Utility $utility */
+
     $utility      = new Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -57,12 +63,10 @@ function xoops_module_install_xoopsheadline(\XoopsModule $module)
     require_once dirname(__DIR__, 3) . '/mainfile.php';
 
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var \Xoopsheadline\Helper $helper */
-    $helper = Xoopsheadline\Helper::getInstance();
-    /** @var \Xoopsheadline\Utility $utility */
+    $helper = Helper::getInstance();
     $utility = new Utility();
-    /** @var \Xoopsheadline\Common\Configurator $configurator */
-    $configurator = new Xoopsheadline\Common\Configurator();
+
+    $configurator = new Configurator();
     // Load language files
     $helper->loadLanguage('admin');
     $helper->loadLanguage('modinfo');

@@ -31,6 +31,6 @@ class HeadlineHandler extends \XoopsPersistableObjectHandler
      */
     public function __construct(\XoopsDatabase $db = null)
     {
-        parent::__construct($db, 'xoopsheadline', Headline::class . 'Headline', 'headline_id');
+        parent::__construct($db, 'xoopsheadline', Headline::class, 'headline_id');
     }
 }

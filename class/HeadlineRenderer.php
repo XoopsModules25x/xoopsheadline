@@ -12,6 +12,8 @@ namespace XoopsModules\Xoopsheadline;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+use think\console\command\Help;
+
 /**
  * @copyright    XOOPS Project https://xoops.org/
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
@@ -20,11 +22,10 @@ namespace XoopsModules\Xoopsheadline;
  * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
 
-use XoopsModules\Xoopsheadline;
 
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 
-$helper = \XoopsModules\Xoopsheadline\Helper::getInstance();
+$helper = Helper::getInstance();
 $helper->loadLanguage('main');
 
 /**
@@ -33,7 +34,7 @@ $helper->loadLanguage('main');
 class HeadlineRenderer
 {
     // holds reference to xoopsheadline class object
-    protected $hl;
+    protected $headline;
     protected $tpl;
     protected $feed;
     protected $block;
@@ -56,6 +57,7 @@ class HeadlineRenderer
      */
     public function updateCache()
     {
+        $helper = Helper::getInstance();
         /**
          * Update cache - first try using fopen and then cURL
          */

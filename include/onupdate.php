@@ -18,7 +18,14 @@
  */
 
 use Xmf\Database\Tables;
-use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\{
+    Common\Configurator,
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var Configurator $configurator */
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -46,10 +53,8 @@ function tableExists($tablename)
 function xoops_module_pre_update_xoopsheadline(\XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var \Xoopsheadline\Helper $helper */
-    /** @var \Xoopsheadline\Utility $utility */
-    $helper  = Xoopsheadline\Helper::getInstance();
-    $utility = new Xoopsheadline\Utility();
+    $helper  = Helper::getInstance();
+    $utility = new Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -69,11 +74,9 @@ function xoops_module_update_xoopsheadline(\XoopsModule $module, $previousVersio
     $moduleDirName      = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-    /** @var \Xoopsheadline\Helper $helper */ /** @var \Xoopsheadline\Utility $utility */
-    /** @var \Xoopsheadline\Common\Configurator $configurator */
-    $helper       = Xoopsheadline\Helper::getInstance();
-    $utility      = new Xoopsheadline\Utility();
-    $configurator = new Xoopsheadline\Common\Configurator();
+    $helper       = Helper::getInstance();
+    $utility      = new Utility();
+    $configurator = new Configurator();
 
     if ($previousVersion < 240) {
         //rename column EXAMPLE
@@ -85,7 +88,7 @@ function xoops_module_update_xoopsheadline(\XoopsModule $module, $previousVersio
         if ($tables->useTable($table)) {
             $tables->alterColumn($table, $column, $attributes, $newName);
             if (!$tables->executeQueue()) {
-                echo '<br>' . _AM_XXXXX_UPGRADEFAILED0 . ' ' . $tables->getLastError();
+                echo '<br>' . _AM_XOOPSHEADLINE_UPGRADEFAILED0 . ' ' . $tables->getLastError();
             }
         }
 

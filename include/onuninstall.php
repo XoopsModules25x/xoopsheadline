@@ -8,7 +8,7 @@
  * @link            https://xoops.org XOOPS
  */
 
-use XoopsModules\Xoopsheadline;
+use XoopsModules\Xoopsheadline\Helper;
 use XoopsModules\Xoopsheadline\Utility;
 
 /**
@@ -35,8 +35,8 @@ function xoops_module_uninstall_xoopsheadline(\XoopsModule $module)
 
     $moduleDirName      = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
-    /** @var \Xoopsheadline\Helper $helper */
-    $helper = Xoopsheadline\Helper::getInstance();
+    /** @var Helper $helper */
+    $helper = Helper::getInstance();
 
     $utility = new Utility();
 
