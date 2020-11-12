@@ -20,7 +20,8 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 require_once __DIR__ . '/preloads/autoloader.php';
 
-$xhlDirName = basename(__DIR__);
+$moduleDirName      = basename(__DIR__);
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 $modversion = [
     'version'             => 1.12,
@@ -35,7 +36,7 @@ $modversion = [
     'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
     'help'                => 'page=help',
     'image'               => 'assets/images/logoModule.png',
-    'dirname'             => $xhlDirName,
+    'dirname'             => $moduleDirName,
     //about
     'author_website_url'  => 'https://xoops.org',
     'author_website_name' => 'XOOPS',
@@ -63,7 +64,7 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'][0] = 'xoopsheadline';
 
 // Config Options
-$modversion['config'][1] = [
+$modversion['config'][] = [
     'name'        => 'sortby',
     'title'       => '_MI_HEADLINES_SORTORDER',
     'description' => '_MI_HEADLINES_SORTORDERDSC',
@@ -76,6 +77,18 @@ $modversion['config'][1] = [
         '_MI_HEADLINES_SORT3' => 3,
         '_MI_HEADLINES_SORT4' => 4,
     ],
+];
+
+/**
+ * Show Developer Tools?
+ */
+$modversion['config'][] = [
+    'name'        => 'displayDeveloperTools',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
 ];
 
 // Admin
