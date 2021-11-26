@@ -303,9 +303,6 @@ class Blocksadmin
         <br><br>";
     }
 
-    /**
-     * @param int $bid
-     */
     public function deleteBlock(int $bid)
     {
         //        \xoops_cp_header();
@@ -325,9 +322,6 @@ class Blocksadmin
         $this->helper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
     }
 
-    /**
-     * @param int $bid
-     */
     public function cloneBlock(int $bid)
     {
         //require __DIR__ . '/admin_header.php';
@@ -454,9 +448,6 @@ class Blocksadmin
 //        return $blockHandler->insert($myblock);
     }
 
-    /**
-     * @param int $bid
-     */
     public function editBlock(int $bid)
     {
         //        require_once \dirname(__DIR__,2) . '/admin/admin_header.php';
@@ -498,10 +489,6 @@ class Blocksadmin
         echo $this->render($block);
     }
 
-    /**
-     * @param null|array|string $options
-     * @param null|array        $groups
-     */
     public function updateBlock(int $bid, string $btitle, string $bside, string $bweight, string $bvisible, string $bcachetime, ?array $bmodule, ?array$options, ?array$groups): void
     {
         $myblock = new \XoopsBlock($bid);
