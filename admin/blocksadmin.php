@@ -505,9 +505,9 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
             $optionsCount = count($options);
             if ($optionsCount > 0) {
                 //Convert array values to comma-separated
-                for ($i = 0; $i < $optionsCount; ++$i) {
-                    if (is_array($options[$i])) {
-                        $options[$i] = implode(',', $options[$i]);
+                foreach ($options as $i => $iValue) {
+                    if (is_array($iValue)) {
+                        $options[$i] = implode(',', $iValue);
                     }
                 }
                 $options = implode('|', $options);
