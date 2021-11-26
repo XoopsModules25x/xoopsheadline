@@ -60,7 +60,7 @@ class HeadlineRenderer
          * Update cache - first try using fopen and then cURL
          */
         $retval = false;
-        if (!$fp = @\fopen($this->hl->getVar('headline_rssurl'), 'r')) {
+        if (!$fp = @\fopen($this->hl->getVar('headline_rssurl'), 'rb')) {
             // failed open using fopen, now try cURL
             $ch = \curl_init($this->hl->getVar('headline_rssurl'));
             if (\curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true)) {
