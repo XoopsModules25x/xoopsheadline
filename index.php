@@ -78,10 +78,8 @@ if ($hlid > 0) {
         $renderer = XoopsheadlineUtility::getRenderer($headline);
         if ($renderer->renderFeed()) {
             $xoopsTpl->assign('headline', $renderer->getFeed());
-        } else {
-            if (2 == $xoopsConfig['debug_mode']) {
+        } elseif (2 == $xoopsConfig['debug_mode']) {
                 $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_HEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
-            }
         }
     }
 }
