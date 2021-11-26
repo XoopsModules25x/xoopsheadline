@@ -46,7 +46,7 @@ function b_xoopsheadline_show($options)
     $configHandler = xoops_getHandler('config');
     $moduleConfig  = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
 
-    $hlman    = $helper->getHandler('Headline');
+    $headlineHandler    = $helper->getHandler('Headline');
     $criteria = new \CriteriaCompo();
     $criteria->add(new \Criteria('headline_asblock', 1, '='));
     switch ($moduleConfig['sortby']) {
@@ -68,7 +68,7 @@ function b_xoopsheadline_show($options)
             $criteria->setOrder('ASC');
             break;
     }
-    $headlines = $hlman->getObjects($criteria);
+    $headlines = $headlineHandler->getObjects($criteria);
     foreach ($headlines as $i => $iValue) {
         $renderer = Utility::getRenderer($iValue);
         if (!$renderer->renderBlock()) {
