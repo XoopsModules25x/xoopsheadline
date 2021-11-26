@@ -26,7 +26,7 @@ use XoopsModules\Xoopsheadline\{
  * @param array $options
  * @return array|bool
  */
-function b_xoopsheadline_show($options)
+function b_xoopsheadline_show(array $options)
 {
     if (!class_exists(Helper::class)) {
         return false;

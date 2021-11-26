@@ -540,25 +540,22 @@ class Blocksadmin
         $this->helper->redirect('admin/blocksadmin.php', 1, \constant('CO_' . $this->moduleDirNameUpper . '_' . 'UPDATE_SUCCESS'));
     }
 
-    /**
-     * @param array $bid
-     */
     public function orderBlock(
-        $bid,
-        $oldtitle,
-        $oldside,
-        $oldweight,
-        $oldvisible,
-        $oldgroups,
-        $oldbcachetime,
-        $oldbmodule ,
-        $title,
-        $weight,
-        $visible,
-        $side,
-        $bcachetime,
-        $groups,
-        $bmodule = null
+        array $bid,
+        array $oldtitle,
+        array $oldside,
+        array $oldweight,
+        array $oldvisible,
+        array $oldgroups,
+        array $oldbcachetime,
+        array $oldbmodule ,
+        array $title,
+        array $weight,
+        array $visible,
+        array $side,
+        array $bcachetime,
+        array $groups,
+        array $bmodule
     ): void {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header($_SERVER['SCRIPT_NAME'], 3, \implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));

@@ -14,7 +14,7 @@ namespace XoopsModules\Xoopsheadline;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-use think\console\command\Help;
+//use think\console\command\Help;
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)

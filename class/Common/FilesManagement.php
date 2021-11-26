@@ -75,7 +75,7 @@ trait FilesManagement
      * @version     1.0.1
      * @link        http://aidanlister.com/2004/04/recursively-copying-directories-in-php/
      */
-    public static function xcopy($source, $dest): bool
+    public static function xcopy(string $source, string $dest): bool
     {
         // Check for symlinks
         if (\is_link($source)) {

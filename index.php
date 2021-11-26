@@ -19,8 +19,11 @@ declare(strict_types=1);
 
 use Xmf\Module\Admin;
 use Xmf\Request;
-use XoopsModules\Xoopsheadline\Helper;
-use XoopsModules\Xoopsheadline\Utility;
+use XoopsModules\Xoopsheadline\{
+    Headline,
+    Helper,
+    Utility
+};
 /** @var Helper $helper */
 
 require_once \dirname(__DIR__, 2) . '/mainfile.php';
@@ -73,6 +76,7 @@ if (0 == $hlid) {
     $hlid = $headlines[0]->getVar('headline_id');
 }
 if ($hlid > 0) {
+    /** @var Headline $headline */
     $headline = $hlman->get($hlid);
     if (is_object($headline)) {
         $renderer = Utility::getRenderer($headline);

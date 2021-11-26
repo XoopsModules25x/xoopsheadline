@@ -22,7 +22,6 @@ use Xmf\Request;
 use Xmf\Yaml;
 use XoopsModules\Xoopsheadline\{
     Common\TestdataButtons,
-    Forms,
     Helper,
     Utility
 };

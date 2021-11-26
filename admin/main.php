@@ -20,11 +20,13 @@ declare(strict_types=1);
 use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopsheadline\{
+    Headline,
     Helper,
     Utility
 };
 /** @var Admin $adminObject */
 /** @var Helper $helper */
+/** @var Headline $headline */
 
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
@@ -313,6 +315,7 @@ switch ($op) {
                 exit();
             }
             if ('' == $headline->getVar('headline_xml')) {
+                /** @var Headline $hlObj */
                 $hlObj    = $headlineHandler->get($hlIdx);
                 $renderer = Utility::getRenderer($hlObj);
                 if (!$renderer->updateCache()) {
