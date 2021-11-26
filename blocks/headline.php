@@ -70,7 +70,7 @@ function b_xoopsheadline_show($options)
     }
     $headlines = $hlman->getObjects($criteria);
     foreach ($headlines as $i => $iValue) {
-        $renderer = Utility::getRenderer($headlines[$i]);
+        $renderer = Utility::getRenderer($iValue);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
                 $block['feeds'][] = sprintf(_MD_XOOPSHEADLINE_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
