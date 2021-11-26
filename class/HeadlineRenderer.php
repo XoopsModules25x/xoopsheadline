@@ -52,7 +52,10 @@ class HeadlineRenderer
         $this->tpl = new \XoopsTpl();
     }
 
-    public function updateCache(): bool
+    /**
+     * @return int|bool
+     */
+    public function updateCache()
     {
         $helper = Helper::getInstance();
         /**
