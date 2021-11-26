@@ -402,7 +402,10 @@ class Blocksadmin
         } else {
             $clone->setVar('block_type', 'D');
         }
-        $newid = $clone->store();
+//        $newid = $clone->store(); //see https://github.com/XOOPS/XoopsCore25/issues/1105
+        if ($clone->store()) {
+            $newid = $clone->id();  //get the id of the cloned block
+        }
         if (!$newid) {
             //            \xoops_cp_header();
             $clone->getHtmlErrors();
