@@ -1,0 +1,55 @@
+xoopsheadline:
+    options: 'ENGINE=MyISAM DEFAULT CHARSET=utf8'
+    columns:
+        -
+            name: headline_id
+            attributes: ' smallint(3) unsigned  NOT NULL auto_increment'
+        -
+            name: headline_name
+            attributes: ' varchar(255)  NOT NULL  DEFAULT '''' '
+        -
+            name: headline_url
+            attributes: ' varchar(255)  NOT NULL  DEFAULT '''' '
+        -
+            name: headline_rssurl
+            attributes: ' varchar(255)  NOT NULL  DEFAULT '''' '
+        -
+            name: headline_encoding
+            attributes: ' varchar(15)  NOT NULL  DEFAULT '''' '
+        -
+            name: headline_cachetime
+            attributes: ' mediumint(8) unsigned  NOT NULL  DEFAULT ''3600'' '
+        -
+            name: headline_asblock
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: headline_display
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: headline_weight
+            attributes: ' smallint(3) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: headline_mainfull
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: headline_mainimg
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: headline_mainmax
+            attributes: ' tinyint(2) unsigned  NOT NULL  DEFAULT ''10'' '
+        -
+            name: headline_blockimg
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: headline_blockmax
+            attributes: ' tinyint(2) unsigned  NOT NULL  DEFAULT ''10'' '
+        -
+            name: headline_xml
+            attributes: ' text  NOT NULL '
+        -
+            name: headline_updated
+            attributes: ' int(10)  NOT NULL  DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: headline_id
+            unique: true
