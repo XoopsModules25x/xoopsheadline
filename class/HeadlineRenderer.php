@@ -60,7 +60,17 @@ class HeadlineRenderer
          * Update cache - first try using fopen and then cURL
          */
         $retval = false;
-        if (!$fp = @\fopen($this->hl->getVar('headline_rssurl'), 'rb')) {
+        if ($fp = @\fopen($this->hl->getVar('headline_rssurl'), 'r')) {  // successfully openned file using fopen
+            $data = '';
+            while (!\feof($fp)) {
+                $data .= \fgets($fp, 4096);
+            }
+            \fclose($fp);
+            $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
+            $this->hl->setVar('headline_updated', \time());
+            $headlineHandler = $helper->getHandler('Headline');
+            $retval          = $headlineHandler->insert($this->hl);
+        } else {
             // failed open using fopen, now try cURL
             $ch = \curl_init($this->hl->getVar('headline_rssurl'));
             if (\curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true)) {
@@ -78,16 +88,6 @@ class HeadlineRenderer
             } else {
                 $this->_setErrors(\_MD_HEADLINES_BADOPT);
             }
-        } else {  // successfully openned file using fopen
-            $data = '';
-            while (!\feof($fp)) {
-                $data .= \fgets($fp, 4096);
-            }
-            \fclose($fp);
-            $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
-            $this->hl->setVar('headline_updated', \time());
-            $headlineHandler = $helper->getHandler('Headline');
-            $retval          = $headlineHandler->insert($this->hl);
         }
 
         return $retval;
@@ -275,15 +275,15 @@ class HeadlineRenderer
      */
     public function &getErrors($ashtml = true)
     {
-        if (!$ashtml) {
-            $retval = $this->errors;
-        } else {
+        if ($ashtml) {
             $retval = '';
             if (\count($this->errors) > 0) {
                 foreach ($this->errors as $error) {
                     $retval .= $error . '<br>';
                 }
             }
+        } else {
+            $retval = $this->errors;
         }
 
         return $retval;
