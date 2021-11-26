@@ -415,7 +415,6 @@ switch ($op) {
         $form->display();
         require_once __DIR__ . '/admin_footer.php';
         exit();
-        break;
     case 'editgo':
         $headline_id = $headline_id;
         if ($headline_id <= 0) {
