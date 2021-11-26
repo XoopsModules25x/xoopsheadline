@@ -114,6 +114,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         $weight     = Request::getArray('weight', [], 'POST');
         $visible    = Request::getArray('visible', [], 'POST');
         $bcachetime = Request::getArray('bcachetime', [], 'POST');
+        $bmodule    = Request::getArray('bmodule', [], 'POST');//mb
 
         $oldtitle      = Request::getArray('oldtitle', [], 'POST');
         $oldside       = Request::getArray('oldside', [], 'POST');
@@ -121,6 +122,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         $oldvisible    = Request::getArray('oldvisible', [], 'POST');
         $oldgroups     = Request::getArray('oldgroups', [], 'POST');
         $oldbcachetime = Request::getArray('oldcachetime', [], 'POST');
+        $oldbmodule    = Request::getArray('oldbmodule', [], 'POST');//mb
 
         $blocksadmin->orderBlock(
             $bid,
@@ -130,13 +132,14 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
             $oldvisible,
             $oldgroups,
             $oldbcachetime,
+            $oldbmodule ,
             $title,
             $weight,
             $visible,
             $side,
             $bcachetime,
             $groups,
-            $bmodule = null
+            $bmodule
         );
     }
 } else {

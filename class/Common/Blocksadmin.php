@@ -42,11 +42,11 @@ class Blocksadmin
      */
     public function __construct(?\XoopsDatabase $db, Helper $helper)
     {
-        if (null === $db){
+        if (null === $db) {
             $db = \XoopsDatabaseFactory::getDatabaseConnection();
         }
         $this->db                 = $db;
-        $this->helper          = $helper;
+        $this->helper             = $helper;
         $this->moduleDirName      = \basename(\dirname(__DIR__, 2));
         $this->moduleDirNameUpper = \mb_strtoupper($this->moduleDirName);
         \xoops_loadLanguage('admin', 'system');
@@ -297,7 +297,7 @@ class Blocksadmin
     /**
      * @param int $bid
      */
-    public function deleteBlock($bid)
+    public function deleteBlock(int $bid)
     {
         //        \xoops_cp_header();
 
@@ -319,7 +319,7 @@ class Blocksadmin
     /**
      * @param int $bid
      */
-    public function cloneBlock($bid)
+    public function cloneBlock(int $bid)
     {
         //require __DIR__ . '/admin_header.php';
         //        \xoops_cp_header();
@@ -367,15 +367,9 @@ class Blocksadmin
     }
 
     /**
-     * @param int               $bid
-     * @param string            $bside
-     * @param string            $bweight
-     * @param string            $bvisible
-     * @param string            $bcachetime
-     * @param array             $bmodule
      * @param null|array|string $options
      */
-    public function isBlockCloned($bid, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options, $groups): void
+    public function isBlockCloned(int $bid, string $bside, string $bweight, string $bvisible, string $bcachetime, ?array $bmodule, ?array$options, ?array$groups): void
     {
         \xoops_loadLanguage('admin', 'system');
         \xoops_loadLanguage('admin/blocksadmin', 'system');
@@ -436,16 +430,8 @@ class Blocksadmin
         $this->helper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
     }
 
-    /**
-     * @param int    $bid
-     * @param string $title
-     * @param int    $weight
-     * @param bool   $visible
-     * @param string $side
-     * @param int    $bcachetime
-     * @param null|int $bmodule
-     */
-    public function setOrder($bid, $title, $weight, $visible, $side, $bcachetime, $bmodule = null)
+
+    public function setOrder(string $bid, string $title, string $weight, string $visible, string $side, string $bcachetime, ?array $bmodule = null)
     {
         $myblock = new \XoopsBlock($bid);
         $myblock->setVar('title', $title);
@@ -462,7 +448,7 @@ class Blocksadmin
     /**
      * @param int $bid
      */
-    public function editBlock($bid)
+    public function editBlock(int $bid)
     {
         //        require_once \dirname(__DIR__,2) . '/admin/admin_header.php';
         //        \xoops_cp_header();
@@ -504,17 +490,10 @@ class Blocksadmin
     }
 
     /**
-     * @param int               $bid
-     * @param string            $btitle
-     * @param string            $bside
-     * @param string            $bweight
-     * @param string            $bvisible
-     * @param string            $bcachetime
-     * @param array             $bmodule
      * @param null|array|string $options
      * @param null|array        $groups
      */
-    public function updateBlock($bid, $btitle, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options, $groups): void
+    public function updateBlock(int $bid, string $btitle, string $bside, string $bweight, string $bvisible, string $bcachetime, ?array $bmodule, ?array$options, ?array$groups): void
     {
         $myblock = new \XoopsBlock($bid);
         $myblock->setVar('title', $btitle);
@@ -576,6 +555,7 @@ class Blocksadmin
         $oldvisible,
         $oldgroups,
         $oldbcachetime,
+        $oldbmodule ,
         $title,
         $weight,
         $visible,
@@ -588,9 +568,12 @@ class Blocksadmin
             \redirect_header($_SERVER['SCRIPT_NAME'], 3, \implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         foreach (\array_keys($bid) as $i) {
-            if ($oldtitle[$i] !== $title[$i] || $oldweight[$i] !== $weight[$i] || $oldvisible[$i] !== $visible[$i]
+            if ($oldtitle[$i] !== $title[$i]
+                || $oldweight[$i] !== $weight[$i]
+                || $oldvisible[$i] !== $visible[$i]
                 || $oldside[$i] !== $side[$i]
-                || $oldbcachetime[$i] !== $bcachetime[$i]) {
+                || $oldbcachetime[$i] !== $bcachetime[$i]
+                || $oldbmodule[$i] !== $bmodule[$i]){
                 $this->setOrder($bid[$i], $title[$i], $weight[$i], $visible[$i], $side[$i], $bcachetime[$i], $bmodule[$i]);
             }
             if (!empty($bmodule[$i]) && \count($bmodule[$i]) > 0) {

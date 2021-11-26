@@ -24,7 +24,7 @@ use XoopsModules\Xoopsheadline\{
 
 /**
  * @param array $options
- * @return array
+ * @return array|bool
  */
 function b_xoopsheadline_show($options)
 {
