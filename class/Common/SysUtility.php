@@ -58,7 +58,7 @@ class SysUtility
      *
      * @return string Trimmed string.
      */
-    public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true)
+    public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true): string
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
@@ -192,9 +192,8 @@ class SysUtility
      * @param $fieldname
      * @param $table
      *
-     * @return bool
      */
-    public static function fieldExists($fieldname, $table)
+    public static function fieldExists($fieldname, $table): bool
     {
         global $xoopsDB;
         $result = $xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");
@@ -239,9 +238,8 @@ class SysUtility
     /**
      * @param string $tablename
      *
-     * @return bool
      */
-    public static function tableExists($tablename)
+    public static function tableExists($tablename): bool
     {
         $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 

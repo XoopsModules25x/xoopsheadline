@@ -56,10 +56,7 @@ class Headline extends XoopsObject
         $this->initVar('headline_updated', \XOBJ_DTYPE_INT, 0, false);
     }
 
-    /**
-     * @return bool
-     */
-    public function cacheExpired()
+    public function cacheExpired(): bool
     {
         if (\time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
             return true;

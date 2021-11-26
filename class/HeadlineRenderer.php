@@ -50,10 +50,7 @@ class HeadlineRenderer
         $this->tpl = new \XoopsTpl();
     }
 
-    /**
-     * @return bool
-     */
-    public function updateCache()
+    public function updateCache(): bool
     {
         $helper = Helper::getInstance();
         /**
@@ -95,9 +92,8 @@ class HeadlineRenderer
 
     /**
      * @param bool $force_update
-     * @return bool
      */
-    public function renderFeed($force_update = false)
+    public function renderFeed($force_update = false): bool
     {
         $retval = false;
         if ($force_update || $this->hl->cacheExpired()) {
@@ -170,9 +166,8 @@ class HeadlineRenderer
 
     /**
      * @param bool $force_update
-     * @return bool
      */
-    public function renderBlock($force_update = false)
+    public function renderBlock($force_update = false): bool
     {
         $retval = false;
         if ($force_update || $this->hl->cacheExpired()) {
@@ -213,10 +208,7 @@ class HeadlineRenderer
         return $retval;
     }
 
-    /**
-     * @return bool
-     */
-    protected function &_parse()
+    protected function &_parse(): bool
     {
         $retval = true;
         if (!isset($this->parser)) {
@@ -264,7 +256,7 @@ class HeadlineRenderer
     /**
      * @param $err
      */
-    protected function _setErrors($err)
+    protected function _setErrors($err): void
     {
         $this->errors[] = $err;
     }
@@ -298,7 +290,7 @@ class HeadlineRenderer
      * @param $value
      * @param $key
      */
-    public function convertFromUtf8(&$value, $key)
+    public function convertFromUtf8(&$value, $key): void
     {
     }
 
@@ -308,9 +300,8 @@ class HeadlineRenderer
 
     /**
      * @param $xmlfile
-     * @return string
      */
-    public function &convertToUtf8(&$xmlfile)
+    public function &convertToUtf8(&$xmlfile): string
     {
         if ('iso-8859-1' === \mb_strtolower($this->hl->getVar('headline_encoding'))) {
             $xmlfile = utf8_encode($xmlfile);
