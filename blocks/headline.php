@@ -68,17 +68,18 @@ function b_xoopsheadline_show($options)
             $criteria->setOrder('ASC');
             break;
     }
+    if (null !== $headlineHandler) {
     $headlines = $headlineHandler->getObjects($criteria);
-    foreach ($headlines as $i => $iValue) {
-        $renderer = Utility::getRenderer($iValue);
-        if (!$renderer->renderBlock()) {
-            if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_XOOPSHEADLINE_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+          foreach ($headlines as $i => $iValue) {
+            $renderer = Utility::getRenderer($iValue);
+            if (!$renderer->renderBlock()) {
+                if (2 == $xoopsConfig['debug_mode']) {
+                    $block['feeds'][] = sprintf(_MD_XOOPSHEADLINE_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+                }
+                continue;
             }
-            continue;
+            $block['feeds'][] = &$renderer->getBlock();
         }
-        $block['feeds'][] = &$renderer->getBlock();
     }
-
     return $block;
 }

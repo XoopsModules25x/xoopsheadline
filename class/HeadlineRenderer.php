@@ -70,7 +70,9 @@ class HeadlineRenderer
             $this->headline->setVar('headline_xml', $this->convertToUtf8($data));
             $this->headline->setVar('headline_updated', \time());
             $headlineHandler = $helper->getHandler('Headline');
-            $retval          = $headlineHandler->insert($this->headline);
+            if (null !== $headlineHandler) {
+                $retval = $headlineHandler->insert($this->headline);
+            }
         } else {
             // failed open using fopen, now try cURL
             $ch = \curl_init($this->headline->getVar('headline_rssurl'));
@@ -80,7 +82,9 @@ class HeadlineRenderer
                     $this->headline->setVar('headline_xml', $this->convertToUtf8($data));
                     $this->headline->setVar('headline_updated', \time());
                     $headlineHandler = $helper->getHandler('Headline');
-                    $retval          = $headlineHandler->insert($this->headline);
+                    if (null !== $headlineHandler) {
+                        $retval = $headlineHandler->insert($this->headline);
+                    }
                 } else {
                     \curl_close($ch);
                     $errmsg = \sprintf(\_MD_XOOPSHEADLINE_NOTOPEN, $this->headline->getVar('headline_rssurl'));
