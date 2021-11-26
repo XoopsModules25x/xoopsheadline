@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * uninstall.php - cleanup on module uninstall
  *
@@ -17,7 +20,7 @@ use XoopsModules\Xoopsheadline\Utility;
  *
  * @return bool true if ready to uninstall, false if not
  */
-function xoops_module_pre_uninstall_xoopsheadline(\XoopsModule $module)
+function xoops_module_pre_uninstall_xoopsheadline(\XoopsModule $module): bool
 {
     // Do some synchronization
     return true;
@@ -29,13 +32,12 @@ function xoops_module_pre_uninstall_xoopsheadline(\XoopsModule $module)
  *
  * @return bool true if uninstallation successful, false if not
  */
-function xoops_module_uninstall_xoopsheadline(\XoopsModule $module)
+function xoops_module_uninstall_xoopsheadline(\XoopsModule $module): bool
 {
     //    return true;
 
-    $moduleDirName      = basename(dirname(__DIR__));
-    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
-    /** @var Helper $helper */
+    $moduleDirName      = \basename(\dirname(__DIR__));
+    $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
     $helper = Helper::getInstance();
 
     $utility = new Utility();
@@ -47,13 +49,13 @@ function xoops_module_uninstall_xoopsheadline(\XoopsModule $module)
     // Remove uploads folder (and all subfolders) if they exist
     //------------------------------------------------------------------
 
-    $old_directories = [$GLOBALS['xoops']->path("uploads/{$moduleDirName}")];
-    foreach ($old_directories as $old_dir) {
-        $dirInfo = new \SplFileInfo($old_dir);
+    $oldDirectories = [$GLOBALS['xoops']->path("uploads/{$moduleDirName}")];
+    foreach ($oldDirectories as $oldDir) {
+        $dirInfo = new \SplFileInfo($oldDir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
-            if (false === $utility::rrmdir($old_dir)) {
-                $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH'), $old_dir));
+            if (!$utility::rrmdir($oldDir)) {
+                $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH'), $oldDir));
                 $success = false;
             }
         }

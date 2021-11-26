@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Xoopsheadline;
 
 /*
@@ -12,18 +14,25 @@ namespace XoopsModules\Xoopsheadline;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+use XoopsObject;
+
+
+
+
+
+
+
+
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
+ * @author      XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
 
 /**
  * Class Headline
  */
-class Headline extends \XoopsObject
+class Headline extends XoopsObject
 {
     /**
      * Headline constructor.
@@ -49,10 +58,7 @@ class Headline extends \XoopsObject
         $this->initVar('headline_updated', \XOBJ_DTYPE_INT, 0, false);
     }
 
-    /**
-     * @return bool
-     */
-    public function cacheExpired()
+    public function cacheExpired(): bool
     {
         if (\time() - $this->getVar('headline_updated') > $this->getVar('headline_cachetime')) {
             return true;

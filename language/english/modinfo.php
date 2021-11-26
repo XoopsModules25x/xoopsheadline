@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * XoopsHeadline module
  * Description: Module Info Language file
@@ -19,40 +22,40 @@
  **/
 
 // The name of this module
-define('_MI_HEADLINES_NAME', 'Headlines');
+define('_MI_XOOPSHEADLINE_NAME', 'Headlines');
 
 // A brief description of this module
-define('_MI_HEADLINES_DESC', 'Displays RSS/XML Newsfeed from other sites');
+define('_MI_XOOPSHEADLINE_DESC', 'Displays RSS/XML Newsfeed from other sites');
 
 // Names of blocks for this module (Not all module has blocks)
-define('_MI_HEADLINES_BNAME', 'Headlines');
+define('_MI_XOOPSHEADLINE_BNAME', 'Headlines');
 
 // Names of admin menu items & their descriptions
-define('_MI_HEADLINES_MENU_ADMININDEX', 'Home');
-define('_MI_HEADLINES_MENU_ADMINHL', 'List Headlines');
-define('_MI_HEADLINES_MENU_ADMINABOUT', 'About');
-define('_MI_HEADLINES_MENU_ADMININDEX_DESC', '');
-define('_MI_HEADLINES_MENU_ADMINHL_DESC', 'Display the headline entries');
-define('_MI_HEADLINES_MENU_ADMINABOUT_DESC', 'Display information about this module');
+define('_MI_XOOPSHEADLINE_MENU_ADMININDEX', 'Home');
+define('_MI_XOOPSHEADLINE_MENU_ADMINHL', 'List Headlines');
+define('_MI_XOOPSHEADLINE_MENU_ADMINABOUT', 'About');
+define('_MI_XOOPSHEADLINE_MENU_ADMININDEX_DESC', '');
+define('_MI_XOOPSHEADLINE_MENU_ADMINHL_DESC', 'Display the headline entries');
+define('_MI_XOOPSHEADLINE_MENU_ADMINABOUT_DESC', 'Display information about this module');
 
 // Config Option items
-define('_MI_HEADLINES_SORTORDER', 'Order to display headlines');
-define('_MI_HEADLINES_SORTORDERDSC', 'This is the order the headlines will be shown in display and blocks');
-define('_MI_HEADLINES_SORT1', 'Site Name DESC');
-define('_MI_HEADLINES_SORT2', 'Site Name ASC');
-define('_MI_HEADLINES_SORT3', 'Weight DESC');
-define('_MI_HEADLINES_SORT4', 'Weight ASC');
+define('_MI_XOOPSHEADLINE_SORTORDER', 'Order to display headlines');
+define('_MI_XOOPSHEADLINE_SORTORDERDSC', 'This is the order the headlines will be shown in display and blocks');
+define('_MI_XOOPSHEADLINE_SORT1', 'Site Name DESC');
+define('_MI_XOOPSHEADLINE_SORT2', 'Site Name ASC');
+define('_MI_XOOPSHEADLINE_SORT3', 'Weight DESC');
+define('_MI_XOOPSHEADLINE_SORT4', 'Weight ASC');
 
 //1.12
 //Help
-define('_MI_HEADLINES_DIRNAME', basename(dirname(__DIR__, 2)));
-define('_MI_HEADLINES_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
-define('_MI_HEADLINES_BACK_2_ADMIN', 'Back to Administration of ');
-define('_MI_HEADLINES_OVERVIEW', 'Overview');
+define('_MI_XOOPSHEADLINE_DIRNAME', basename(dirname(__DIR__, 2)));
+define('_MI_XOOPSHEADLINE_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
+define('_MI_XOOPSHEADLINE_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_XOOPSHEADLINE_OVERVIEW', 'Overview');
 
-//define('_MI_HEADLINES_HELP_DIR', __DIR__);
+//define('_MI_XOOPSHEADLINE_HELP_DIR', __DIR__);
 
 //help multi-page
-define('_MI_HEADLINES_DISCLAIMER', 'Disclaimer');
-define('_MI_HEADLINES_LICENSE', 'License');
-define('_MI_HEADLINES_SUPPORT', 'Support');
+define('_MI_XOOPSHEADLINE_DISCLAIMER', 'Disclaimer');
+define('_MI_XOOPSHEADLINE_LICENSE', 'License');
+define('_MI_XOOPSHEADLINE_SUPPORT', 'Support');

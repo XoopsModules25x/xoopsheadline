@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Xoopsheadline\Common;
 
 /*
@@ -11,6 +13,9 @@ namespace XoopsModules\Xoopsheadline\Common;
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
+
+
 /**
  * Breadcrumb Class
  *
@@ -32,21 +37,22 @@ namespace XoopsModules\Xoopsheadline\Common;
  */
 class Breadcrumb
 {
+    /**
+     * @var string
+     */
     public  $dirname;
     private $bread = [];
 
     public function __construct()
     {
-        $this->dirname = \basename(dirname(__DIR__, 2));
+        $this->dirname = \basename(\dirname(__DIR__, 2));
     }
 
     /**
      * Add link to breadcrumb
      *
-     * @param string $title
-     * @param string $link
      */
-    public function addLink($title = '', $link = '')
+    public function addLink(string $title = '', string $link = ''): void
     {
         $this->bread[] = [
             'link'  => $link,
@@ -59,12 +65,6 @@ class Breadcrumb
      */
     public function render()
     {
-        /*
-        TODO if you want to use the render code below,
-        1) create ./templates/chess_common_breadcrumb.tpl)
-        2) add declaration to  xoops_version.php
-        */
-        /*
         if (!isset($GLOBALS['xoTheme']) || !\is_object($GLOBALS['xoTheme'])) {
             require $GLOBALS['xoops']->path('class/theme.php');
 
@@ -82,6 +82,5 @@ class Breadcrumb
         unset($breadcrumbTpl);
 
         return $html;
-        */
     }
 }

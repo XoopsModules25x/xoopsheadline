@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
@@ -41,7 +43,7 @@ use XoopsModules\Xoopsheadline\{
 /** @var Configurator $configurator */
 /** @var Migrate $migrator */
 
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 $adminObject->displayNavigation(basename(__FILE__));
@@ -64,7 +66,7 @@ EOF;
 
 $configurator = new Configurator();
 
-$migrator = new Migrate($configurator);
+$migrator = new Migrate();
 
 $op = Request::getCmd('op', 'show');
 $opShow = Request::getCmd('show', null, 'POST');

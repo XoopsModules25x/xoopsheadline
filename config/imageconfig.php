@@ -1,7 +1,9 @@
 <?php
 
-$moduleDirName      = basename(dirname(__DIR__));
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+declare(strict_types=1);
+
+$moduleDirName      = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // extra module configs
 $modversion['config'][] = [

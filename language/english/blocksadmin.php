@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -17,7 +19,6 @@
  * @author     XOOPS Development Team
  */
 
-// Blocks & Groups Admin
 define('_AM_TOPPAGE', 'Top Page');
 define('_AM_ALLPAGES', 'All Pages');
 define('_AM_TITLE', 'Title');
@@ -41,3 +42,5 @@ define('_AM_ADMINBLOCK', '_AM_ADMINBLOCK');
 define('_AM_BLOCKTAG1', '%s will print %s');
 define('_AM_ADDBLOCK', 'Add Block');
 define('_AM_NOTSELNG', 'Not Sel');
+
+define('_AM_DBUPDATED', 'Database updated');

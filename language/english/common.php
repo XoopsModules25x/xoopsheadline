@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -8,18 +11,14 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 /**
- * Wfdownloads module
  *
  * @copyright       XOOPS Project (https://xoops.org)
  * @license         GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package         wfdownload
- * @since           3.23
  * @author          Xoops Development Team
  */
-$moduleDirName      = basename(dirname(__DIR__, 2));
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirName = \basename(\dirname(__DIR__, 2));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 \define('CO_' . $moduleDirNameUpper . '_GDLIBSTATUS', 'GD library support: ');
 \define('CO_' . $moduleDirNameUpper . '_GDLIBVERSION', 'GD Library version: ');
@@ -69,19 +68,22 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 \define('CO_' . $moduleDirNameUpper . '_SUPPORT', 'Support');
 
 //Sample Data
-\define('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA', 'Import Sample Data (will delete ALL current data)');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS', 'Sample Date uploaded successfully');
+\define('CO_' . $moduleDirNameUpper . '_' . 'LOAD_SAMPLEDATA', 'Import Sample Data (will delete ALL current data)');
+\define('CO_' . $moduleDirNameUpper . '_' . 'LOAD_SAMPLEDATA_CONFIRM', 'Are you sure to Import Sample Data? (It will delete ALL current data)');
+\define('CO_' . $moduleDirNameUpper . '_' . 'LOAD_SAMPLEDATA_SUCCESS', 'Sample Date imported  successfully');
 \define('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA', 'Export Tables to YAML');
 \define('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA_SUCCESS', 'Export Tables to YAML successfully');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA_ERROR', 'ERROR: Export of Tables to YAML failed');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON', 'Show Sample Button?');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC', 'If yes, the "Add Sample Data" button will be visible to the Admin. It is Yes as a default for first installation.');
+\define('CO_' . $moduleDirNameUpper . '_' . 'CLEAR_SAMPLEDATA', 'Clear Sample Data');
+\define('CO_' . $moduleDirNameUpper . '_' . 'CLEAR_SAMPLEDATA_OK', 'The Sample Data has been cleared');
+\define('CO_' . $moduleDirNameUpper . '_' . 'CLEAR_SAMPLEDATA_CONFIRM', 'Are you sure to Clear Sample Data? (It will delete ALL current data)');
 \define('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA', 'Export DB Schema to YAML');
 \define('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_SUCCESS', 'Export DB Schema to YAML was a success');
 \define('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_ERROR', 'ERROR: Export of DB Schema to YAML failed');
-\define('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA_OK', 'Are you sure to Import Sample Data? (It will delete ALL current data)');
+\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON', 'Show Sample Button?');
+\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC', 'If yes, the "Add Sample Data" button will be visible to the Admin. It is Yes as a default for first installation.');
 \define('CO_' . $moduleDirNameUpper . '_' . 'HIDE_SAMPLEDATA_BUTTONS', 'Hide the Import buttons)');
 \define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLEDATA_BUTTONS', 'Show the Import buttons)');
+
 \define('CO_' . $moduleDirNameUpper . '_' . 'CONFIRM', 'Confirm');
 
 //letter choice
@@ -162,8 +164,8 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 \define('CO_' . $moduleDirNameUpper . '_' . 'FILECOPIED', 'The file has been copied');
 \define('CO_' . $moduleDirNameUpper . '_' . 'FILENOTCOPIED', 'The file cannot be copied');
 
-//\define('CO_' . $moduleDirNameUpper . '_' . 'PERMSET', 'The permission has been set');
-//\define('CO_' . $moduleDirNameUpper . '_' . 'PERMNOTSET', 'The permission cannot be set');
+\define('CO_' . $moduleDirNameUpper . '_' . 'TRUNCATE_LENGTH', 'Number of Characters to truncate to the long text field');
+\define('CO_' . $moduleDirNameUpper . '_' . 'TRUNCATE_LENGTH_DESC', 'Set the maximum number of characters to truncate the long text fields');
 
 //image config
 \define('CO_' . $moduleDirNameUpper . '_' . 'IMAGE_WIDTH', 'Image Display Width');
@@ -178,9 +180,6 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 \define('CO_' . $moduleDirNameUpper . '_' . 'IMAGE_FILE_SIZE', 'Image File Size (in Bytes)');
 \define('CO_' . $moduleDirNameUpper . '_' . 'IMAGE_FILE_SIZE_DSC','The maximum file size of the image file (in Bytes)');
 
-//Preferences
-\define('CO_' . $moduleDirNameUpper . '_' . 'TRUNCATE_LENGTH', 'Number of Characters to truncate to the long text field');
-\define('CO_' . $moduleDirNameUpper . '_' . 'TRUNCATE_LENGTH_DESC', 'Set the maximum number of characters to truncate the long text fields');
 
 //Module Stats
 \define('CO_' . $moduleDirNameUpper . '_' . 'STATS_SUMMARY', 'Module Statistics');
@@ -190,3 +189,7 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 \define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_PUBLISHED', 'Published');
 \define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_REJECTED', 'Rejected');
 \define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_SUBMITTED', 'Submitted');
+
+\define('CO_' . $moduleDirNameUpper . '_' . 'ERROR403', 'You are not allowed to view this page!');
+
+\define('CO_' . $moduleDirNameUpper . '_' . 'DELETE_BLOCK_CONFIRM', 'Are you sure to delete this Block?');

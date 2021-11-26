@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Xoopsheadline\Common;
 
 /*
@@ -17,8 +19,6 @@ namespace XoopsModules\Xoopsheadline\Common;
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      XOOPS Development Team
- * @package
- * @since       1.05
  */
 
 /**
@@ -35,20 +35,21 @@ class Configurator
     public $oldFiles        = [];
     public $oldFolders      = [];
     public $renameTables    = [];
+    public $renameColumns   = [];
+    public $moduleStats     = [];
     public $modCopyright;
+    public $icons;
 
     /**
      * Configurator constructor.
      */
     public function __construct()
     {
-        $moduleDirName      = \basename(dirname(__DIR__, 2));
-        $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-        $config = require dirname(__DIR__, 2) . '/config/config.php';
+        $config = require \dirname(__DIR__, 2) . '/config/config.php';
 
         $this->name            = $config->name;
-        $this->paths           = $config->paths;
+//        $this->paths           = $config->paths;
         $this->uploadFolders   = $config->uploadFolders;
         $this->copyBlankFiles  = $config->copyBlankFiles;
         $this->copyTestFolders = $config->copyTestFolders;
@@ -56,6 +57,12 @@ class Configurator
         $this->oldFiles        = $config->oldFiles;
         $this->oldFolders      = $config->oldFolders;
         $this->renameTables    = $config->renameTables;
+        $this->renameColumns   = $config->renameColumns;
+        $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
+
+        $this->icons = require \dirname(__DIR__, 2) . '/config/icons.php';
+        $this->paths = require \dirname(__DIR__, 2) . '/config/paths.php';
+
     }
 }

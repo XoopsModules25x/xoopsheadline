@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -10,11 +12,9 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use Xmf\Database\Tables;
@@ -32,17 +32,7 @@ if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUs
     exit('Restricted access' . PHP_EOL);
 }
 
-/**
- * @param string $tablename
- *
- * @return bool
- */
-function tableExists($tablename)
-{
-    $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 
-    return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0) ? true : false;
-}
 
 /**
  * Prepares system prior to attempting to install module
@@ -50,9 +40,9 @@ function tableExists($tablename)
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_update_xoopsheadline(\XoopsModule $module)
+function xoops_module_pre_update_xoopsheadline(\XoopsModule $module): bool
 {
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
     $helper  = Helper::getInstance();
     $utility = new Utility();
 
@@ -69,10 +59,10 @@ function xoops_module_pre_update_xoopsheadline(\XoopsModule $module)
  *
  * @return bool true if update successful, false if not
  */
-function xoops_module_update_xoopsheadline(\XoopsModule $module, $previousVersion = null)
+function xoops_module_update_xoopsheadline(\XoopsModule $module, $previousVersion = null): bool
 {
-    $moduleDirName      = basename(dirname(__DIR__));
-    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+    $moduleDirName      = \basename(\dirname(__DIR__));
+    $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
     $helper       = Helper::getInstance();
     $utility      = new Utility();
@@ -143,7 +133,7 @@ function xoops_module_update_xoopsheadline(\XoopsModule $module, $previousVersio
 
         //  ---  COPY blank.png FILES ---------------
         if (count($configurator->copyBlankFiles) > 0) {
-            $file = dirname(__DIR__) . '/assets/images/blank.png';
+            $file = \dirname(__DIR__) . '/assets/images/blank.png';
             foreach (array_keys($configurator->copyBlankFiles) as $i) {
                 $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
                 $utility::copyFile($file, $dest);

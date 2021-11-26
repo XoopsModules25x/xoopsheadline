@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,21 +14,19 @@
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use XoopsModules\Xoopsheadline\{
     Helper,
-    XoopsheadlineUtility
+    Utility
 };
 
 /**
- * @param $options
- * @return array
+ * @param array $options
+ * @return array|bool
  */
-function b_xoopsheadline_show($options)
+function b_xoopsheadline_show(array $options)
 {
     if (!class_exists(Helper::class)) {
         return false;
@@ -37,7 +37,7 @@ function b_xoopsheadline_show($options)
     $block = [];
 
     global $xoopsConfig;
-    $hlDir = basename(dirname(__DIR__));
+    $hlDir = \basename(\dirname(__DIR__));
 
     /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
@@ -46,8 +46,7 @@ function b_xoopsheadline_show($options)
     $configHandler = xoops_getHandler('config');
     $moduleConfig  = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
 
-    $block    = [];
-    $hlman    = $helper->getHandler('Headline');
+    $headlineHandler    = $helper->getHandler('Headline');
     $criteria = new \CriteriaCompo();
     $criteria->add(new \Criteria('headline_asblock', 1, '='));
     switch ($moduleConfig['sortby']) {
@@ -69,17 +68,18 @@ function b_xoopsheadline_show($options)
             $criteria->setOrder('ASC');
             break;
     }
-    $headlines = $hlman->getObjects($criteria);
-    foreach ($headlines as $i => $iValue) {
-        $renderer = XoopsheadlineUtility::getRenderer($headlines[$i]);
-        if (!$renderer->renderBlock()) {
-            if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+    if (null !== $headlineHandler) {
+    $headlines = $headlineHandler->getObjects($criteria);
+          foreach ($headlines as $i => $iValue) {
+            $renderer = Utility::getRenderer($iValue);
+            if (!$renderer->renderBlock()) {
+                if (2 == $xoopsConfig['debug_mode']) {
+                    $block['feeds'][] = sprintf(_MD_XOOPSHEADLINE_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+                }
+                continue;
             }
-            continue;
+            $block['feeds'][] = &$renderer->getBlock();
         }
-        $block['feeds'][] = &$renderer->getBlock();
     }
-
     return $block;
 }

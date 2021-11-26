@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -12,9 +14,7 @@
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
@@ -22,31 +22,32 @@ use Xmf\Module\Admin;
 use XoopsModules\Xoopsheadline\Helper;
 /** @var Helper $helper */
 
-include dirname(__DIR__) . '/preloads/autoloader.php';
+include \dirname(__DIR__) . '/preloads/autoloader.php';
 
-$moduleDirName = basename(dirname(__DIR__));
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirName = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $helper = Helper::getInstance();
 $helper->loadLanguage('common');
 $helper->loadLanguage('feedback');
 
 $pathIcon32 = Admin::menuIconPath('');
-if (is_object($helper->getModule())) {
-    $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
+$pathModIcon32 = XOOPS_URL .   '/modules/' . $moduleDirName . '/assets/images/icons/32/';
+if (is_object($helper->getModule()) && false !== $helper->getModule()->getInfo('modicons32')) {
+    $pathModIcon32 = $helper->url($helper->getModule()->getInfo('modicons32'));
 }
 
 $adminmenu[] = [
-    'title' => _MI_HEADLINES_MENU_ADMININDEX,
+    'title' => _MI_XOOPSHEADLINE_MENU_ADMININDEX,
     'link'  => 'admin/index.php',
-    'desc'  => _MI_HEADLINES_MENU_ADMININDEX_DESC,
+    'desc'  => _MI_XOOPSHEADLINE_MENU_ADMININDEX_DESC,
     'icon'  => $pathIcon32 . '/home.png',
 ];
 
 $adminmenu[] = [
-    'title' => _MI_HEADLINES_MENU_ADMINHL,
+    'title' => _MI_XOOPSHEADLINE_MENU_ADMINHL,
     'link'  => 'admin/main.php',
-    'desc'  => _MI_HEADLINES_MENU_ADMINHL_DESC,
+    'desc'  => _MI_XOOPSHEADLINE_MENU_ADMINHL_DESC,
     'icon'  => $pathIcon32 . '/content.png',
 ];
 
@@ -66,8 +67,8 @@ if (is_object($helper->getModule()) && $helper->getConfig('displayDeveloperTools
 }
 
 $adminmenu[] = [
-    'title' => _MI_HEADLINES_MENU_ADMINABOUT,
+    'title' => _MI_XOOPSHEADLINE_MENU_ADMINABOUT,
     'link'  => 'admin/about.php',
-    'desc'  => _MI_HEADLINES_MENU_ADMINABOUT_DESC,
+    'desc'  => _MI_XOOPSHEADLINE_MENU_ADMINABOUT_DESC,
     'icon'  => $pathIcon32 . '/about.png',
 ];

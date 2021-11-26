@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Xoopsheadline\Common;
 
 /*
@@ -24,7 +26,7 @@ trait FilesManagement
      *
      * @param string $folder The full path of the directory to check
      */
-    public static function createFolder($folder)
+    public static function createFolder(string $folder): void
     {
         try {
             if (!\is_dir($folder)) {
@@ -39,21 +41,13 @@ trait FilesManagement
         }
     }
 
-    /**
-     * @param $file
-     * @param $folder
-     * @return bool
-     */
-    public static function copyFile($file, $folder)
+    public static function copyFile(string $file, string $folder): bool
     {
         return \copy($file, $folder);
     }
 
-    /**
-     * @param $src
-     * @param $dst
-     */
-    public static function recurseCopy($src, $dst)
+
+    public static function recurseCopy(string $src, string $dst): void
     {
         $dir = \opendir($src);
         //        @mkdir($dst);
@@ -73,6 +67,50 @@ trait FilesManagement
     }
 
     /**
+     * Copy a file, or recursively copy a folder and its contents
+     * @param string $source Source path
+     * @param string $dest   Destination path
+     * @return      bool     Returns true on success, false on failure
+     * @author      Aidan Lister <aidan@php.net>
+     * @version     1.0.1
+     * @link        http://aidanlister.com/2004/04/recursively-copying-directories-in-php/
+     */
+    public static function xcopy(string $source, string $dest): bool
+    {
+        // Check for symlinks
+        if (\is_link($source)) {
+            return \symlink(\readlink($source), $dest);
+        }
+
+        // Simple copy for a file
+        if (\is_file($source)) {
+            return \copy($source, $dest);
+        }
+
+        // Make destination directory
+        if (!\is_dir($dest) && (!\mkdir($dest) && !\is_dir($dest))) {
+            throw new \RuntimeException(\sprintf('Directory "%s" was not created', $dest));
+        }
+
+        // Loop through the folder
+        $dir = \dir($source);
+        if (@\is_dir((string)$dir)) {
+            while (false !== ($entry = $dir->read())) {
+                // Skip pointers
+                if ('.' === $entry || '..' === $entry) {
+                    continue;
+                }
+                // Deep copy directories
+                self::xcopy("${source}/${entry}", "${dest}/${entry}");
+            }
+            // Clean up
+            $dir->close();
+        }
+
+        return true;
+    }
+
+    /**
      * Remove files and (sub)directories
      *
      * @param string $src source directory to delete
@@ -82,7 +120,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function deleteDirectory($src)
+    public static function deleteDirectory(string $src): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -127,7 +165,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rrmdir($src)
+    public static function rrmdir(string $src): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -167,7 +205,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rmove($src, $dest)
+    public static function rmove(string $src, string $dest): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -210,7 +248,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function rcopy($src, $dest)
+    public static function rcopy(string $src, string $dest): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {

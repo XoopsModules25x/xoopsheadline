@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -10,11 +12,9 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
@@ -27,12 +27,11 @@ use XoopsModules\Xoopsheadline\{
 /** @var Utility $utility */
 
 
-require_once dirname(__DIR__) . '/preloads/autoloader.php';
+require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 
-$moduleDirName      = basename(dirname(__DIR__));
-$moduleDirNameUpper = mb_strtoupper($moduleDirName); //$capsDirName
+$moduleDirName      = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-/** @var \XoopsDatabase $db */
 $db = \XoopsDatabaseFactory::getDatabaseConnection();
 $helper  = Helper::getInstance();
 $utility = new Utility();
@@ -60,8 +59,8 @@ if (!defined($moduleDirNameUpper . '_CONSTANTS_DEFINED')) {
     define($moduleDirNameUpper . '_CONSTANTS_DEFINED', 1);
 }
 
-$pathIcon16 = Admin::iconUrl('', 16);
-$pathIcon32 = Admin::iconUrl('', 32);
+$pathIcon16 = Admin::iconUrl('', '16');
+$pathIcon32 = Admin::iconUrl('', '32');
 //$pathModIcon16 = $helper->getModule()->getInfo('modicons16');
 //$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
