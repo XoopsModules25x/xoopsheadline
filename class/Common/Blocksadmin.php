@@ -329,7 +329,7 @@ class Blocksadmin
         \xoops_loadLanguage('admin/groups', 'system');
 
         $myblock = new \XoopsBlock($bid);
-        $sql     = 'SELECT module_id FROM ' . $this->db->prefix('block_module_link') . ' WHERE block_id=' . (int)$bid;
+        $sql     = 'SELECT module_id FROM ' . $this->db->prefix('block_module_link') . ' WHERE block_id=' . $bid;
         $result  = $this->db->query($sql);
         $modules = [];
         if ($result instanceof \mysqli_result) {
@@ -457,7 +457,7 @@ class Blocksadmin
         \xoops_loadLanguage('admin/groups', 'system');
         //        mpu_adm_menu();
         $myblock = new \XoopsBlock($bid);
-        $sql     = 'SELECT module_id FROM ' . $this->db->prefix('block_module_link') . ' WHERE block_id=' . (int)$bid;
+        $sql     = 'SELECT module_id FROM ' . $this->db->prefix('block_module_link') . ' WHERE block_id=' . $bid;
         $result  = $this->db->query($sql);
         $modules = [];
         if ($result instanceof \mysqli_result) {
