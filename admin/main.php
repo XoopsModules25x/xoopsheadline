@@ -57,8 +57,6 @@ switch ($op) {
         $headlines = $headlineHandler->getObjects($criteria);
         $count     = count($headlines);
 
-        global $thisModDir;
-
         $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
 
@@ -110,7 +108,7 @@ switch ($op) {
                  . "'></td>\n"
                  . "      <td class='{$tdclass}' style='vertical-align: middle; padding-left: 1em;'><a href='"
                  . XOOPS_URL
-                 . "/modules/{$thisModDir}/index.php?id="
+                 . "/modules/{$moduleDirName}/index.php?id="
                  . $headlines[$i]->getVar('headline_id')
                  . "'>"
                  . $headlines[$i]->getVar('headline_name')
