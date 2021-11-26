@@ -73,7 +73,7 @@ function b_xoopsheadline_show($options)
         $renderer = XoopsheadlineUtility::getRenderer($headlines[$i]);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_HEADLINES_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+                $block['feeds'][] = sprintf(_MD_XOOPSHEADLINES_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
             }
             continue;
         }

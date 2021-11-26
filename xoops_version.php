@@ -27,8 +27,8 @@ $modversion = [
     'version'             => '1.12.0',
     'module_status'       => 'Beta 1',
     'release_date'        => '2021/11/26',
-    'name'                => _MI_HEADLINES_NAME,
-    'description'         => _MI_HEADLINES_DESC,
+    'name'                => _MI_XOOPSHEADLINES_NAME,
+    'description'         => _MI_XOOPSHEADLINES_DESC,
     'official'            => 1,    // maintained by XOOPS Module Development Team
     'author'              => 'Kazumi Ono ( https://xoops.org/ http://www.myweb.ne.jp/ )',
     'credits'             => 'The Xoops Module Development Team',
@@ -62,16 +62,16 @@ $modversion['tables'][0] = 'xoopsheadline';
 // Config Options
 $modversion['config'][] = [
     'name'        => 'sortby',
-    'title'       => '_MI_HEADLINES_SORTORDER',
-    'description' => '_MI_HEADLINES_SORTORDERDSC',
+    'title'       => '_MI_XOOPSHEADLINES_SORTORDER',
+    'description' => '_MI_XOOPSHEADLINES_SORTORDERDSC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 4,
     'options'     => [
-        '_MI_HEADLINES_SORT1' => 1,
-        '_MI_HEADLINES_SORT2' => 2,
-        '_MI_HEADLINES_SORT3' => 3,
-        '_MI_HEADLINES_SORT4' => 4,
+        '_MI_XOOPSHEADLINES_SORT1' => 1,
+        '_MI_XOOPSHEADLINES_SORT2' => 2,
+        '_MI_XOOPSHEADLINES_SORT3' => 3,
+        '_MI_XOOPSHEADLINES_SORT4' => 4,
     ],
 ];
 
@@ -111,16 +111,16 @@ $modversion['system_menu'] = 1;
 
 // ------------------- Help files ------------------- //
 $modversion['helpsection'] = [
-    ['name' => _MI_HEADLINES_OVERVIEW, 'link' => 'page=help'],
-    ['name' => _MI_HEADLINES_DISCLAIMER, 'link' => 'page=disclaimer'],
-    ['name' => _MI_HEADLINES_LICENSE, 'link' => 'page=license'],
-    ['name' => _MI_HEADLINES_SUPPORT, 'link' => 'page=support'],
+    ['name' => _MI_XOOPSHEADLINES_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_XOOPSHEADLINES_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_XOOPSHEADLINES_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_XOOPSHEADLINES_SUPPORT, 'link' => 'page=support'],
 ];
 
 // ------------------- Blocks ------------------- //
 $modversion['blocks'][] = [
     'file'        => 'headline.php',
-    'name'        => _MI_HEADLINES_BNAME,
+    'name'        => _MI_XOOPSHEADLINES_BNAME,
     'description' => 'Shows headline news via RDF/RSS news feed',
     'show_func'   => 'b_xoopsheadline_show',
     'template'    => 'xoopsheadline_block_rss.tpl',

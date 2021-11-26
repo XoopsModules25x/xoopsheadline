@@ -68,7 +68,7 @@ for ($i = 0; $i < $count; ++$i) {
     $editUrl = $userIsAdmin ? "&nbsp;<a href='" . XOOPS_URL . "/modules/{$moduleDirName}/admin/main.php?op=edit&amp;headline_id={$thisId}'><img src='" . $pathIcon16 . "/edit.png' alt='" . _EDIT . "' title='" . _EDIT . "'></a>" : '';
     $xoopsTpl->append('feed_sites', ['id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl]);
 }
-$xoopsTpl->assign('lang_headlines', _MD_HEADLINES_HEADLINES);
+$xoopsTpl->assign('lang_headlines', _MD_XOOPSHEADLINES_HEADLINES);
 if (0 == $hlid) {
     $hlid = $headlines[0]->getVar('headline_id');
 }
@@ -79,7 +79,7 @@ if ($hlid > 0) {
         if ($renderer->renderFeed()) {
             $xoopsTpl->assign('headline', $renderer->getFeed());
         } elseif (2 == $xoopsConfig['debug_mode']) {
-                $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_HEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
+                $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_XOOPSHEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
         }
     }
 }

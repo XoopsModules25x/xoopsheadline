@@ -38,16 +38,16 @@ if (is_object($helper->getModule()) && false !== $helper->getModule()->getInfo('
 }
 
 $adminmenu[] = [
-    'title' => _MI_HEADLINES_MENU_ADMININDEX,
+    'title' => _MI_XOOPSHEADLINES_MENU_ADMININDEX,
     'link'  => 'admin/index.php',
-    'desc'  => _MI_HEADLINES_MENU_ADMININDEX_DESC,
+    'desc'  => _MI_XOOPSHEADLINES_MENU_ADMININDEX_DESC,
     'icon'  => $pathIcon32 . '/home.png',
 ];
 
 $adminmenu[] = [
-    'title' => _MI_HEADLINES_MENU_ADMINHL,
+    'title' => _MI_XOOPSHEADLINES_MENU_ADMINHL,
     'link'  => 'admin/main.php',
-    'desc'  => _MI_HEADLINES_MENU_ADMINHL_DESC,
+    'desc'  => _MI_XOOPSHEADLINES_MENU_ADMINHL_DESC,
     'icon'  => $pathIcon32 . '/content.png',
 ];
 
@@ -67,8 +67,8 @@ if (is_object($helper->getModule()) && $helper->getConfig('displayDeveloperTools
 }
 
 $adminmenu[] = [
-    'title' => _MI_HEADLINES_MENU_ADMINABOUT,
+    'title' => _MI_XOOPSHEADLINES_MENU_ADMINABOUT,
     'link'  => 'admin/about.php',
-    'desc'  => _MI_HEADLINES_MENU_ADMINABOUT_DESC,
+    'desc'  => _MI_XOOPSHEADLINES_MENU_ADMINABOUT_DESC,
     'icon'  => $pathIcon32 . '/about.png',
 ];

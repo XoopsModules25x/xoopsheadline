@@ -84,11 +84,11 @@ class HeadlineRenderer
                     $retval          = $headlineHandler->insert($this->hl);
                 } else {
                     \curl_close($ch);
-                    $errmsg = \sprintf(\_MD_HEADLINES_NOTOPEN, $this->hl->getVar('headline_rssurl'));
+                    $errmsg = \sprintf(\_MD_XOOPSHEADLINES_NOTOPEN, $this->hl->getVar('headline_rssurl'));
                     $this->_setErrors($errmsg);
                 }
             } else {
-                $this->_setErrors(\_MD_HEADLINES_BADOPT);
+                $this->_setErrors(\_MD_XOOPSHEADLINES_BADOPT);
             }
         }
 
@@ -147,15 +147,15 @@ class HeadlineRenderer
             }
             $this->tpl->assign(
                 [
-                    'lang_lastbuild'   => \_MD_HEADLINES_LASTBUILD,
-                    'lang_language'    => \_MD_HEADLINES_LANGUAGE,
-                    'lang_description' => \_MD_HEADLINES_DESCRIPTION,
-                    'lang_webmaster'   => \_MD_HEADLINES_WEBMASTER,
-                    'lang_category'    => \_MD_HEADLINES_CATEGORY,
-                    'lang_generator'   => \_MD_HEADLINES_GENERATOR,
-                    'lang_title'       => \_MD_HEADLINES_TITLE,
-                    'lang_pubdate'     => \_MD_HEADLINES_PUBDATE,
-                    //                                   'lang_description2' => _MD_HEADLINES_DESCRIPTION2,
+                    'lang_lastbuild'   => \_MD_XOOPSHEADLINES_LASTBUILD,
+                    'lang_language'    => \_MD_XOOPSHEADLINES_LANGUAGE,
+                    'lang_description' => \_MD_XOOPSHEADLINES_DESCRIPTION,
+                    'lang_webmaster'   => \_MD_XOOPSHEADLINES_WEBMASTER,
+                    'lang_category'    => \_MD_XOOPSHEADLINES_CATEGORY,
+                    'lang_generator'   => \_MD_XOOPSHEADLINES_GENERATOR,
+                    'lang_title'       => \_MD_XOOPSHEADLINES_TITLE,
+                    'lang_pubdate'     => \_MD_XOOPSHEADLINES_PUBDATE,
+                    //                                   'lang_description2' => _MD_XOOPSHEADLINES_DESCRIPTION2,
                     'lang_more'        => _MORE,
                 ]
             );

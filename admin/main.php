@@ -64,31 +64,31 @@ switch ($op) {
 
         echo "\n<div style='margin-bottom: 2em;'>\n"
              . '<h4>'
-             . _AM_HEADLINES_HEADLINES
+             . _AM_XOOPSHEADLINES_HEADLINES
              . "</h4>\n"
              . "<form name='xoopsheadline_form' action='main.php' method='post'>\n"
              . "  <table class='outer' style='margin: 1px;' id='hllist'>\n"
              . "    <thead><tr style='text-align: left;'>\n"
              . '      <th>'
-             . _AM_HEADLINES_ORDER
+             . _AM_XOOPSHEADLINES_ORDER
              . "</th>\n"
              . '      <th>'
-             . _AM_HEADLINES_SITENAME
+             . _AM_XOOPSHEADLINES_SITENAME
              . "</th>\n"
              . "      <th class='center'>"
-             . _AM_HEADLINES_CACHETIME
+             . _AM_XOOPSHEADLINES_CACHETIME
              . "</th>\n"
              . "      <th class='center'>"
-             . _AM_HEADLINES_ENCODING
+             . _AM_XOOPSHEADLINES_ENCODING
              . "</th>\n"
              . "      <th class='center'>"
-             . _AM_HEADLINES_DISPLAY
+             . _AM_XOOPSHEADLINES_DISPLAY
              . "</th>\n"
              . "      <th class='center'>"
-             . _AM_HEADLINES_ASBLOCK
+             . _AM_XOOPSHEADLINES_ASBLOCK
              . "</th>\n"
              . "      <th class='center'>"
-             . _AM_HEADLINES_ACTIONS
+             . _AM_XOOPSHEADLINES_ACTIONS
              . "</th>\n"
              . "      <th>&nbsp;</th>\n"
              . "    </tr></thead>\n";
@@ -152,9 +152,9 @@ switch ($op) {
                  . "          <a href='main.php?op=flush&amp;headline_id="
                  . $headlines[$i]->getVar('headline_id')
                  . "'><img src='../assets/images/reload.png' alt='"
-                 . _AM_HEADLINES_CACHEFL
+                 . _AM_XOOPSHEADLINES_CACHEFL
                  . "' title='"
-                 . _AM_HEADLINES_CACHEFL
+                 . _AM_XOOPSHEADLINES_CACHEFL
                  . "'></a>\n"
                  . "          <input type='hidden' name='headline_id[]' value='"
                  . $headlines[$i]->getVar('headline_id')
@@ -168,7 +168,7 @@ switch ($op) {
              . "    <tfoot><tr><td class='center {$tdclass}' colspan='7' style='padding: .5em;'>\n"
              . "      <input type='hidden' name='op' value='update'>\n"
              . "      <input type='submit' name='headline_submit' value='"
-             . _AM_HEADLINES_UPDATE
+             . _AM_XOOPSHEADLINES_UPDATE
              . "'>\n"
              . "    </td></tr></tfoot>\n"
              . "  </table>\n"
@@ -176,19 +176,19 @@ switch ($op) {
              . "</div>\n"
              . "<div style='margin-bottom: 1em;'>\n"
              . "<h4 style='padding-left: 1em;'>"
-             . _AM_HEADLINES_ADDHEADL
+             . _AM_XOOPSHEADLINES_ADDHEADL
              . "</h4>\n";
-        $form = new \XoopsThemeForm(_AM_HEADLINES_ADDHEADL, 'xoopsheadline_form_new', 'main.php', 'post', true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_SITENAME, 'headline_name', 50, 255), true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URL, 'headline_url', 50, 255, 'http://'), true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URLEDFXML, 'headline_rssurl', 50, 255, 'http://'), true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, 0));
+        $form = new \XoopsThemeForm(_AM_XOOPSHEADLINES_ADDHEADL, 'xoopsheadline_form_new', 'main.php', 'post', true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_SITENAME, 'headline_name', 50, 255), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_URL, 'headline_url', 50, 255, 'http://'), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_URLEDFXML, 'headline_rssurl', 50, 255, 'http://'), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_ORDER, 'headline_weight', 4, 3, 0));
 
-        $enc_sel = new \XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', 'utf-8');
+        $enc_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_ENCODING, 'headline_encoding', 'utf-8');
         $enc_sel->addOptionArray($encodings);
         $form->addElement($enc_sel);
 
-        $cache_sel = new \XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', 86400);
+        $cache_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_CACHETIME, 'headline_cachetime', 86400);
         $cache_sel->addOptionArray(
             [
                 3600    => _HOUR,
@@ -201,12 +201,12 @@ switch ($op) {
         );
         $form->addElement($cache_sel);
 
-        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_MAINSETT . '</span>', 'center');
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', 1, _YES, _NO));
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', 0, _YES, _NO));
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', 0, _YES, _NO));
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_XOOPSHEADLINES_MAINSETT . '</span>', 'center');
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPLAY, 'headline_display', 1, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPIMG, 'headline_mainimg', 0, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPFULL, 'headline_mainfull', 0, _YES, _NO));
 
-        $mmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', 10);
+        $mmax_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_DISPMAX, 'headline_mainmax', 10);
         $mmax_sel->addOptionArray(
             [
                 1  => 1,
@@ -220,11 +220,11 @@ switch ($op) {
         );
         $form->addElement($mmax_sel);
 
-        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', 1, _YES, _NO));
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', 0, _YES, _NO));
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_XOOPSHEADLINES_BLOCKSETT . '</span>', 'center');
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_ASBLOCK, 'headline_asblock', 1, _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPIMG, 'headline_blockimg', 0, _YES, _NO));
 
-        $bmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', 5);
+        $bmax_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_DISPMAX, 'headline_blockmax', 5);
         $bmax_sel->addOptionArray(
             [
                 1  => 1,
@@ -266,7 +266,7 @@ switch ($op) {
             $headline->setVar('headline_asblock', $headline_asblock[$id]);
             $old_encoding = $headline->getVar('headline_encoding');
             if (!$headlineHandler->insert($headline)) {
-                $msg .= '<br>' . sprintf(_AM_HEADLINES_FAILUPDATE, $headline->getVar('headline_name'));
+                $msg .= '<br>' . sprintf(_AM_XOOPSHEADLINES_FAILUPDATE, $headline->getVar('headline_name'));
             } elseif ('' === $headline->getVar('headline_xml')) {
                     $renderer = XoopsheadlineUtility::getRenderer($headline);
                     if (!$renderer->updateCache()) {
@@ -278,12 +278,12 @@ switch ($op) {
         }
         if ('' != $msg) {
             xoops_cp_header();
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
             xoops_error($msg);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
-        redirect_header('main.php', 2, _AM_HEADLINES_DBUPDATED);
+        redirect_header('main.php', 2, _AM_XOOPSHEADLINES_DBUPDATED);
         break;
     case 'addgo':
         if ($GLOBALS['xoopsSecurity']->check()) {
@@ -305,11 +305,11 @@ switch ($op) {
             $headline->setVar('headline_xml', $headline_blockmax);
             $hlIdx = $headlineHandler->insert($headline);
             if (!$hlIdx) {
-                $msg         = sprintf(_AM_HEADLINES_FAILUPDATE, $headline->getVar('headline_name'));
+                $msg         = sprintf(_AM_XOOPSHEADLINES_FAILUPDATE, $headline->getVar('headline_name'));
                 $msg         .= '<br>' . $headline->getErrors();
                 $adminObject = Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
-                echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
+                echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
                 xoops_error($msg);
                 require_once __DIR__ . '/admin_footer.php';
                 exit();
@@ -325,37 +325,37 @@ switch ($op) {
         } else {
             redirect_header('main.php', 2, implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
         }
-        redirect_header('main.php', 2, _AM_HEADLINES_DBUPDATED);
+        redirect_header('main.php', 2, _AM_XOOPSHEADLINES_DBUPDATED);
         break;
     case 'edit':
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_INVALIDID);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_INVALIDID);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
         $headline    = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_OBJECTNG);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_OBJECTNG);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form = new \XoopsThemeForm(_AM_HEADLINES_EDITHEADL, 'xoopsheadline_form', 'main.php', 'post', true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_SITENAME, 'headline_name', 100, 255, $headline->getVar('headline_name')), true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URL, 'headline_url', 100, 255, $headline->getVar('headline_url')), true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_URLEDFXML, 'headline_rssurl', 100, 255, $headline->getVar('headline_rssurl')), true);
-        $form->addElement(new \XoopsFormText(_AM_HEADLINES_ORDER, 'headline_weight', 4, 3, $headline->getVar('headline_weight')));
+        $form = new \XoopsThemeForm(_AM_XOOPSHEADLINES_EDITHEADL, 'xoopsheadline_form', 'main.php', 'post', true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_SITENAME, 'headline_name', 100, 255, $headline->getVar('headline_name')), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_URL, 'headline_url', 100, 255, $headline->getVar('headline_url')), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_URLEDFXML, 'headline_rssurl', 100, 255, $headline->getVar('headline_rssurl')), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINES_ORDER, 'headline_weight', 4, 3, $headline->getVar('headline_weight')));
 
-        $enc_sel = new \XoopsFormSelect(_AM_HEADLINES_ENCODING, 'headline_encoding', $headline->getVar('headline_encoding'));
+        $enc_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_ENCODING, 'headline_encoding', $headline->getVar('headline_encoding'));
         $enc_sel->addOptionArray(['utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII']);
         $form->addElement($enc_sel);
 
-        $cache_sel = new \XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', $headline->getVar('headline_cachetime'));
+        $cache_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_CACHETIME, 'headline_cachetime', $headline->getVar('headline_cachetime'));
         $cache_sel->addOptionArray(
             [
                 3600    => _HOUR,
@@ -368,12 +368,12 @@ switch ($op) {
         );
         $form->addElement($cache_sel);
 
-        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_MAINSETT . '</span>', 'center');
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPLAY, 'headline_display', $headline->getVar('headline_display'), _YES, _NO));
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_mainimg', $headline->getVar('headline_mainimg'), _YES, _NO));
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPFULL, 'headline_mainfull', $headline->getVar('headline_mainfull'), _YES, _NO));
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_XOOPSHEADLINES_MAINSETT . '</span>', 'center');
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPLAY, 'headline_display', $headline->getVar('headline_display'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPIMG, 'headline_mainimg', $headline->getVar('headline_mainimg'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPFULL, 'headline_mainfull', $headline->getVar('headline_mainfull'), _YES, _NO));
 
-        $mmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', $headline->getVar('headline_mainmax'));
+        $mmax_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_DISPMAX, 'headline_mainmax', $headline->getVar('headline_mainmax'));
         $mmax_sel->addOptionArray(
             [
                 1  => 1,
@@ -387,12 +387,12 @@ switch ($op) {
         );
         $form->addElement($mmax_sel);
 
-        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_HEADLINES_BLOCKSETT . '</span>', 'center');
-        $form->insertBreak(_AM_HEADLINES_BLOCKSETT);
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_ASBLOCK, 'headline_asblock', $headline->getVar('headline_asblock'), _YES, _NO));
-        $form->addElement(new \XoopsFormRadioYN(_AM_HEADLINES_DISPIMG, 'headline_blockimg', $headline->getVar('headline_blockimg'), _YES, _NO));
+        $form->insertBreak('<span style="font-weight: bold; line-height: 3em;">' . _AM_XOOPSHEADLINES_BLOCKSETT . '</span>', 'center');
+        $form->insertBreak(_AM_XOOPSHEADLINES_BLOCKSETT);
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_ASBLOCK, 'headline_asblock', $headline->getVar('headline_asblock'), _YES, _NO));
+        $form->addElement(new \XoopsFormRadioYN(_AM_XOOPSHEADLINES_DISPIMG, 'headline_blockimg', $headline->getVar('headline_blockimg'), _YES, _NO));
 
-        $bmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', $headline->getVar('headline_blockmax'));
+        $bmax_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINES_DISPMAX, 'headline_blockmax', $headline->getVar('headline_blockmax'));
         $bmax_sel->addOptionArray(
             [
                 1  => 1,
@@ -410,8 +410,8 @@ switch ($op) {
         $form->addElement(new \XoopsFormHidden('headline_id', $headline->getVar('headline_id')));
         $form->addElement(new \XoopsFormHidden('op', 'editgo'));
         $form->addElement(new \XoopsFormButtonTray('headline_submit', _SUBMIT));
-        echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4><br>';
-        //echo '<a href="main.php">'. _AM_HEADLINES_HLMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'.$headline->getVar('headline_name').'<br><br>';
+        echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4><br>';
+        //echo '<a href="main.php">'. _AM_XOOPSHEADLINES_HLMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'.$headline->getVar('headline_name').'<br><br>';
         $form->display();
         require_once __DIR__ . '/admin_footer.php';
         exit();
@@ -420,8 +420,8 @@ switch ($op) {
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_INVALIDID);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_INVALIDID);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
@@ -430,8 +430,8 @@ switch ($op) {
         if (!is_object($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_OBJECTNG);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_OBJECTNG);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
@@ -450,12 +450,12 @@ switch ($op) {
         $headline->setVar('headline_blockmax', $headline_blockmax);
 
         if (!$GLOBALS['xoopsSecurity']->check() || !$headlineHandler->insert($headline)) {
-            $msg         = sprintf(_AM_HEADLINES_FAILUPDATE, $headline->getVar('headline_name'));
+            $msg         = sprintf(_AM_XOOPSHEADLINES_FAILUPDATE, $headline->getVar('headline_name'));
             $msg         .= '<br>' . $headline->getErrors();
             $msg         .= '<br>' . implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
             xoops_error($msg);
             require_once __DIR__ . '/admin_footer.php';
             exit();
@@ -468,14 +468,14 @@ switch ($op) {
             }
         }
 
-        redirect_header('main.php', 2, _AM_HEADLINES_DBUPDATED);
+        redirect_header('main.php', 2, _AM_XOOPSHEADLINES_DBUPDATED);
         break;
     case 'delete':
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_INVALIDID);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_INVALIDID);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
@@ -484,17 +484,17 @@ switch ($op) {
         if (!is_object($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_OBJECTNG);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_OBJECTNG);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         $name = $headline->getVar('headline_name');
-        echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-        //        echo '<a href="main.php">'. _AM_HEADLINES_HLMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'.$name.'<br><br>';
-        xoops_confirm(['op' => 'deletego', 'headline_id' => $headline->getVar('headline_id')], 'main.php', sprintf(_AM_HEADLINES_WANTDEL, $name));
+        echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+        //        echo '<a href="main.php">'. _AM_XOOPSHEADLINES_HLMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'.$name.'<br><br>';
+        xoops_confirm(['op' => 'deletego', 'headline_id' => $headline->getVar('headline_id')], 'main.php', sprintf(_AM_XOOPSHEADLINES_WANTDEL, $name));
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'deletego':
@@ -502,8 +502,8 @@ switch ($op) {
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_INVALIDID);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_INVALIDID);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
@@ -512,66 +512,66 @@ switch ($op) {
         if (!is_object($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_OBJECTNG);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_OBJECTNG);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         if (!$GLOBALS['xoopsSecurity']->check() || !$headlineHandler->delete($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(sprintf(_AM_HEADLINES_FAILUPDELETE, $headline->getVar('headline_name')) . '<br>' . implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(sprintf(_AM_XOOPSHEADLINES_FAILUPDELETE, $headline->getVar('headline_name')) . '<br>' . implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
-        redirect_header('main.php', 2, _AM_HEADLINES_DBUPDATED);
+        redirect_header('main.php', 2, _AM_XOOPSHEADLINES_DBUPDATED);
         break;
     case 'flush':
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_INVALIDID);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_INVALIDID);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
         $headline    = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_OBJECTNG);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_OBJECTNG);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         $name = $headline->getVar('headline_name');
-        echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-        xoops_confirm(['op' => 'flushgo', 'headline_id' => $headline->getVar('headline_id')], 'main.php', sprintf(_AM_HEADLINES_WANTFLUSH, $name));
+        echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+        xoops_confirm(['op' => 'flushgo', 'headline_id' => $headline->getVar('headline_id')], 'main.php', sprintf(_AM_XOOPSHEADLINES_WANTFLUSH, $name));
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'flushgo':
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_INVALIDID);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_INVALIDID);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
         $headline    = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
-            echo '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>';
-            xoops_error(_AM_HEADLINES_OBJECTNG);
+            echo '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>';
+            xoops_error(_AM_XOOPSHEADLINES_OBJECTNG);
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
         if (!$GLOBALS['xoopsSecurity']->check()) {
             $adminObject = Admin::getInstance();
-            $adminObject->displayNavigation(basename(__FILE__)) . '<h4>' . _AM_HEADLINES_HEADLINES . '</h4>' . "<div style='margin: 1em;'>\n";
-            xoops_error(sprintf(_AM_HEADLINES_FAILFLUSH, $headline->getVar('headline_name')) . '<br>' . implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
+            $adminObject->displayNavigation(basename(__FILE__)) . '<h4>' . _AM_XOOPSHEADLINES_HEADLINES . '</h4>' . "<div style='margin: 1em;'>\n";
+            xoops_error(sprintf(_AM_XOOPSHEADLINES_FAILFLUSH, $headline->getVar('headline_name')) . '<br>' . implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
             echo "</div>\n";
             require_once __DIR__ . '/admin_footer.php';
             exit();
@@ -582,6 +582,6 @@ switch ($op) {
             require_once __DIR__ . '/admin_footer.php';
             exit();
         }
-        redirect_header('main.php', 2, _AM_HEADLINES_CACHEUPD);
+        redirect_header('main.php', 2, _AM_XOOPSHEADLINES_CACHEUPD);
         break;
 }
