@@ -58,7 +58,7 @@ class SysUtility
      *
      * @return string Trimmed string.
      */
-    public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true): string
+    public static function truncateHtml(string $text, int $length = 100, string $ending = '...', bool $exact = false, bool $considerHtml = true): string
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
@@ -150,11 +150,11 @@ class SysUtility
     }
 
     /**
-     * @param \Xmf\Module\Helper $helper
-     * @param array|null         $options
+     * @param \Xmf\Module\Helper|null $helper
+     * @param array|null              $options
      * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
      */
-    public static function getEditor($helper = null, $options = null)
+    public static function getEditor(\Xmf\Module\Helper $helper = null, array $options = null)
     {
         /** @var Helper $helper */
         if (null === $options) {
@@ -208,7 +208,7 @@ class SysUtility
      *
      * @return mixed
      */
-    public static function cloneRecord($tableName, $id_field, $id)
+    public static function cloneRecord($tableName, int $id_field, int $id)
     {
         $new_id = false;
         $table  = $GLOBALS['xoopsDB']->prefix($tableName);
@@ -239,7 +239,7 @@ class SysUtility
      * @param string $tablename
      *
      */
-    public static function tableExists($tablename): bool
+    public static function tableExists(string $tablename): bool
     {
         $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 

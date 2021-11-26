@@ -93,7 +93,7 @@ class HeadlineRenderer
     /**
      * @param bool $force_update
      */
-    public function renderFeed($force_update = false): bool
+    public function renderFeed(bool $force_update = false): bool
     {
         $retval = false;
         if ($force_update || $this->hl->cacheExpired()) {
@@ -167,7 +167,7 @@ class HeadlineRenderer
     /**
      * @param bool $force_update
      */
-    public function renderBlock($force_update = false): bool
+    public function renderBlock(bool $force_update = false): bool
     {
         $retval = false;
         if ($force_update || $this->hl->cacheExpired()) {
@@ -265,7 +265,7 @@ class HeadlineRenderer
      * @param bool $ashtml
      * @return array|string
      */
-    public function &getErrors($ashtml = true)
+    public function &getErrors(bool $ashtml = true)
     {
         if ($ashtml) {
             $retval = '';
