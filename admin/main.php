@@ -31,7 +31,7 @@ xoops_cp_header();
 
 $op = 'list';
 
-if (Request::hasVar('op', 'GET') && ('delete' === $_GET['op'] || 'edit' === $_GET['op'] || 'flush' === $_GET['op'])) {
+if (Request::hasVar('op', 'GET') && in_array($_GET['op'], ['delete', 'edit', 'flush'])) {
     $op          = $_GET['op'];
     $headline_id = Request::getInt('headline_id', 0, 'GET');
 }
