@@ -91,12 +91,12 @@ switch ($op) {
              . "      <th>&nbsp;</th>\n"
              . "    </tr></thead>\n";
         $cachetime = [
-            '3600'    => sprintf(_HOUR, 1),
-            '18000'   => sprintf(_HOURS, 5),
-            '86400'   => sprintf(_DAY, 1),
-            '259200'  => sprintf(_DAYS, 3),
-            '604800'  => sprintf(_WEEK, 1),
-            '2592000' => sprintf(_MONTH, 1),
+            3600    => sprintf(_HOUR, 1),
+            18000   => sprintf(_HOURS, 5),
+            86400   => sprintf(_DAY, 1),
+            259200  => sprintf(_DAYS, 3),
+            604800  => sprintf(_WEEK, 1),
+            2592000 => sprintf(_MONTH, 1),
         ];
         $encodings = ['utf-8' => 'UTF-8', 'iso-8859-1' => 'ISO-8859-1', 'us-ascii' => 'US-ASCII'];
         $tdclass   = 'odd';
@@ -189,12 +189,12 @@ switch ($op) {
         $cache_sel = new \XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', 86400);
         $cache_sel->addOptionArray(
             [
-                '3600'    => _HOUR,
-                '18000'   => sprintf(_HOURS, 5),
-                '86400'   => _DAY,
-                '259200'  => sprintf(_DAYS, 3),
-                '604800'  => _WEEK,
-                '2592000' => _MONTH,
+                3600    => _HOUR,
+                18000   => sprintf(_HOURS, 5),
+                86400   => _DAY,
+                259200  => sprintf(_DAYS, 3),
+                604800  => _WEEK,
+                2592000 => _MONTH,
             ]
         );
         $form->addElement($cache_sel);
@@ -207,13 +207,13 @@ switch ($op) {
         $mmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', 10);
         $mmax_sel->addOptionArray(
             [
-                '1'  => 1,
-                '5'  => 5,
-                '10' => 10,
-                '15' => 15,
-                '20' => 20,
-                '25' => 25,
-                '30' => 30,
+                1  => 1,
+                5  => 5,
+                10 => 10,
+                15 => 15,
+                20 => 20,
+                25 => 25,
+                30 => 30,
             ]
         );
         $form->addElement($mmax_sel);
@@ -225,13 +225,13 @@ switch ($op) {
         $bmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', 5);
         $bmax_sel->addOptionArray(
             [
-                '1'  => 1,
-                '5'  => 5,
-                '10' => 10,
-                '15' => 15,
-                '20' => 20,
-                '25' => 25,
-                '30' => 30,
+                1  => 1,
+                5  => 5,
+                10 => 10,
+                15 => 15,
+                20 => 20,
+                25 => 25,
+                30 => 30,
             ]
         );
         $form->addElement($bmax_sel);
@@ -356,12 +356,12 @@ switch ($op) {
         $cache_sel = new \XoopsFormSelect(_AM_HEADLINES_CACHETIME, 'headline_cachetime', $headline->getVar('headline_cachetime'));
         $cache_sel->addOptionArray(
             [
-                '3600'    => _HOUR,
-                '18000'   => sprintf(_HOURS, 5),
-                '86400'   => _DAY,
-                '259200'  => sprintf(_DAYS, 3),
-                '604800'  => _WEEK,
-                '2592000' => _MONTH,
+                3600    => _HOUR,
+                18000   => sprintf(_HOURS, 5),
+                86400   => _DAY,
+                259200  => sprintf(_DAYS, 3),
+                604800  => _WEEK,
+                2592000 => _MONTH,
             ]
         );
         $form->addElement($cache_sel);
@@ -374,13 +374,13 @@ switch ($op) {
         $mmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_mainmax', $headline->getVar('headline_mainmax'));
         $mmax_sel->addOptionArray(
             [
-                '1'  => 1,
-                '5'  => 5,
-                '10' => 10,
-                '15' => 15,
-                '20' => 20,
-                '25' => 25,
-                '30' => 30,
+                1  => 1,
+                5  => 5,
+                10 => 10,
+                15 => 15,
+                20 => 20,
+                25 => 25,
+                30 => 30,
             ]
         );
         $form->addElement($mmax_sel);
@@ -393,13 +393,13 @@ switch ($op) {
         $bmax_sel = new \XoopsFormSelect(_AM_HEADLINES_DISPMAX, 'headline_blockmax', $headline->getVar('headline_blockmax'));
         $bmax_sel->addOptionArray(
             [
-                '1'  => 1,
-                '5'  => 5,
-                '10' => 10,
-                '15' => 15,
-                '20' => 20,
-                '25' => 25,
-                '30' => 30,
+                1  => 1,
+                5  => 5,
+                10 => 10,
+                15 => 15,
+                20 => 20,
+                25 => 25,
+                30 => 30,
             ]
         );
         $form->addElement($bmax_sel);
