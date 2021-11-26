@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $admin_mydirname = \basename(\dirname(__DIR__, 2));
 
 // Admin Module Name  Headlines

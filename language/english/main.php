@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 define('_MD_HEADLINES_LASTBUILD', 'Updated');
 define('_MD_HEADLINES_LANGUAGE', 'Language');
 define('_MD_HEADLINES_DESCRIPTION', 'Description');

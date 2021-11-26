@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * XoopsHeadline module
  * Description: Category Admin file
