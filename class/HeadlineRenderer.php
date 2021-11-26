@@ -71,16 +71,16 @@ class HeadlineRenderer
             // failed open using fopen, now try cURL
             $ch = \curl_init($this->hl->getVar('headline_rssurl'));
             if (\curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true)) {
-                if (!$data = \curl_exec($ch)) {
-                    \curl_close($ch);
-                    $errmsg = \sprintf(\_MD_HEADLINES_NOTOPEN, $this->hl->getVar('headline_rssurl'));
-                    $this->_setErrors($errmsg);
-                } else {
+                if ($data = \curl_exec($ch)) {
                     \curl_close($ch);
                     $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
                     $this->hl->setVar('headline_updated', \time());
                     $headlineHandler = $helper->getHandler('Headline');
                     $retval          = $headlineHandler->insert($this->hl);
+                } else {
+                    \curl_close($ch);
+                    $errmsg = \sprintf(\_MD_HEADLINES_NOTOPEN, $this->hl->getVar('headline_rssurl'));
+                    $this->_setErrors($errmsg);
                 }
             } else {
                 $this->_setErrors(\_MD_HEADLINES_BADOPT);
