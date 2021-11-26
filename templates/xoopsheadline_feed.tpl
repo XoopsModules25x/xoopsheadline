@@ -4,7 +4,7 @@
     </tr>
     <tr>
         <td style="width: 25%;" rowspan="6">
-            <{if $image.url != ""}>
+            <{if $image.url|default:'' != ''}>
                 <img src="<{$image.url}>" width="<{$image.width|default:88}>" height="<{$image.height|default:31}>"
                      alt="<{$image.title}>">
             <{else}>
@@ -37,31 +37,31 @@
     <{section name=i loop=$items}>
         <tr class="head">
             <td style="padding-left: 2em;" colspan="3">
-                <{if $items[i].title != ""}><a id="<{$items[i].link}>"></a>
+                <{if $items[i].title|default:'' != ''}><a id="<{$items[i].link}>"></a>
                     <a href="<{$items[i].link}>" target="_blank"><{$items[i].title}></a>
                 <{/if}>
             </td>
         </tr>
         <{if $show_full === true}>
-            <{if $items[i].category != ""}>
+            <{if $items[i].category|default:'' != ''}>
                 <tr>
                     <td class="even" style="vertical-align: top;"><{$lang_category}></td>
                     <td class="odd" colspan="2"><{$items[i].category}>
                 </tr>
             <{/if}>
-            <{if $items[i].pubdate != ""}>
+            <{if $items[i].pubdate|default:'' != ''}>
                 <tr>
                     <td class="even" style="vertical-align: top;"><{$lang_pubdate}>:</td>
                     <td class="odd" colspan="2"><{$items[i].pubdate}></td>
                 </tr>
             <{/if}>
-            <{if $items[i].description != ""}>
+            <{if $items[i].description|default:'' != ''}>
                 <tr>
                     <td class="even" style="vertical-align: top;"><{$lang_description}>:</td>
-                    <td colspan="2" class="odd"><{$items[i].description}><{if $items[i].guid != ""}>&nbsp;&nbsp;<a
+                    <td colspan="2" class="odd"><{$items[i].description}><{if $items[i].guid|default:'' != ''}>&nbsp;&nbsp;<a
                             href="<{$items[i].guid}>" target="_blank"><{$lang_more}></a><{/if}></td>
                 </tr>
-            <{elseif $items[i].guid != ""}>
+            <{elseif $items[i].guid|default:'' != ''}>
                 <tr>
                     <td class="even" style="vertical-align: top;"></td>
                     <td colspan="2" class="odd"><a href="<{$items[i].guid}>" target="_blank"><{$lang_more}></a></td>

@@ -1,4 +1,4 @@
-![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
+![alt XOOPS CMS](https://xoops.org/images/logoXoopsPhp8.png)
 ## XoopsHeadline module for  [XOOPS CMS 2.5.10+](https://xoops.org)
 [![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -6,7 +6,6 @@
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mambax7/xoopsheadline.svg?style=flat)](https://scrutinizer-ci.com/g/mambax7/xoopsheadline/?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/2d27c0023ee54f0b9ba2b5d17a68b2a5)](https://www.codacy.com/app/mambax7/xoopsheadline)
 [![Code Climate](https://img.shields.io/codeclimate/github/mambax7/xoopsheadline.svg?style=flat)](https://codeclimate.com/github/mambax7/xoopsheadline)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9bf7be2a-b018-4d4c-899a-f0d32798d7f2/mini.png)](https://insight.sensiolabs.com/projects/9bf7be2a-b018-4d4c-899a-f0d32798d7f2)
 [![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/xoopsheadline.svg?style=flat)](https://github.com/XoopsModules25x/xoopsheadline/tags/)
 [![Latest Version](https://img.shields.io/github/release/XoopsModules25x/xoopsheadline.svg?style=flat)](https://github.com/XoopsModules25x/xoopsheadline/releases/)
 

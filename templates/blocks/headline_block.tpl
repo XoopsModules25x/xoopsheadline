@@ -1,5 +1,5 @@
 <a href="<{$site_url}>" target="_blank"><{$site_name}></a><br>
-<{if $image.url|default:false != ""}>
+<{if $image.url|default:'' != ''}>
     <img src="<{$image.url}>" style="width: <{$image.width|default:88}>; height: <{$image.height|default:31}>;"
          alt="<{$image.title}> /">
     <br>
@@ -7,7 +7,7 @@
 
 <ul>
     <{section name=i loop=$items}>
-        <{if $items[i].title != ""}>
+        <{if $items[i].title|default:'' != ''}>
             <li>
                 <a href="<{$xoops_url}>/modules/xoopsheadline/index.php?id=<{$site_id}>#<{$items[i].link}>"><{$items[i].title}></a>
             </li>

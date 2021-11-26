@@ -12,16 +12,14 @@
 /**
  * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
 use Xmf\Request;
 use Xmf\Yaml;
 use XoopsModules\Xoopsheadline\{
-    Common,
+    Common\TestdataButtons,
     Forms,
     Helper,
     Utility
@@ -56,6 +54,23 @@ $adminObject->addInfoBoxLine(sprintf(_MD_HEADLINES_TOTALASBLOCK, $displayedAsBlo
 //----------------------------
 
 $adminObject->displayNavigation(basename(__FILE__));
+
+//------------- Test Data Buttons ----------------------------
+if ($helper->getConfig('displaySampleButton')) {
+    TestdataButtons::loadButtonConfig($adminObject);
+    $adminObject->displayButton('left', '');
+}
+$op = Request::getString('op', 0, 'GET');
+switch ($op) {
+    case 'hide_buttons':
+        TestdataButtons::hideButtons();
+        break;
+    case 'show_buttons':
+        TestdataButtons::showButtons();
+        break;
+}
+//------------- End Test Data Buttons ----------------------------
+
 $adminObject->displayIndex();
 
 require_once __DIR__ . '/admin_footer.php';

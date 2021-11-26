@@ -12,9 +12,7 @@
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use XoopsModules\Xoopsheadline\{
@@ -37,7 +35,7 @@ function b_xoopsheadline_show($options)
     $block = [];
 
     global $xoopsConfig;
-    $hlDir = basename(dirname(__DIR__));
+    $hlDir = \basename(\dirname(__DIR__));
 
     /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');

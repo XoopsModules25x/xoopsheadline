@@ -11,6 +11,9 @@ namespace XoopsModules\Xoopsheadline\Common;
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
+
+
 /**
  * Breadcrumb Class
  *
@@ -37,7 +40,7 @@ class Breadcrumb
 
     public function __construct()
     {
-        $this->dirname = \basename(dirname(__DIR__, 2));
+        $this->dirname = \basename(\dirname(__DIR__, 2));
     }
 
     /**

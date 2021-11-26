@@ -1,6 +1,6 @@
 <?php
 
-$admin_mydirname = basename(dirname(__DIR__, 2));
+$admin_mydirname = \basename(\dirname(__DIR__, 2));
 
 // Admin Module Name  Headlines
 define('_AM_HEADLINES_DBUPDATED', 'Database Updated Successfully!');

@@ -10,11 +10,9 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use XoopsModules\Xoopsheadline\{
@@ -36,7 +34,7 @@ use XoopsModules\Xoopsheadline\{
  */
 function xoops_module_pre_install_xoopsheadline(\XoopsModule $module)
 {
-    require_once dirname(__DIR__) . '/preloads/autoloader.php';
+    require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 
     $utility      = new Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -60,9 +58,9 @@ function xoops_module_pre_install_xoopsheadline(\XoopsModule $module)
  */
 function xoops_module_install_xoopsheadline(\XoopsModule $module)
 {
-    require_once dirname(__DIR__, 3) . '/mainfile.php';
+    require_once \dirname(__DIR__, 3) . '/mainfile.php';
 
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
     $helper = Helper::getInstance();
     $utility = new Utility();
 
@@ -94,7 +92,7 @@ function xoops_module_install_xoopsheadline(\XoopsModule $module)
 
     //  ---  COPY blank.png FILES ---------------
     if (count($configurator->copyBlankFiles) > 0) {
-        $file = dirname(__DIR__) . '/assets/images/blank.png';
+        $file = \dirname(__DIR__) . '/assets/images/blank.png';
         foreach (array_keys($configurator->copyBlankFiles) as $i) {
             $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
             $utility::copyFile($file, $dest);

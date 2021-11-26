@@ -12,21 +12,19 @@
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 require_once __DIR__ . '/preloads/autoloader.php';
 
 $moduleDirName      = basename(__DIR__);
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $modversion = [
-    'version'             => 1.12,
+    'version'             => '1.12.0',
     'module_status'       => 'Beta 1',
-    'release_date'        => '2017/07/20',
+    'release_date'        => '2021/11/26',
     'name'                => _MI_HEADLINES_NAME,
     'description'         => _MI_HEADLINES_DESC,
     'official'            => 1,    // maintained by XOOPS Module Development Team
@@ -42,14 +40,10 @@ $modversion = [
     'author_website_name' => 'XOOPS',
     'module_website_url'  => 'https://xoops.org',
     'module_website_name' => 'XOOPS',
-    'min_php'             => '7.2',
+    'min_php'             => '7.3',
     'min_xoops'           => '2.5.10',
     'min_db'              => ['mysql' => '5.5'],
     'min_admin'           => '1.2',
-    //    'dirmoduleadmin'      => '/Frameworks/moduleclasses/moduleadmin',
-    //    'icons16'             => '../../Frameworks/moduleclasses/icons/16',
-    //    'icons32'             => '../../Frameworks/moduleclasses/icons/32'
-    // Local path icons
     'modicons16'          => 'assets/images/icons/16',
     'modicons32'          => 'assets/images/icons/32',
 ];
@@ -80,6 +74,18 @@ $modversion['config'][] = [
 ];
 
 /**
+ * Make Sample button visible?
+ */
+$modversion['config'][] = [
+    'name'        => 'displaySampleButton',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+
+/**
  * Show Developer Tools?
  */
 $modversion['config'][] = [
@@ -90,6 +96,8 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 0,
 ];
+
+
 
 // Admin
 $modversion['hasAdmin']   = 1;
@@ -107,20 +115,21 @@ $modversion['helpsection'] = [
     ['name' => _MI_HEADLINES_SUPPORT, 'link' => 'page=support'],
 ];
 
-// Blocks
-$modversion['blocks'][1]['file']        = 'headline.php';
-$modversion['blocks'][1]['name']        = _MI_HEADLINES_BNAME;
-$modversion['blocks'][1]['description'] = 'Shows headline news via RDF/RSS news feed';
-$modversion['blocks'][1]['show_func']   = 'b_xoopsheadline_show';
-$modversion['blocks'][1]['template']    = 'xoopsheadline_block_rss.tpl';
+// ------------------- Blocks ------------------- //
+$modversion['blocks'][] = [
+    'file'        => 'headline.php',
+    'name'        => _MI_HEADLINES_BNAME,
+    'description' => 'Shows headline news via RDF/RSS news feed',
+    'show_func'   => 'b_xoopsheadline_show',
+    'template'    => 'xoopsheadline_block_rss.tpl',
+];
 
 // Menu
 $modversion['hasMain'] = 1;
 
-// Templates
-$modversion['templates'][1]['file']        = 'xoopsheadline_index.tpl';
-$modversion['templates'][1]['description'] = '';
-$modversion['templates'][2]['file']        = 'xoopsheadline_feed.tpl';
-$modversion['templates'][2]['description'] = '';
-$modversion['templates'][3]['file']        = 'blocks/headline_block.tpl';
-$modversion['templates'][3]['description'] = '';
+// ------------------- Templates ------------------- //
+$modversion['templates'] = [
+    ['file' => 'xoopsheadline_index.tpl', 'description' => ''],
+    ['file' => 'xoopsheadline_feed.tpl', 'description' => ''],
+    ['file' => 'blocks/headline_block.tpl', 'description' => ''],
+];

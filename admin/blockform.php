@@ -4,7 +4,6 @@
  * of supporting developers from this source code or any supporting source code
  * which is considered copyrighted (c) material of the original comment or credit authors.
  *
- * PHP version 5
  *
  * @category        Module
  * @author          XOOPS Development Team
@@ -21,14 +20,10 @@ use XoopsModules\Xoopsheadline\{
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 
-require __DIR__ . '/admin_header.php';
-
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-$moduleDirName = basename(dirname(__DIR__));
-$moduleDirNameUpper = mb_strtoupper($moduleDirName); //$capsDirName
-
-$helper->loadLanguage('blocksadmin');
+$moduleDirName = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $form = new \XoopsThemeForm($block['form_title'], 'blockform', 'blocksadmin.php', 'post', true);
 if (isset($block['name'])) {

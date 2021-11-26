@@ -12,9 +12,7 @@
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
@@ -23,7 +21,7 @@ use XoopsModules\Xoopsheadline\Helper;
 use XoopsModules\Xoopsheadline\XoopsheadlineUtility;
 /** @var Helper $helper */
 
-require_once dirname(__DIR__, 2) . '/mainfile.php';
+require_once \dirname(__DIR__, 2) . '/mainfile.php';
 
 $helper = Helper::getInstance();
 
@@ -58,7 +56,7 @@ switch ((int)$helper->getConfig('sortby')) {
 $headlines = $hlman->getObjects($criteria);
 
 global $xoopsModule;
-$pathIcon16    = Admin::iconUrl('', 16);
+$pathIcon16    = Admin::iconUrl('', '16');
 $moduleDirName = $xoopsModule->getVar('dirname');
 
 $userIsAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) ? true : false;

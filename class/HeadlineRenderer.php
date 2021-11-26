@@ -15,11 +15,9 @@ namespace XoopsModules\Xoopsheadline;
 use think\console\command\Help;
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
+ * @author      XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
 
 
@@ -308,7 +306,7 @@ class HeadlineRenderer
      */
     public function &convertToUtf8(&$xmlfile)
     {
-        if ('iso-8859-1' === mb_strtolower($this->hl->getVar('headline_encoding'))) {
+        if ('iso-8859-1' === \mb_strtolower($this->hl->getVar('headline_encoding'))) {
             $xmlfile = utf8_encode($xmlfile);
         }
 

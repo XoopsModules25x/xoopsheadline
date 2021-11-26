@@ -25,14 +25,14 @@ use XoopsModules\Xoopsheadline\{
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 
-require dirname(__DIR__) . '/preloads/autoloader.php';
+require \dirname(__DIR__) . '/preloads/autoloader.php';
 
-require dirname(__DIR__, 3) . '/include/cp_header.php';
-//require dirname(__DIR__, 3) . '/class/xoopsformloader.php';
-require  dirname(__DIR__) . '/include/common.php';
+require \dirname(__DIR__, 3) . '/include/cp_header.php';
+//require_once \dirname(__DIR__, 3) . '/class/xoopsformloader.php';
+require  \dirname(__DIR__) . '/include/common.php';
 
-$moduleDirName = basename(dirname(__DIR__));
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirName = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 $helper = Helper::getInstance();
 
 $adminObject = Admin::getInstance();
