@@ -37,6 +37,9 @@ namespace XoopsModules\Xoopsheadline\Common;
  */
 class Breadcrumb
 {
+    /**
+     * @var string
+     */
     public  $dirname;
     private $bread = [];
 
@@ -60,14 +63,8 @@ class Breadcrumb
     /**
      * Render BreadCrumb
      */
-    public function render(): void
+    public function render()
     {
-        /*
-        TODO if you want to use the render code below,
-        1) create ./templates/chess_common_breadcrumb.tpl)
-        2) add declaration to  xoops_version.php
-        */
-        /*
         if (!isset($GLOBALS['xoTheme']) || !\is_object($GLOBALS['xoTheme'])) {
             require $GLOBALS['xoops']->path('class/theme.php');
 
@@ -85,6 +82,5 @@ class Breadcrumb
         unset($breadcrumbTpl);
 
         return $html;
-        */
     }
 }

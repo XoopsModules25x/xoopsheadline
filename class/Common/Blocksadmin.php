@@ -35,10 +35,9 @@ class Blocksadmin
     public $moduleDirNameUpper;
 
     /**
-     * @param $db
      * @param $modHelper
      */
-    public function __construct($db, $modHelper)
+    public function __construct(?\XoopsMySQLDatabase $db, $modHelper)
     {
         if (null === $db){
             $db = \XoopsDatabaseFactory::getDatabaseConnection();
@@ -497,10 +496,6 @@ class Blocksadmin
         ];
         echo '<a href="blocksadmin.php">' . \constant('CO_' . $this->moduleDirNameUpper . '_' . 'BADMIN') . '</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;' . \_AM_SYSTEM_BLOCKS_EDITBLOCK . '<br><br>';
 
-        /** @var \XoopsThemeForm $form */ //                $form = new Blockform();
-        //        $form->render($block);
-        //        $form = new \XoopsThemeForm();
-
         echo $this->render($block);
     }
 
@@ -620,10 +615,7 @@ class Blocksadmin
         $this->modHelper->redirect('admin/blocksadmin.php', 1, \constant('CO_' . $this->moduleDirNameUpper . '_' . 'UPDATE_SUCCESS'));
     }
 
-    /**
-     * @param null|\array $block
-     */
-    public function render($block = null)
+    public function render(?array $block = null)
     {
         \xoops_load('XoopsFormLoader');
         \xoops_loadLanguage('common', $this->moduleDirNameUpper);

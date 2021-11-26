@@ -20,7 +20,7 @@ declare(strict_types=1);
 use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopsheadline\Helper;
-use XoopsModules\Xoopsheadline\XoopsheadlineUtility;
+use XoopsModules\Xoopsheadline\Utility;
 /** @var Helper $helper */
 
 require_once \dirname(__DIR__, 2) . '/mainfile.php';
@@ -68,18 +68,18 @@ for ($i = 0; $i < $count; ++$i) {
     $editUrl = $userIsAdmin ? "&nbsp;<a href='" . XOOPS_URL . "/modules/{$moduleDirName}/admin/main.php?op=edit&amp;headline_id={$thisId}'><img src='" . $pathIcon16 . "/edit.png' alt='" . _EDIT . "' title='" . _EDIT . "'></a>" : '';
     $xoopsTpl->append('feed_sites', ['id' => $thisId, 'name' => $headlines[$i]->getVar('headline_name'), 'editurl' => $editUrl]);
 }
-$xoopsTpl->assign('lang_headlines', _MD_XOOPSHEADLINES_HEADLINES);
+$xoopsTpl->assign('lang_headlines', _MD_XOOPSHEADLINE_HEADLINES);
 if (0 == $hlid) {
     $hlid = $headlines[0]->getVar('headline_id');
 }
 if ($hlid > 0) {
     $headline = $hlman->get($hlid);
     if (is_object($headline)) {
-        $renderer = XoopsheadlineUtility::getRenderer($headline);
+        $renderer = Utility::getRenderer($headline);
         if ($renderer->renderFeed()) {
             $xoopsTpl->assign('headline', $renderer->getFeed());
         } elseif (2 == $xoopsConfig['debug_mode']) {
-                $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_XOOPSHEADLINES_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
+                $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_XOOPSHEADLINE_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
         }
     }
 }

@@ -33,7 +33,7 @@ $helper->loadLanguage('main');
  */
 class HeadlineRenderer
 {
-    // holds reference to xoopsheadline class object
+    // holds reference to Headline class object
     protected $headline;
     protected $tpl;
     protected $feed;
@@ -46,9 +46,9 @@ class HeadlineRenderer
      * HeadlineRenderer constructor.
      * @param $headline
      */
-    public function __construct(&$headline)
+    public function __construct(Headline &$headline)
     {
-        $this->hl  = &$headline;
+        $this->headline  = &$headline;
         $this->tpl = new \XoopsTpl();
     }
 
@@ -62,33 +62,33 @@ class HeadlineRenderer
          * Update cache - first try using fopen and then cURL
          */
         $retval = false;
-        if ($fp = @\fopen($this->hl->getVar('headline_rssurl'), 'r')) {  // successfully openned file using fopen
+        if ($fp = @\fopen($this->headline->getVar('headline_rssurl'), 'r')) {  // successfully openned file using fopen
             $data = '';
             while (!\feof($fp)) {
                 $data .= \fgets($fp, 4096);
             }
             \fclose($fp);
-            $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
-            $this->hl->setVar('headline_updated', \time());
+            $this->headline->setVar('headline_xml', $this->convertToUtf8($data));
+            $this->headline->setVar('headline_updated', \time());
             $headlineHandler = $helper->getHandler('Headline');
-            $retval          = $headlineHandler->insert($this->hl);
+            $retval          = $headlineHandler->insert($this->headline);
         } else {
             // failed open using fopen, now try cURL
-            $ch = \curl_init($this->hl->getVar('headline_rssurl'));
+            $ch = \curl_init($this->headline->getVar('headline_rssurl'));
             if (\curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true)) {
                 if ($data = \curl_exec($ch)) {
                     \curl_close($ch);
-                    $this->hl->setVar('headline_xml', $this->convertToUtf8($data));
-                    $this->hl->setVar('headline_updated', \time());
+                    $this->headline->setVar('headline_xml', $this->convertToUtf8($data));
+                    $this->headline->setVar('headline_updated', \time());
                     $headlineHandler = $helper->getHandler('Headline');
-                    $retval          = $headlineHandler->insert($this->hl);
+                    $retval          = $headlineHandler->insert($this->headline);
                 } else {
                     \curl_close($ch);
-                    $errmsg = \sprintf(\_MD_XOOPSHEADLINES_NOTOPEN, $this->hl->getVar('headline_rssurl'));
+                    $errmsg = \sprintf(\_MD_XOOPSHEADLINE_NOTOPEN, $this->headline->getVar('headline_rssurl'));
                     $this->_setErrors($errmsg);
                 }
             } else {
-                $this->_setErrors(\_MD_XOOPSHEADLINES_BADOPT);
+                $this->_setErrors(\_MD_XOOPSHEADLINE_BADOPT);
             }
         }
 
@@ -98,7 +98,7 @@ class HeadlineRenderer
     public function renderFeed(bool $force_update = false): bool
     {
         $retval = false;
-        if ($force_update || $this->hl->cacheExpired()) {
+        if ($force_update || $this->headline->cacheExpired()) {
             if (!$this->updateCache()) {
                 return $retval;
             }
@@ -109,7 +109,7 @@ class HeadlineRenderer
             $channel_data = $this->parser->getChannelData();
             \array_walk($channel_data, [$this, 'convertFromUtf8']);
             $this->tpl->assign_by_ref('channel', $channel_data);
-            if (1 == $this->hl->getVar('headline_mainimg')) {
+            if (1 == $this->headline->getVar('headline_mainimg')) {
                 $image_data = $this->parser->getImageData();
                 \array_walk($image_data, [$this, 'convertFromUtf8']);
                 $max_width  = 256;
@@ -133,29 +133,29 @@ class HeadlineRenderer
                 }
                 $this->tpl->assign_by_ref('image', $image_data);
             }
-            if (1 == $this->hl->getVar('headline_mainfull')) {
+            if (1 == $this->headline->getVar('headline_mainfull')) {
                 $this->tpl->assign('show_full', true);
             } else {
                 $this->tpl->assign('show_full', false);
             }
             $items = $this->parser->getItems();
             $count = \count($items);
-            $max   = ($count > $this->hl->getVar('headline_mainmax')) ? $this->hl->getVar('headline_mainmax') : $count;
+            $max   = ($count > $this->headline->getVar('headline_mainmax')) ? $this->headline->getVar('headline_mainmax') : $count;
             for ($i = 0; $i < $max; ++$i) {
                 \array_walk($items[$i], [$this, 'convertFromUtf8']);
                 $this->tpl->append_by_ref('items', $items[$i]);
             }
             $this->tpl->assign(
                 [
-                    'lang_lastbuild'   => \_MD_XOOPSHEADLINES_LASTBUILD,
-                    'lang_language'    => \_MD_XOOPSHEADLINES_LANGUAGE,
-                    'lang_description' => \_MD_XOOPSHEADLINES_DESCRIPTION,
-                    'lang_webmaster'   => \_MD_XOOPSHEADLINES_WEBMASTER,
-                    'lang_category'    => \_MD_XOOPSHEADLINES_CATEGORY,
-                    'lang_generator'   => \_MD_XOOPSHEADLINES_GENERATOR,
-                    'lang_title'       => \_MD_XOOPSHEADLINES_TITLE,
-                    'lang_pubdate'     => \_MD_XOOPSHEADLINES_PUBDATE,
-                    //                                   'lang_description2' => _MD_XOOPSHEADLINES_DESCRIPTION2,
+                    'lang_lastbuild'   => \_MD_XOOPSHEADLINE_LASTBUILD,
+                    'lang_language'    => \_MD_XOOPSHEADLINE_LANGUAGE,
+                    'lang_description' => \_MD_XOOPSHEADLINE_DESCRIPTION,
+                    'lang_webmaster'   => \_MD_XOOPSHEADLINE_WEBMASTER,
+                    'lang_category'    => \_MD_XOOPSHEADLINE_CATEGORY,
+                    'lang_generator'   => \_MD_XOOPSHEADLINE_GENERATOR,
+                    'lang_title'       => \_MD_XOOPSHEADLINE_TITLE,
+                    'lang_pubdate'     => \_MD_XOOPSHEADLINE_PUBDATE,
+                    //                                   'lang_description2' => _MD_XOOPSHEADLINE_DESCRIPTION2,
                     'lang_more'        => _MORE,
                 ]
             );
@@ -169,7 +169,7 @@ class HeadlineRenderer
     public function renderBlock(bool $force_update = false): bool
     {
         $retval = false;
-        if ($force_update || $this->hl->cacheExpired()) {
+        if ($force_update || $this->headline->cacheExpired()) {
             if (!$this->updateCache()) {
                 return $retval;
             }
@@ -180,23 +180,23 @@ class HeadlineRenderer
             $channel_data = $this->parser->getChannelData();
             \array_walk($channel_data, [$this, 'convertFromUtf8']);
             $this->tpl->assign_by_ref('channel', $channel_data);
-            if (1 == $this->hl->getVar('headline_blockimg')) {
+            if (1 == $this->headline->getVar('headline_blockimg')) {
                 $image_data = $this->parser->getImageData();
                 \array_walk($image_data, [$this, 'convertFromUtf8']);
                 $this->tpl->assign_by_ref('image', $image_data);
             }
             $items = $this->parser->getItems();
             $count = \count($items);
-            $max   = ($count > $this->hl->getVar('headline_blockmax')) ? $this->hl->getVar('headline_blockmax') : $count;
+            $max   = ($count > $this->headline->getVar('headline_blockmax')) ? $this->headline->getVar('headline_blockmax') : $count;
             for ($i = 0; $i < $max; ++$i) {
                 \array_walk($items[$i], [$this, 'convertFromUtf8']);
                 $this->tpl->append_by_ref('items', $items[$i]);
             }
             $this->tpl->assign(
                 [
-                    'site_name' => $this->hl->getVar('headline_name'),
-                    'site_url'  => $this->hl->getVar('headline_url'),
-                    'site_id'   => $this->hl->getVar('headline_id'),
+                    'site_name' => $this->headline->getVar('headline_name'),
+                    'site_url'  => $this->headline->getVar('headline_url'),
+                    'site_id'   => $this->headline->getVar('headline_id'),
                 ]
             );
 
@@ -212,9 +212,9 @@ class HeadlineRenderer
         $retval = true;
         if (!isset($this->parser)) {
             require_once XOOPS_ROOT_PATH . '/class/xml/rss/xmlrss2parser.php';
-            $temp         = $this->hl->getVar('headline_xml');
+            $temp         = $this->headline->getVar('headline_xml');
             $this->parser = new \XoopsXmlRss2Parser($temp);
-            switch ($this->hl->getVar('headline_encoding')) {
+            switch ($this->headline->getVar('headline_encoding')) {
                 case 'utf-8':
                     $this->parser->useUtfEncoding();
                     break;
@@ -252,10 +252,8 @@ class HeadlineRenderer
         return $this->block;
     }
 
-    /**
-     * @param $err
-     */
-    protected function _setErrors($err): void
+
+    protected function _setErrors(string $err): void
     {
         $this->errors[] = $err;
     }
@@ -298,7 +296,7 @@ class HeadlineRenderer
 
     public function &convertToUtf8(string &$xmlfile): string
     {
-        if ('iso-8859-1' === \mb_strtolower($this->hl->getVar('headline_encoding'))) {
+        if ('iso-8859-1' === \mb_strtolower($this->headline->getVar('headline_encoding'))) {
             $xmlfile = utf8_encode($xmlfile);
         }
 

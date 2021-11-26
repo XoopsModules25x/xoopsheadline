@@ -19,11 +19,11 @@ declare(strict_types=1);
 
 use XoopsModules\Xoopsheadline\{
     Helper,
-    XoopsheadlineUtility
+    Utility
 };
 
 /**
- * @param $options
+ * @param array $options
  * @return array
  */
 function b_xoopsheadline_show($options)
@@ -70,10 +70,10 @@ function b_xoopsheadline_show($options)
     }
     $headlines = $hlman->getObjects($criteria);
     foreach ($headlines as $i => $iValue) {
-        $renderer = XoopsheadlineUtility::getRenderer($headlines[$i]);
+        $renderer = Utility::getRenderer($headlines[$i]);
         if (!$renderer->renderBlock()) {
             if (2 == $xoopsConfig['debug_mode']) {
-                $block['feeds'][] = sprintf(_MD_XOOPSHEADLINES_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
+                $block['feeds'][] = sprintf(_MD_XOOPSHEADLINE_FAILGET, $iValue->getVar('headline_name')) . '<br>' . $renderer->getErrors();
             }
             continue;
         }

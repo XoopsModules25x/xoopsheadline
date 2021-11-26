@@ -15,9 +15,6 @@ namespace XoopsModules\Xoopsheadline;
  */
 
 use RuntimeException;
-use XoopsDatabaseFactory;
-
-
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)
@@ -59,12 +56,8 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * Get an Object Handler
-     *
-     * @param string $name name of handler to load
-     *
-     * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
      */
-    public function getHandler($name)
+    public function getHandler(string $name): ?\XoopsPersistableObjectHandler
     {
         $ret = false;
 
@@ -73,7 +66,7 @@ class Helper extends \Xmf\Module\Helper
             throw new RuntimeException("Class '$class' not found");
         }
         /** @var \XoopsMySQLDatabase $db */
-        $db     = XoopsDatabaseFactory::getDatabaseConnection();
+        $db     = \XoopsDatabaseFactory::getDatabaseConnection();
         $helper = self::getInstance();
         $ret    = new $class($db, $helper);
         $this->addLog("Getting handler '{$name}'");
