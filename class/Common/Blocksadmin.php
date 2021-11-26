@@ -37,7 +37,7 @@ class Blocksadmin
     /**
      * @param $modHelper
      */
-    public function __construct(?\XoopsMySQLDatabase $db, $modHelper)
+    public function __construct(?\XoopsDatabase $db, $modHelper)
     {
         if (null === $db){
             $db = \XoopsDatabaseFactory::getDatabaseConnection();
@@ -129,7 +129,7 @@ class Blocksadmin
             $result            = $this->db->query($sql);
             $modules           = [];
             if (!$result instanceof \mysqli_result) {
-                \trigger_error("Query Failed! SQL: $sql Error: " . $this->db->error(), E_USER_ERROR);
+                \trigger_error("Query Failed! SQL: $sql Error: " . $this->db->error(), \E_USER_ERROR);
             }
             while (false !== ($row = $this->db->fetchArray($result))) {
                 $modules[] = (int)$row['module_id'];
@@ -392,7 +392,7 @@ class Blocksadmin
         //$clone->setVar('content', $_POST['bcontent']);
         $clone->setVar('title', Request::getString('btitle', '', 'POST'));
         $clone->setVar('bcachetime', $bcachetime);
-        if (is_array($options) && (\count($options) > 0)) {
+        if (\is_array($options) && (\count($options) > 0)) {
             $options = \implode('|', $options);
             $clone->setVar('options', $options);
         }
@@ -650,7 +650,7 @@ class Blocksadmin
         \ksort($moduleList);
         $modSelect->addOptionArray($moduleList);
         $form->addElement($modSelect);
-        $form->addElement(new \XoopsFormText(_AM_SYSTEM_BLOCKS_TITLE, 'btitle', 50, 255, $block['title']), false);
+        $form->addElement(new \XoopsFormText(\_AM_SYSTEM_BLOCKS_TITLE, 'btitle', 50, 255, $block['title']), false);
         if ($block['is_custom']) {
             $textarea = new \XoopsFormDhtmlTextArea(\_AM_SYSTEM_BLOCKS_CONTENT, 'bcontent', $block['content'], 15, 70);
             $textarea->setDescription('<span style="font-size:x-small;font-weight:bold;">' . \_AM_SYSTEM_BLOCKS_USEFULTAGS . '</span><br><span style="font-size:x-small;font-weight:normal;">' . \sprintf(_AM_BLOCKTAG1, '{X_SITEURL}', XOOPS_URL . '/') . '</span>');

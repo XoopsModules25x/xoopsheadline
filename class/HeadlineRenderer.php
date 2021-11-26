@@ -44,11 +44,10 @@ class HeadlineRenderer
 
     /**
      * HeadlineRenderer constructor.
-     * @param $headline
      */
-    public function __construct(Headline &$headline)
+    public function __construct(Headline $headline)
     {
-        $this->headline  = &$headline;
+        $this->headline  = $headline;
         $this->tpl = new \XoopsTpl();
     }
 

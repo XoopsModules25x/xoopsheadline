@@ -19,7 +19,6 @@ class Utility extends Common\SysUtility
      *
      * Function to create appropriate Renderer
      * (based on locale)
-     * @param $headline
      * @return HeadlineRenderer
      */
     public static function getRenderer(Headline $headline)
