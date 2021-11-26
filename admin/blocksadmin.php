@@ -287,9 +287,6 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         <br><br>";
     }
 
-    /**
-     * @param int $bid
-     */
     function cloneBlock(int $bid)
     {
 
@@ -340,12 +337,6 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
     }
 
     /**
-     * @param int               $bid
-     * @param string            $bside
-     * @param int               $bweight
-     * @param bool              $bvisible
-     * @param int               $bcachetime
-     * @param array             $bmodule
      * @param null|array|string $options
      */
     function isBlockCloned(int $bid, string $bside, int $bweight, bool $bvisible, int $bcachetime, array $bmodule, $options = null)
@@ -409,16 +400,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         redirect_header('blocksadmin.php?op=listar', 1, _AM_SYSTEM_BLOCKS_DBUPDATED);
     }
 
-    /**
-     * @param int      $bid
-     * @param string   $title
-     * @param int      $weight
-     * @param bool     $visible
-     * @param string   $side
-     * @param int      $bcachetime
-     * @param int|null $bmodule
-     */
-    function setOrder(int $bid, string $title, int $weight, bool $visible, string $side, int $bcachetime, int $bmodule = null): bool
+    function setOrder(int $bid, string $title, int $weight, bool $visible, string $side, int $bcachetime, ?int $bmodule = null): bool
     {
         $myblock = new \XoopsBlock($bid);
         $myblock->setVar('title', $title);
@@ -432,9 +414,6 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         return $blockHandler->insert($myblock);
     }
 
-    /**
-     * @param int $bid
-     */
     function editBlock(int $bid)
     {
         xoops_cp_header();
@@ -483,15 +462,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
     }
 
     /**
-     * @param int               $bid
-     * @param string            $btitle
-     * @param string            $bside
-     * @param int               $bweight
-     * @param bool              $bvisible
-     * @param int               $bcachetime
-     * @param array             $bmodule
      * @param null|array|string $options
-     * @param array|null        $groups
      */
     function updateBlock(int $bid, string $btitle, string $bside, int $bweight, bool $bvisible, int $bcachetime, array $bmodule, $options, ?array $groups)
     {

@@ -92,9 +92,6 @@ class HeadlineRenderer
         return $retval;
     }
 
-    /**
-     * @param bool $force_update
-     */
     public function renderFeed(bool $force_update = false): bool
     {
         $retval = false;
@@ -166,9 +163,6 @@ class HeadlineRenderer
         return $retval;
     }
 
-    /**
-     * @param bool $force_update
-     */
     public function renderBlock(bool $force_update = false): bool
     {
         $retval = false;
@@ -264,7 +258,6 @@ class HeadlineRenderer
     }
 
     /**
-     * @param bool $ashtml
      * @return array|string
      */
     public function &getErrors(bool $ashtml = true)
@@ -300,10 +293,7 @@ class HeadlineRenderer
     // overide this method in /language/your_language/headlinerenderer.php
     // return string
 
-    /**
-     * @param $xmlfile
-     */
-    public function &convertToUtf8(&$xmlfile): string
+    public function &convertToUtf8(string &$xmlfile): string
     {
         if ('iso-8859-1' === \mb_strtolower($this->hl->getVar('headline_encoding'))) {
             $xmlfile = utf8_encode($xmlfile);

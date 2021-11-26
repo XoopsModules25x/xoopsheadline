@@ -35,17 +35,9 @@ use XoopsModules\Xoopsheadline\Helper;
  */
 class SysUtility
 {
-    use VersionChecks;
-
-    //checkVerXoops, checkVerPhp Traits
-
-    use ServerStats;
-
-    // getServerStats Trait
-
-    use FilesManagement;
-
-    // Files Management Trait
+    use VersionChecks;    //checkVerXoops, checkVerPhp Traits
+    use ServerStats;    // getServerStats Trait
+    use FilesManagement;    // Files Management Trait
 
     /**
      * truncateHtml can truncate a string up to a number of characters while preserving whole words and HTML tags
@@ -190,12 +182,7 @@ class SysUtility
         return $descEditor;
     }
 
-    /**
-     * @param $fieldname
-     * @param $table
-     *
-     */
-    public static function fieldExists($fieldname, $table): bool
+    public static function fieldExists(string $fieldname, string $table): bool
     {
         global $xoopsDB;
         $result = $xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");
@@ -205,8 +192,6 @@ class SysUtility
 
     /**
      * @param array|string $tableName
-     * @param int          $id_field
-     * @param int          $id
      *
      * @return mixed
      */
@@ -237,10 +222,6 @@ class SysUtility
         return $new_id;
     }
 
-    /**
-     * @param string $tablename
-     *
-     */
     public static function tableExists(string $tablename): bool
     {
         $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
