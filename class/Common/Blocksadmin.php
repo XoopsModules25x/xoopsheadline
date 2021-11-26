@@ -18,6 +18,9 @@ namespace XoopsModules\Xoopsheadline\Common;
  */
 
 use Xmf\Request;
+use XoopsModules\Xoopsheadline\{
+    Helper
+};
 
 //require __DIR__ . '/admin_header.php';
 
@@ -30,20 +33,20 @@ class Blocksadmin
      * @var \XoopsMySQLDatabase|null
      */
     public $db;
-    public $modHelper;
+    public $helper;
     public $moduleDirName;
     public $moduleDirNameUpper;
 
     /**
-     * @param $modHelper
+     * Blocksadmin constructor.
      */
-    public function __construct(?\XoopsDatabase $db, $modHelper)
+    public function __construct(?\XoopsDatabase $db, Helper $helper)
     {
         if (null === $db){
             $db = \XoopsDatabaseFactory::getDatabaseConnection();
         }
         $this->db                 = $db;
-        $this->modHelper          = $modHelper;
+        $this->helper          = $helper;
         $this->moduleDirName      = \basename(\dirname(__DIR__, 2));
         $this->moduleDirNameUpper = \mb_strtoupper($this->moduleDirName);
         \xoops_loadLanguage('admin', 'system');
@@ -310,7 +313,7 @@ class Blocksadmin
         $sql = \sprintf('DELETE FROM %s WHERE block_id = %u', $this->db->prefix('block_module_link'), $bid);
         $this->db->queryF($sql) or \trigger_error($GLOBALS['xoopsDB']->error());
 
-        $this->modHelper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
+        $this->helper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
     }
 
     /**
@@ -430,7 +433,7 @@ class Blocksadmin
             $sql = 'INSERT INTO ' . $this->db->prefix('group_permission') . ' (gperm_groupid, gperm_itemid, gperm_modid, gperm_name) VALUES (' . $iValue . ', ' . $newid . ", 1, 'block_read')";
             $this->db->query($sql);
         }
-        $this->modHelper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
+        $this->helper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
     }
 
     /**
@@ -559,7 +562,7 @@ class Blocksadmin
                 $this->db->query($sql);
             }
         }
-        $this->modHelper->redirect('admin/blocksadmin.php', 1, \constant('CO_' . $this->moduleDirNameUpper . '_' . 'UPDATE_SUCCESS'));
+        $this->helper->redirect('admin/blocksadmin.php', 1, \constant('CO_' . $this->moduleDirNameUpper . '_' . 'UPDATE_SUCCESS'));
     }
 
     /**
@@ -613,7 +616,7 @@ class Blocksadmin
             }
         }
 
-        $this->modHelper->redirect('admin/blocksadmin.php', 1, \constant('CO_' . $this->moduleDirNameUpper . '_' . 'UPDATE_SUCCESS'));
+        $this->helper->redirect('admin/blocksadmin.php', 1, \constant('CO_' . $this->moduleDirNameUpper . '_' . 'UPDATE_SUCCESS'));
     }
 
     public function render(?array $block = null)
