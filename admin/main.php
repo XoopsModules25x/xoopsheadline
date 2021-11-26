@@ -414,7 +414,7 @@ switch ($op) {
         require_once __DIR__ . '/admin_footer.php';
         exit();
     case 'editgo':
-        $headline_id = $headline_id;
+//        $headline_id = $headline_id;
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -496,7 +496,7 @@ switch ($op) {
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'deletego':
-        $headline_id = $headline_id;
+//        $headline_id = $headline_id;
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
