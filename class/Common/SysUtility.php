@@ -89,9 +89,10 @@ class SysUtility
         if (!empty($cats)) {
             $catSql = '(' . \current($cats);
             \array_shift($cats);
-            foreach ($cats as $cat) {
-                $catSql .= ',' . $cat;
-            }
+//            foreach ($cats as $cat) {
+//                $catSql .= ',' . $cat;
+//            }
+            $catSql .= implode(',', $cats);
             $catSql .= ')';
         }
 
