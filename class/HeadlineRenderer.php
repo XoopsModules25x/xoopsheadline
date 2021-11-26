@@ -85,10 +85,10 @@ class HeadlineRenderer
                 } else {
                     \curl_close($ch);
                     $errmsg = \sprintf(\_MD_XOOPSHEADLINE_NOTOPEN, $this->headline->getVar('headline_rssurl'));
-                    $this->_setErrors($errmsg);
+                    $this->setErrors($errmsg);
                 }
             } else {
-                $this->_setErrors(\_MD_XOOPSHEADLINE_BADOPT);
+                $this->setErrors(\_MD_XOOPSHEADLINE_BADOPT);
             }
         }
 
@@ -227,7 +227,7 @@ class HeadlineRenderer
             }
             $result = $this->parser->parse();
             if (!$result) {
-                $this->_setErrors($this->parser->getErrors(false));
+                $this->setErrors($this->parser->getErrors(false));
                 unset($this->parser);
                 $retval = false;
             }
@@ -253,7 +253,7 @@ class HeadlineRenderer
     }
 
 
-    protected function _setErrors(string $err): void
+    protected function setErrors(string $err): void
     {
         $this->errors[] = $err;
     }
