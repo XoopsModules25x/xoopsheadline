@@ -12,7 +12,6 @@ namespace XoopsModules\Xoopsheadline\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-use \XoopsModules\Xoopsheadline\Common;
 
 /**
  * Class Migrate synchronize existing tables with target schema
@@ -29,11 +28,9 @@ class Migrate extends \Xmf\Database\Migrate
 
     /**
      * Migrate constructor.
-     * @param Common\Configurator $configurator
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
+     * @param Configurator|null $configurator
      */
-    public function __construct(Common\Configurator $configurator = null)
+    public function __construct(Configurator $configurator = null)
     {
         if (null !== $configurator) {
             $this->renameTables = $configurator->renameTables;

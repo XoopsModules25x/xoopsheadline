@@ -29,7 +29,7 @@ class XoopsheadlineUtility
      * Function to create appropriate Renderer
      * (based on locale)
      * @param $headline
-     * @return HeadlineRenderer|\HeadlineRendererLocal
+     * @return HeadlineRenderer
      */
     public static function getRenderer($headline)
     {

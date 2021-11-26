@@ -245,11 +245,17 @@ class HeadlineRenderer
         return $retval;
     }
 
+    /**
+     * @return mixed
+     */
     public function &getFeed()
     {
         return $this->feed;
     }
 
+    /**
+     * @return mixed
+     */
     public function &getBlock()
     {
         return $this->block;
