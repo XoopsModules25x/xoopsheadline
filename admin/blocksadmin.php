@@ -74,6 +74,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
 
     if (\in_array($op, ['edit', 'edit_ok', 'delete', 'delete_ok', 'clone', 'clone_ok'])) {
         $bid = Request::getInt('bid', 0);
+        $ok = Request::getInt('ok', 0);
 
         if ('clone' === $op) {
             $blocksadmin->cloneBlock($bid);
