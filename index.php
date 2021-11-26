@@ -59,7 +59,7 @@ global $xoopsModule;
 $pathIcon16    = Admin::iconUrl('', '16');
 $moduleDirName = $xoopsModule->getVar('dirname');
 
-$userIsAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) ? true : false;
+$userIsAdmin = (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid')));
 $count       = count($headlines);
 for ($i = 0; $i < $count; ++$i) {
     $thisId  = $headlines[$i]->getVar('headline_id');
