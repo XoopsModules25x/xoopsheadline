@@ -78,8 +78,6 @@ class Blocksadmin
         \ksort($moduleList);
         echo "
         <h4 style='text-align:left;'>" . \constant('CO_' . $this->moduleDirNameUpper . '_' . 'BADMIN') . '</h4>';
-        /** @var \XoopsModuleHandler $moduleHandler */
-        $moduleHandler = \xoops_getHandler('module');
         echo "<form action='" . $_SERVER['SCRIPT_NAME'] . "' name='blockadmin' method='post'>";
         echo $GLOBALS['xoopsSecurity']->getTokenHTML();
         echo "<table width='100%' class='outer' cellpadding='4' cellspacing='1'>
@@ -130,6 +128,9 @@ class Blocksadmin
             $sql               = 'SELECT module_id FROM ' . $this->db->prefix('block_module_link') . ' WHERE block_id=' . $i->getVar('bid');
             $result            = $this->db->query($sql);
             $modules           = [];
+            if (!$result instanceof \mysqli_result) {
+                \trigger_error("Query Failed! SQL: $sql Error: " . $this->db->error(), E_USER_ERROR);
+            }
             while (false !== ($row = $this->db->fetchArray($result))) {
                 $modules[] = (int)$row['module_id'];
             }
@@ -304,11 +305,10 @@ class Blocksadmin
         $myblock = new \XoopsBlock($bid);
 
         $sql = \sprintf('DELETE FROM %s WHERE bid = %u', $this->db->prefix('newblocks'), $bid);
-        if (!$result = $this->db->queryF($sql)) {
-            return false;
-        }
+        $this->db->queryF($sql) or \trigger_error($GLOBALS['xoopsDB']->error());
+
         $sql = \sprintf('DELETE FROM %s WHERE block_id = %u', $this->db->prefix('block_module_link'), $bid);
-        $this->db->queryF($sql);
+        $this->db->queryF($sql) or \trigger_error($GLOBALS['xoopsDB']->error());
 
         $this->modHelper->redirect('admin/blocksadmin.php?op=list', 1, _AM_DBUPDATED);
     }
@@ -392,7 +392,7 @@ class Blocksadmin
         //$clone->setVar('content', $_POST['bcontent']);
         $clone->setVar('title', Request::getString('btitle', '', 'POST'));
         $clone->setVar('bcachetime', $bcachetime);
-        if (isset($options) && (\count($options) > 0)) {
+        if (is_array($options) && (\count($options) > 0)) {
             $options = \implode('|', $options);
             $clone->setVar('options', $options);
         }
@@ -440,8 +440,9 @@ class Blocksadmin
      * @param bool   $visible
      * @param string $side
      * @param int    $bcachetime
+     * @param null|int $bmodule
      */
-    public function setOrder($bid, $title, $weight, $visible, $side, $bcachetime, $bmodule): void
+    public function setOrder($bid, $title, $weight, $visible, $side, $bcachetime, $bmodule = null)
     {
         $myblock = new \XoopsBlock($bid);
         $myblock->setVar('title', $title);
@@ -450,9 +451,9 @@ class Blocksadmin
         $myblock->setVar('side', $side);
         $myblock->setVar('bcachetime', $bcachetime);
         $myblock->store();
-        //        /** @var \XoopsBlockHandler $blockHandler */
-        //        $blockHandler = \xoops_getHandler('block');
-        //        return $blockHandler->insert($myblock);
+//        /** @var \XoopsBlockHandler $blockHandler */
+//        $blockHandler = \xoops_getHandler('block');
+//        return $blockHandler->insert($myblock);
     }
 
     /**

@@ -60,7 +60,6 @@ class SysUtility
     {
         global $start, $order, $sort;
 
-        $selectView   = '';
         $helper        = Helper::getInstance();
 
         //$pathModIcon16 = XOOPS_URL . '/modules/' . $moduleDirName . '/' . $helper->getConfig('modicons16');
@@ -156,8 +155,8 @@ class SysUtility
      */
     public static function cloneRecord(string $tableName, string $idField, int $id): ?int
     {
-        $newId = null;
-        $tempTable = '';
+//        $newId = null;
+//        $tempTable = '';
         $table = $GLOBALS['xoopsDB']->prefix($tableName);
         // copy content of the record you wish to clone
         $sql       = "SELECT * FROM $table WHERE $idField='" . $id . "' ";
@@ -171,15 +170,15 @@ class SysUtility
             return null;
         }
 
-        $result = $GLOBALS['xoopsDB']->query($sql);
-        if ($result instanceof \mysqli_result) {
-            $result_array = $GLOBALS['xoopsDB']->fetchArray($result);
-        } else {
-            trigger_error("Query Failed! SQL: $sql- Error: " . $GLOBALS['xoopsDB']->error(), E_USER_ERROR);
-            $logger = \XoopsLogger::getInstance();
-            $logger->handleError(\E_USER_WARNING, $sql, __FILE__, __LINE__);
-            return null;
-        }
+//        $result = $GLOBALS['xoopsDB']->query($sql);
+//        if ($result instanceof \mysqli_result) {
+//            $result_array = $GLOBALS['xoopsDB']->fetchArray($result);
+//        } else {
+//            trigger_error("Query Failed! SQL: $sql- Error: " . $GLOBALS['xoopsDB']->error(), E_USER_ERROR);
+//            $logger = \XoopsLogger::getInstance();
+//            $logger->handleError(\E_USER_WARNING, $sql, __FILE__, __LINE__);
+//            return null;
+//        }
 
 
         if (!$tempTable) {
@@ -187,6 +186,7 @@ class SysUtility
         }
         // set the auto-incremented id's value to blank.
         unset($tempTable[$idField]);
+
         // insert cloned copy of the original  record
         $sql    = "INSERT INTO $table (" . \implode(', ', \array_keys($tempTable)) . ") VALUES ('" . \implode("', '", $tempTable) . "')";
         $result = $GLOBALS['xoopsDB']->queryF($sql);

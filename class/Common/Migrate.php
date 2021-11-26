@@ -74,7 +74,7 @@ class Migrate extends \Xmf\Database\Migrate
             if ($tableExists) {
                 $oldName      = $table['from'];
                 $newName      = $table['to'];
-                $tableDetails = $tables->dumpTables();
+//                $tableDetails = $tables->dumpTables();
 
                 $attributes = $tables->getColumnAttributes($tableName, $oldName);
                 //                if (false !== \strpos($attributes, ' int(')) {
