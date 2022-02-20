@@ -24,9 +24,9 @@ $moduleDirName      = basename(__DIR__);
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 $modversion = [
-    'version'             => 1.12,
-    'module_status'       => 'Beta 1',
-    'release_date'        => '2017/07/20',
+    'version'             => '1.12.0',
+    'module_status'       => 'Beta 2',
+    'release_date'        => '2022/02/20',
     'name'                => _MI_HEADLINES_NAME,
     'description'         => _MI_HEADLINES_DESC,
     'official'            => 1,    // maintained by XOOPS Module Development Team
