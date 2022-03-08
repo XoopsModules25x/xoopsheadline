@@ -1,3 +1,8 @@
+<h5>1.12.0 RC 2  [2021-11-26]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.26, PHP 8.0.13, PHP 8.1.0
+<hr>
+- index.html in /preloads (mamba)
+
+
 <h5>1.12.0 RC 1  [2021-11-26]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.26, PHP 8.0.13, PHP 8.1.0
 <hr>
 - refactor Blocksadmin to a class (mamba)
@@ -7,7 +12,6 @@
 - moved getRenderer() to Utility class (mamba)
 - PhpStan changes (mamba)
 - fixes for block updates (mamba)
-- use of local Helper in /testdata/index.php (mamba)
 
 
 <h5>1.12.0 Beta 2  [2021-11-26]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.26, PHP 8.0.13, PHP 8.1.0
@@ -28,7 +32,6 @@
 - blocksadmin (mamba)
 - changed XOOPS sample from /news to /publisher (mamba)
 - Fix unsing headline_block.tpl from a theme (walkero-gr)
-
 
 1.11 Final        2016-08-01
 =================================

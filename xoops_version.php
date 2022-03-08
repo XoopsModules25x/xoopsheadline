@@ -23,8 +23,8 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $modversion = [
     'version'             => '1.12.0',
-    'module_status'       => 'RC 1',
-    'release_date'        => '2021/11/26',
+    'module_status'       => 'RC 2',
+    'release_date'        => ''2022/02/20',
     'name'                => _MI_XOOPSHEADLINE_NAME,
     'description'         => _MI_XOOPSHEADLINE_DESC,
     'official'            => 1,    // maintained by XOOPS Module Development Team
