@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -14,7 +12,7 @@ declare(strict_types=1);
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @author      XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
@@ -24,8 +22,8 @@ use XoopsModules\Xoopsheadline\{
     Helper,
     Utility
 };
-/** @var Helper $helper */
 
+/** @var Helper $helper */
 require_once \dirname(__DIR__, 2) . '/mainfile.php';
 
 $helper = Helper::getInstance();
@@ -83,7 +81,7 @@ if ($hlid > 0) {
         if ($renderer->renderFeed()) {
             $xoopsTpl->assign('headline', $renderer->getFeed());
         } elseif (2 == $xoopsConfig['debug_mode']) {
-                $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_XOOPSHEADLINE_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
+            $xoopsTpl->assign('headline', '<p>' . sprintf(_MD_XOOPSHEADLINE_FAILGET, $headline->getVar('headline_name')) . '<br>' . $renderer->getErrors() . '</p>');
         }
     }
 }

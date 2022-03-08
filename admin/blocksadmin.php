@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /**
  * You may not change or alter any portion of this comment or credits
@@ -12,7 +10,7 @@ declare(strict_types=1);
  * @author          XOOPS Development Team
  * @copyright       XOOPS Project
  * @link            https://xoops.org
- * @license         GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @license         GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  */
 
 use Xmf\Module\Admin;
@@ -24,7 +22,6 @@ use XoopsModules\Xoopsheadline\{
 
 /** @var Admin $adminObject */
 /** @var Helper $helper */
-
 require __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
@@ -72,9 +69,9 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         exit();
     }
 
-    if (\in_array($op, ['edit', 'edit_ok', 'delete', 'delete_ok', 'clone', 'clone_ok'])) {
+    if (\in_array($op, ['edit', 'edit_ok', 'delete', 'delete_ok', 'clone', 'clone_ok'], true)) {
         $bid = Request::getInt('bid', 0);
-        $ok = Request::getInt('ok', 0);
+        $ok  = Request::getInt('ok', 0);
 
         if ('clone' === $op) {
             $blocksadmin->cloneBlock($bid);
@@ -114,7 +111,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         $weight     = Request::getArray('weight', [], 'POST');
         $visible    = Request::getArray('visible', [], 'POST');
         $bcachetime = Request::getArray('bcachetime', [], 'POST');
-        $bmodule    = Request::getArray('bmodule', [], 'POST');//mb
+        $bmodule    = Request::getArray('bmodule', [], 'POST'); //mb
 
         $oldtitle      = Request::getArray('oldtitle', [], 'POST');
         $oldside       = Request::getArray('oldside', [], 'POST');
@@ -122,7 +119,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
         $oldvisible    = Request::getArray('oldvisible', [], 'POST');
         $oldgroups     = Request::getArray('oldgroups', [], 'POST');
         $oldbcachetime = Request::getArray('oldcachetime', [], 'POST');
-        $oldbmodule    = Request::getArray('oldbmodule', [], 'POST');//mb
+        $oldbmodule    = Request::getArray('oldbmodule', [], 'POST'); //mb
 
         $blocksadmin->orderBlock(
             $bid,
@@ -132,7 +129,7 @@ if ($GLOBALS['xoopsUser']->isAdmin($xoopsModule->mid())) {
             $oldvisible,
             $oldgroups,
             $oldbcachetime,
-            $oldbmodule ,
+            $oldbmodule,
             $title,
             $weight,
             $visible,

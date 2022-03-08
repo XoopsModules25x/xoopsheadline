@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 //
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
@@ -27,12 +25,12 @@ declare(strict_types=1);
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, https://xoops.org/, http://jp.xoops.org/ //
+// URL: https://www.myweb.ne.jp/, https://xoops.org/, https://jp.xoops.org/ //
 // Project: XOOPS Project                                                    //
 // ------------------------------------------------------------------------- //
 
-use Xmf\Request;
 use Xmf\Module\Admin;
+use Xmf\Request;
 use XoopsModules\Xoopsheadline\{
     Common\Configurator,
     Common\Migrate,
@@ -42,25 +40,24 @@ use XoopsModules\Xoopsheadline\{
 /** @var Admin $adminObject */
 /** @var Configurator $configurator */
 /** @var Migrate $migrator */
-
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 $adminObject->displayNavigation(basename(__FILE__));
 
 echo <<<EOF
-<form method="post" class="form-inline">
-<div class="form-group">
-<input name="show" class="btn btn-default" type="submit" value="Show SQL">
-</div>
-<div class="form-group">
-<input name="migrate" class="btn btn-default" type="submit" value="Do Migration">
-</div>
-<div class="form-group">
-<input name="schema" class="btn btn-default" type="submit" value="Write Schema">
-</div>
-</form>
-EOF;
+    <form method="post" class="form-inline">
+    <div class="form-group">
+    <input name="show" class="btn btn-default" type="submit" value="Show SQL">
+    </div>
+    <div class="form-group">
+    <input name="migrate" class="btn btn-default" type="submit" value="Do Migration">
+    </div>
+    <div class="form-group">
+    <input name="schema" class="btn btn-default" type="submit" value="Write Schema">
+    </div>
+    </form>
+    EOF;
 
 //XoopsLoad::load('migrate', 'newbb');
 
@@ -68,13 +65,13 @@ $configurator = new Configurator();
 
 $migrator = new Migrate();
 
-$op = Request::getCmd('op', 'show');
-$opShow = Request::getCmd('show', null, 'POST');
+$op        = Request::getCmd('op', 'show');
+$opShow    = Request::getCmd('show', null, 'POST');
 $opMigrate = Request::getCmd('migrate', null, 'POST');
-$opSchema = Request::getCmd('schema', null, 'POST');
-$op = !empty($opShow) ? 'show' : $op;
-$op = !empty($opMigrate) ? 'migrate' : $op;
-$op = !empty($opSchema) ? 'schema' : $op;
+$opSchema  = Request::getCmd('schema', null, 'POST');
+$op        = !empty($opShow) ? 'show' : $op;
+$op        = !empty($opMigrate) ? 'migrate' : $op;
+$op        = !empty($opSchema) ? 'schema' : $op;
 
 $message = '';
 

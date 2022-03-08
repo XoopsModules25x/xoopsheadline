@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /**
  * XoopsHeadline module
@@ -15,7 +13,6 @@ declare(strict_types=1);
  *
  * @copyright ::  The XOOPS Project (https://xoops.org)
  * @license   ::    GNU GPL (https://www.gnu.org/licenses/gpl-2.0.html/)
- * @package   ::    xoopsheadline
  * @subpackage:: admin
  * @since     ::      1.10
  * @author    ::     Mage, Mamba
@@ -24,7 +21,6 @@ declare(strict_types=1);
 use Xmf\Module\Admin;
 
 /** @var Admin $adminObject */
-
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 

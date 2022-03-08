@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -13,8 +11,8 @@ declare(strict_types=1);
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @author      XOOPS Development Team
+ * @license      GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @author       XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
@@ -22,17 +20,16 @@ use XoopsModules\Xoopsheadline\{
     Helper,
     Utility
 };
+
 /** @var \XoopsDatabase $db */
 /** @var Helper $helper */
 /** @var Utility $utility */
-
-
 require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 
 $moduleDirName      = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-$db = \XoopsDatabaseFactory::getDatabaseConnection();
+$db      = \XoopsDatabaseFactory::getDatabaseConnection();
 $helper  = Helper::getInstance();
 $utility = new Utility();
 //$configurator = new Xoopsheadline\Common\Configurator();
@@ -86,7 +83,7 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)
     $GLOBALS['xoopsTpl'] = new \XoopsTpl();
 }
 
-$GLOBALS['xoopsTpl']->assign('mod_url', XOOPS_URL . '/modules/' . $moduleDirName);
+$GLOBALS['xoopsTpl']->assign('mod_url', $helper->url());
 // Local icons path
 if (is_object($helper->getModule())) {
     $pathModIcon16 = $helper->getModule()->getInfo('modicons16');

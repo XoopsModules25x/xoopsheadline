@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -14,7 +12,7 @@ declare(strict_types=1);
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @author      XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 use XoopsModules\Xoopsheadline\{
@@ -46,8 +44,8 @@ function b_xoopsheadline_show(array $options)
     $configHandler = xoops_getHandler('config');
     $moduleConfig  = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
 
-    $headlineHandler    = $helper->getHandler('Headline');
-    $criteria = new \CriteriaCompo();
+    $headlineHandler = $helper->getHandler('Headline');
+    $criteria        = new \CriteriaCompo();
     $criteria->add(new \Criteria('headline_asblock', 1, '='));
     switch ($moduleConfig['sortby']) {
         case 1:
@@ -69,8 +67,8 @@ function b_xoopsheadline_show(array $options)
             break;
     }
     if (null !== $headlineHandler) {
-    $headlines = $headlineHandler->getObjects($criteria);
-          foreach ($headlines as $i => $iValue) {
+        $headlines = $headlineHandler->getObjects($criteria);
+        foreach ($headlines as $i => $iValue) {
             $renderer = Utility::getRenderer($iValue);
             if (!$renderer->renderBlock()) {
                 if (2 == $xoopsConfig['debug_mode']) {
@@ -81,5 +79,6 @@ function b_xoopsheadline_show(array $options)
             $block['feeds'][] = &$renderer->getBlock();
         }
     }
+
     return $block;
 }

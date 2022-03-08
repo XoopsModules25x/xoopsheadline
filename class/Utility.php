@@ -1,10 +1,7 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Xoopsheadline;
 
-use XoopsModules\Xoopsheadline\Common;
 //use XoopsModules\Xoopsheadline\Constants;
 
 /**
@@ -13,7 +10,6 @@ use XoopsModules\Xoopsheadline\Common;
 class Utility extends Common\SysUtility
 {
     //--------------- Custom module methods -----------------------------
-
     /**
      * Utility
      *

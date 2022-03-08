@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -14,7 +12,7 @@ declare(strict_types=1);
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @author      XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
@@ -24,16 +22,16 @@ use XoopsModules\Xoopsheadline\{
     Helper,
     Utility
 };
+
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 /** @var Headline $headline */
-
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 $op = 'list';
 
-if (Request::hasVar('op', 'GET') && in_array($_GET['op'], ['delete', 'edit', 'flush'])) {
+if (Request::hasVar('op', 'GET') && in_array($_GET['op'], ['delete', 'edit', 'flush'], true)) {
     $op          = $_GET['op'];
     $headline_id = Request::getInt('headline_id', 0, 'GET');
 }
@@ -52,8 +50,8 @@ if (!empty($_POST)) {
 switch ($op) {
     case 'list':
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $headlineHandler    = $helper->getHandler('Headline');
-        $criteria = new \CriteriaCompo();
+        $headlineHandler = $helper->getHandler('Headline');
+        $criteria        = new \CriteriaCompo();
         $criteria->setSort('headline_weight');
         $criteria->setOrder('ASC');
         $headlines = $headlineHandler->getObjects($criteria);
@@ -180,8 +178,8 @@ switch ($op) {
              . "</h4>\n";
         $form = new \XoopsThemeForm(_AM_XOOPSHEADLINE_ADDHEADL, 'xoopsheadline_form_new', 'main.php', 'post', true);
         $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINE_SITENAME, 'headline_name', 50, 255), true);
-        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINE_URL, 'headline_url', 50, 255, 'http://'), true);
-        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINE_URLEDFXML, 'headline_rssurl', 50, 255, 'http://'), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINE_URL, 'headline_url', 50, 255, 'https://'), true);
+        $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINE_URLEDFXML, 'headline_rssurl', 50, 255, 'https://'), true);
         $form->addElement(new \XoopsFormText(_AM_XOOPSHEADLINE_ORDER, 'headline_weight', 4, 3, 0));
 
         $enc_sel = new \XoopsFormSelect(_AM_XOOPSHEADLINE_ENCODING, 'headline_encoding', 'utf-8');
@@ -247,8 +245,8 @@ switch ($op) {
         break;
     case 'update':
         $headlineHandler = $helper->getHandler('Headline');
-        $i     = 0;
-        $msg   = '';
+        $i               = 0;
+        $msg             = '';
         foreach ($headline_id as $id) {
             $headline = $headlineHandler->get($id);
             if (!is_object($headline)) {
@@ -268,11 +266,11 @@ switch ($op) {
             if (!$headlineHandler->insert($headline)) {
                 $msg .= '<br>' . sprintf(_AM_XOOPSHEADLINE_FAILUPDATE, $headline->getVar('headline_name'));
             } elseif ('' === $headline->getVar('headline_xml')) {
-                    $renderer = Utility::getRenderer($headline);
-                    if (!$renderer->updateCache()) {
-                        xoops_error($headline->getErrors());
-                        require_once __DIR__ . '/admin_footer.php';
-                    }
+                $renderer = Utility::getRenderer($headline);
+                if (!$renderer->updateCache()) {
+                    xoops_error($headline->getErrors());
+                    require_once __DIR__ . '/admin_footer.php';
+                }
             }
             $i++;
         }
@@ -288,7 +286,7 @@ switch ($op) {
     case 'addgo':
         if ($GLOBALS['xoopsSecurity']->check()) {
             $headlineHandler = $helper->getHandler('Headline');
-            $headline    = $headlineHandler->create();
+            $headline        = $headlineHandler->create();
             $headline->setVar('headline_name', $headline_name);
             $headline->setVar('headline_url', $headline_url);
             $headline->setVar('headline_rssurl', $headline_rssurl);
@@ -338,7 +336,7 @@ switch ($op) {
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
-        $headline    = $headlineHandler->get($headline_id);
+        $headline        = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
             echo '<h4>' . _AM_XOOPSHEADLINE_HEADLINES . '</h4>';
             xoops_error(_AM_XOOPSHEADLINE_OBJECTNG);
@@ -417,7 +415,7 @@ switch ($op) {
         require_once __DIR__ . '/admin_footer.php';
         exit();
     case 'editgo':
-//        $headline_id = $headline_id;
+        //        $headline_id = $headline_id;
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -427,7 +425,7 @@ switch ($op) {
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
-        $headline    = $headlineHandler->get($headline_id);
+        $headline        = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -481,7 +479,7 @@ switch ($op) {
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
-        $headline    = $headlineHandler->get($headline_id);
+        $headline        = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -499,7 +497,7 @@ switch ($op) {
         require_once __DIR__ . '/admin_footer.php';
         break;
     case 'deletego':
-//        $headline_id = $headline_id;
+        //        $headline_id = $headline_id;
         if ($headline_id <= 0) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -509,7 +507,7 @@ switch ($op) {
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
-        $headline    = $headlineHandler->get($headline_id);
+        $headline        = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
             $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -538,7 +536,7 @@ switch ($op) {
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
-        $headline    = $headlineHandler->get($headline_id);
+        $headline        = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
             echo '<h4>' . _AM_XOOPSHEADLINE_HEADLINES . '</h4>';
             xoops_error(_AM_XOOPSHEADLINE_OBJECTNG);
@@ -562,7 +560,7 @@ switch ($op) {
             exit();
         }
         $headlineHandler = $helper->getHandler('Headline');
-        $headline    = $headlineHandler->get($headline_id);
+        $headline        = $headlineHandler->get($headline_id);
         if (!is_object($headline)) {
             echo '<h4>' . _AM_XOOPSHEADLINE_HEADLINES . '</h4>';
             xoops_error(_AM_XOOPSHEADLINE_OBJECTNG);

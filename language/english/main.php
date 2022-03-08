@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 define('_MD_XOOPSHEADLINE_LASTBUILD', 'Updated');
 define('_MD_XOOPSHEADLINE_LANGUAGE', 'Language');

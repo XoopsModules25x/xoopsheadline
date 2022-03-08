@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 $moduleDirName      = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -41,4 +39,3 @@ $modversion['config'][] = [
     'valuetype'   => 'text',
     'default'     => 'uploads/' . $modversion['dirname'] . '/images',
 ];
-

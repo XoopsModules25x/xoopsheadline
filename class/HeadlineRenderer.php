@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Xoopsheadline;
 
@@ -18,11 +16,9 @@ namespace XoopsModules\Xoopsheadline;
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @author      XOOPS Development Team, Kazumi Ono (AKA onokazu)
+ * @license      GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
-
-
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 
 $helper = Helper::getInstance();
@@ -47,8 +43,8 @@ class HeadlineRenderer
      */
     public function __construct(Headline $headline)
     {
-        $this->headline  = $headline;
-        $this->tpl = new \XoopsTpl();
+        $this->headline = $headline;
+        $this->tpl      = new \XoopsTpl();
     }
 
     /**
@@ -61,7 +57,7 @@ class HeadlineRenderer
          * Update cache - first try using fopen and then cURL
          */
         $retval = false;
-        if ($fp = @\fopen($this->headline->getVar('headline_rssurl'), 'r')) {  // successfully openned file using fopen
+        if ($fp = @\fopen($this->headline->getVar('headline_rssurl'), 'rb')) {  // successfully openned file using fopen
             $data = '';
             while (!\feof($fp)) {
                 $data .= \fgets($fp, 4096);
@@ -254,7 +250,6 @@ class HeadlineRenderer
     {
         return $this->block;
     }
-
 
     protected function setErrors(string $err): void
     {

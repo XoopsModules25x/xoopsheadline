@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -14,7 +12,7 @@ declare(strict_types=1);
 /**
  * @copyright    {@link https://xoops.org/ XOOPS Project}
  * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
- * @author      XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
@@ -30,7 +28,7 @@ $modversion = [
     'name'                => _MI_XOOPSHEADLINE_NAME,
     'description'         => _MI_XOOPSHEADLINE_DESC,
     'official'            => 1,    // maintained by XOOPS Module Development Team
-    'author'              => 'Kazumi Ono ( https://xoops.org/ http://www.myweb.ne.jp/ )',
+    'author'              => 'Kazumi Ono ( https://xoops.org/ https://www.myweb.ne.jp/ )',
     'credits'             => 'The Xoops Module Development Team',
     'license'             => 'GNU GPL 2.0',
     'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
@@ -42,7 +40,7 @@ $modversion = [
     'author_website_name' => 'XOOPS',
     'module_website_url'  => 'https://xoops.org',
     'module_website_name' => 'XOOPS',
-    'min_php'             => '7.3',
+    'min_php'             => '7.4',
     'min_xoops'           => '2.5.10',
     'min_db'              => ['mysql' => '5.5'],
     'min_admin'           => '1.2',
@@ -98,8 +96,6 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 0,
 ];
-
-
 
 // Admin
 $modversion['hasAdmin']   = 1;

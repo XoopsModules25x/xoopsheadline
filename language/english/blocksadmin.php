@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -13,12 +11,10 @@ declare(strict_types=1);
 
 /**
  * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @package
+ * @license      GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @since
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
-
 define('_AM_TOPPAGE', 'Top Page');
 define('_AM_ALLPAGES', 'All Pages');
 define('_AM_TITLE', 'Title');

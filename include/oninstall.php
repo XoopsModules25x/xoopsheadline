@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -13,8 +11,8 @@ declare(strict_types=1);
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @author      XOOPS Development Team
+ * @license      GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @author       XOOPS Development Team
  */
 
 use XoopsModules\Xoopsheadline\{
@@ -22,6 +20,7 @@ use XoopsModules\Xoopsheadline\{
     Helper,
     Utility
 };
+
 /** @var Helper $helper */
 /** @var Utility $utility */
 /** @var Configurator $configurator */
@@ -63,8 +62,8 @@ function xoops_module_install_xoopsheadline(\XoopsModule $module): bool
     require_once \dirname(__DIR__, 3) . '/mainfile.php';
 
     $moduleDirName = \basename(\dirname(__DIR__));
-    $helper = Helper::getInstance();
-    $utility = new Utility();
+    $helper        = Helper::getInstance();
+    $utility       = new Utility();
 
     $configurator = new Configurator();
     // Load language files

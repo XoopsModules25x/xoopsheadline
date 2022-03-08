@@ -16,11 +16,11 @@ Install/uninstall
 ------------------
 No special measures necessary, follow the standard installation process – extract the module folder into the ../modules directory. Install the module through Admin -> System Module -> Modules.
 
-Detailed instructions on installing modules are available in the XOOPS Operations Manual (http://goo.gl/adT2i)
+Detailed instructions on installing modules are available in the XOOPS Operations Manual (https://goo.gl/adT2i)
 
 Operating instructions
 ------------------------
-Detailed instructions on configuring the access rights for user groups are available in the XOOPS Operations Manual (http://goo.gl/adT2i)
+Detailed instructions on configuring the access rights for user groups are available in the XOOPS Operations Manual (https://goo.gl/adT2i)
 
 Tutorial
 -----------

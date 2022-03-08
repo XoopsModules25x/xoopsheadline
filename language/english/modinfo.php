@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /**
  * XoopsHeadline module
@@ -15,7 +13,6 @@ declare(strict_types=1);
  *
  * @copyright ::  The XOOPS Project (https://xoops.org)
  * @license   ::    GNU GPL (https://www.gnu.org/licenses/gpl-2.0.html/)
- * @package   ::    xoopsheadline
  * @subpackage:: admin
  * @since     ::      1.10
  * @author    ::     onokazu, et al.
